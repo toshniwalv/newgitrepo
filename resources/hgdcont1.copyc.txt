@@ -1,0 +1,29 @@
+      ***********************************************************
+      *  DESCRIPTIONS  : CONTRACT MASTER DETAIL HEADER REC
+      *
+      *  RECORD LENGTH : 1500
+      *
+      ***********************************************************
+
+       01  HG-CON-MASTER-HEADER.
+
+      **   KEY
+           05  HG-CON-AGT-CODE-LOC                  PIC X(6).
+
+           05  HG-CON-LOW-PROC-DATE.
+               10  HG-CON-LOW-PROC-YYYY             PIC 9(4).
+               10  HG-CON-LOW-PROC-MM               PIC 9(2).
+               10  HG-CON-LOW-PROC-DD               PIC 9(2).
+           05  HG-CON-HIGH-PROC-DATE.
+               10  HG-CON-HIGH-PROC-YYYY            PIC 9(4).
+               10  HG-CON-HIGH-PROC-MM              PIC 9(2).
+               10  HG-CON-HIGH-PROC-DD              PIC 9(2).
+           05  HG-CON-PREV-COMM-RUN-TBL.
+               10  HG-CON-PREV-COMM-RUN-ENTRY OCCURS 12.
+                   15  HG-CON-PREV-COMM-RUN-NUMBER  PIC 9(2).
+                   15  HG-CON-PREV-COMM-RUN-DATE.
+                       20  HG-CON-PREV-COMM-YYYY    PIC 9(4).
+                       20  HG-CON-PREV-COMM-MM      PIC 9(2).
+                       20  HG-CON-PREV-COMM-DD      PIC 9(2).
+           05  FILLER                               PIC X(1358).
+

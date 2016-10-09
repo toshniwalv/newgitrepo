@@ -1,0 +1,94 @@
+      ***********************************************************       
+      *                                                         *       
+      *  DESCRIPTIONS  : USER PROFILE                           *       
+      *                                                         *       
+      *** START HAG-995-MI-01 - RLH (OLD)                       *       
+      *  RECORD LENGTH : 150                                    *       
+      *** END   HAG-995-MI-01 - RLH (OLD)                       *       
+      *** START HAG-995-MI-01 - RLH (NEW)                       *       
+      *  RECORD LENGTH : 200                                    *       
+      *** END   HAG-995-MI-01 - RLH (NEW)                       *       
+      *                                                         *       
+      ***********************************************************       
+      ******************************************************************
+      * MOD NO.     : HAG-2002-04-SA-01      RELEASE DATE : 2002/11/25 *
+      * MODIFY BY   : WINNIE WONG (WWF)      MODIFY  DATE : 2002/09/19 *
+      * MODIFY DESC :                                                  *
+      * - EXPAND USER ID TO 8 CHARACTERS                               *
+      * - ADD NEW FIELD USER-STATUS                                    *
+      ******************************************************************
+      * MOD NO.     : HAG-2007-OCT-MI-07     RELEASE DATE : 2007/10/22 *
+      * MODIFY BY   : LOBO WONG (LWB)        MODIFY  DATE : 2007/09/17 *
+      * MODIFY DESC :                                                  *
+      * - ADD NEW VALUE DESCRIPTION (I) IN USER-DEPARTMENT             *
+      ******************************************************************
+      * MOD NO.     : HAG-2009-NOV-CB-01     RELEASE DATE : 2009/11/23 *
+      * MODIFY BY   : LOBO WONG (LWB)        MODIFY  DATE : 2009/09/16 *
+      * MODIFY DESC :                                                  *
+      * - ADD NEW VALUE DESCRIPTION (M) IN USER-DEPARTMENT FOR MACAU   *
+      *       USER                                                     *
+      ******************************************************************
+                                                                        
+       01  USER-RECORD.                                                 
+      *** START OLD HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+      *    05  USER-KEY                     PIC X(4).                   
+      ***  END  OLD HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+      *** START NEW HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+           05  USER-KEY                     PIC X(8).                   
+      ***  END  NEW HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+           05  USER-CLASS                   PIC X(1).                   
+      *** START OLD HAG-2006-NOV-MI-03 (YLA)                            
+      *    05  USER-DEPARTMENT              PIC X(2).                   
+      *** END   OLD HAG-2006-NOV-MI-03 (YLA)                            
+      *** START NEW HAG-2006-NOV-MI-03 (YLA)                            
+           05  USER-DEPARTMENT.                                         
+               10  USER-DEPT-BYTE-1         PIC X(1).                   
+      *----------------------------------------------------------------*
+      *             A -> AC&C                                          *
+      *             B -> BROKERAGE                                     *
+      *             C -> HK CONTROLLERS                                *
+      *             E -> EXPAT MARKETING                               *
+      *             G -> GROUP PENSION                                 *
+      *             I -> IT FRONTLINE SERVICES                         *
+      *             M -> MACAU USER                                    *
+      *             O -> OFFICE ADMIN                                  *
+      *             P -> AGENCY OPERATIONS                             *
+      *             S -> AGENCY SUPPORT                                *
+      *----------------------------------------------------------------*
+               10  USER-DEPT-BYTE-2         PIC X(1).                   
+      *** END   NEW HAG-2006-NOV-MI-03 (YLA)                            
+      *** START HAG-995-MI-01 - RLH (OLD)                               
+      *    05  USER-PASSWORD                PIC X(6).                   
+      *** END   HAG-995-MI-01 - RLH (OLD)                               
+      *** START HAG-995-MI-01 - RLH (NEW)                               
+           05  USER-PASSWORD                PIC X(10).                  
+      *** END   HAG-995-MI-01 - RLH (NEW)                               
+           05  USER-PSW-EFF-DATE            PIC 9(8).                   
+           05  USER-PSW-TERM-DATE           PIC 9(8).                   
+           05  USER-PSW-NOTICE-DATE         PIC 9(8).                   
+           05  USER-SUPPRESS-EXP-SIGNAL     PIC X(1).                   
+           05  USER-PSW-POINTER             PIC 9(2).                   
+           05  USER-POS                     PIC X(1).                   
+      *** START HAG-995-MI-01 - RLH (OLD)                               
+      *    05  FILLER                       PIC X(31).                  
+      *    05  USER-OLD-PSW-TABLE.                                      
+      *        10  USER-OLD-PSW OCCURS 13 TIMES PIC X(6).               
+      *** END   HAG-995-MI-01 - RLH (OLD)                               
+      *** START HAG-995-MI-01 - RLH (NEW)                               
+      *** START HAG-2000-02-MI-01 - RLH (NEW)                           
+           05  USER-INVALID-ATTEMPT         PIC 9(1).                   
+      *** START NEW HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+           05  USER-STATUS                  PIC X(1).                   
+           05  FILLER                       PIC X(19).                  
+      ***  END  NEW HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+      *** START OLD HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+      *    05  FILLER                       PIC X(24).                  
+      ***  END  OLD HAG-2002-04-SA-01 (WWF)  19 SEP 2002  ***           
+      *** END   HAG-2000-02-MI-01 - RLH (NEW)                           
+      *** START HAG-2000-02-MI-01 - RLH (OLD)                           
+      *    05  FILLER                       PIC X(25).                  
+      *** END   HAG-2000-02-MI-01 - RLH (OLD)                           
+           05  USER-OLD-PSW-TABLE.                                      
+               10  USER-OLD-PSW OCCURS 13 TIMES PIC X(10).              
+      *** END   HAG-995-MI-01 - RLH (NEW)                               
+

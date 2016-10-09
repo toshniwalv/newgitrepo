@@ -1,0 +1,24 @@
+      ***********************************************************
+      *  DESCRIPTIONS  : ERROR MESSAGE MASTER
+      *
+      *  FILE NAME     : HGERORM   (ERROR MESSAGE MASTER)
+      *
+      *  FILE TYPE     : KSDS
+      *
+      *  RECORD LENGTH : 80
+      *
+      ***********************************************************
+
+       01  ERROR-MESSAGE.
+      * KEY
+           05  ERROR-CODE                   PIC X(6).
+
+      * DETAIL
+           05  FILLER                       PIC X.
+           05  ERROR-MSG-TEXT               PIC X(50).
+           05  FILLER REDEFINES ERROR-MSG-TEXT.
+               10  FILLER                   PIC X(30).
+               10  ERROR-MSG-TAG-1          PIC X(5).
+               10  FILLER                   PIC X(15).
+           05  FILLER                       PIC X(23).
+

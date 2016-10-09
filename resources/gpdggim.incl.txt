@@ -1,0 +1,841 @@
+      ******************************************************************GPD00010
+      *                                                                *GPD00020
+      *    GROUP GENERAL INFORMATION RECORD  (ONE PER GROUP)           *GPD00030
+      *                                                                *GPD00040
+      *    COPYBOOK NAME  :  GPDGGIM                                   *GPD00050
+      *                                                                *GPD00060
+      *    RECORD FORMAT  :  VARIABLE LENGTH                           *GPD00070
+      *               (OLD)  FIXED PORTION    = 1446 BYTES             *GPD00080
+      *               (OLD)  VARIABLE PORTION =  555 BYTES (15 * 37)   *GPD00090
+      *               (OLD)  MAXIMUM          = 2001 BYTES             *GPD00100
+      *                                                                *GPD00110
+      *              MPF710  FIXED PORTION    = 1461 BYTES             *GPD00120
+      *              MPF710  VARIABLE PORTION =  555 BYTES (15 * 37)   *GPD00130
+      *              MPF710  MAXIMUM          = 2016 BYTES             *GPD00140
+      *                                                                *GPD00150
+      *              MPF131  FIXED PORTION    = 1461 BYTES             *GPD00160
+      *              MPF131  VARIABLE PORTION = 3663 BYTES (99 * 37)   *GPD00170
+      *              MPF131  MAXIMUM          = 5124 BYTES             *GPD00180
+      *                                                                *GPD00190
+      *              MPF142  FIXED PORTION    = 1461 BYTES             *GPD00200
+      *              MPF142  VARIABLE PORTION = 4653 BYTES (99 * 47)   *GPD00210
+      *              MPF142  MAXIMUM          = 6114 BYTES             *GPD00220
+      *                                                                *GPD00230
+      *  JAN 10,2010 MPF204-O FIXED PORTION    = 1505 BYTES            *GPD00240
+      *              MPF204-O VARIABLE PORTION = 4653 BYTES (99 * 47)  *GPD00250
+      *              MPF204-O MAXIMUM          = 6158 BYTES            *GPD00260
+      *                                                                *GPD00270
+      *  12 JUL 2012 MPF209-A NEW BU FLAG ADDED TO DETERMINE ER USING  *GPD00280
+      *                       TOTAL ASSET METHOD FOR BONUS RELEASE     *GPD00290
+      ******************************************************************GPD00300
+       01  GGI-RECORD.                                                  GPD00310
+         03  GGI-FIXED-PORTION.                                         GPD00320
+           05  GGI-KEY.                                                 GPD00330
+               10  GGI-GROUP-NO.                                        GPD00340
+                   15  GGI-BASE-GROUP-NO     PIC 9(7).                  GPD00350
+                   15  GGI-CHK-DGT           PIC 9.                     GPD00360
+      *                                                                 GPD00370
+           05  GGI-POLICYHOLDER-NAME         PIC X(30)  OCCURS 3 TIMES. GPD00380
+           05  GGI-POLICYHOLDER-ADDR         PIC X(35)  OCCURS 6 TIMES. GPD00390
+      *                                                                 GPD00400
+      ***  START NEW MPF630 (JWD) 12 AUG 1999                           GPD00410
+           05  GGI-ADDR-LINE-TYPE            PIC X(1)   OCCURS 6 TIMES. GPD00420
+           05  GGI-ATTN-PERSON               PIC X(35).                 GPD00430
+      ***  START NEW MPF138 (CWB) 24 JAN 2003                           GPD00440
+           05  GGI-TAG-ALLOC-SIG             PIC X(1).                  GPD00450
+      ***  START OLD MPF162 (RLA) 02 AUG 2005                           GPD00460
+      *    05  FILLER                        PIC X(9).                  GPD00470
+      ***  END   OLD MPF162 (RLA) 02 AUG 2005                           GPD00480
+      ***  START NEW MPF162 (RLA) 02 AUG 2005                           GPD00490
+      ***  START NEW MPF191   (CWB) 25 MAR 2008                         GPD00500
+      *---   PRINT PRIORITY FOR ACCOUNTING ER PACK                      GPD00510
+           05  GGI-ERP-PRINT-PRIORITY        PIC X(1).                  GPD00520
+      ***  END   NEW MPF191   (CWB) 25 MAR 2008                         GPD00530
+      ***  START OLD MPF191   (CWB)  25 MAR 2008                        GPD00540
+      *    05  FILLER                        PIC X(1).                  GPD00550
+      ***  END   OLD MPF191   (CWB)  25 MAR 2008                        GPD00560
+           05  GGI-PART-PROVIDE-DATE.                                   GPD00570
+               10  GGI-PART-PROVIDE-YYY      PIC 9(3).                  GPD00580
+               10  GGI-PART-PROVIDE-MM       PIC 9(2).                  GPD00590
+               10  GGI-PART-PROVIDE-DD       PIC 9(2).                  GPD00600
+      ***  START NEW MPF209-A (ICA) 12 JUL 2012                         GPD00610
+           05  GGI-ER-NEW-BU-FLAG            PIC X(1).                  GPD00620
+      ***  END   NEW MPF209-A (ICA) 12 JUL 2012                         GPD00630
+      ***  START OLD MPF209-A (ICA) 12 JUL 2012                         GPD00640
+      *    05  FILLER                        PIC X(1).                  GPD00650
+      ***  END   OLD MPF209-A (ICA) 12 JUL 2012                         GPD00660
+      ***  END   NEW MPF162 (RLA) 02 AUG 2005                           GPD00670
+      ***  END   NEW MPF138 (CWB) 24 JAN 2003                           GPD00680
+      ***  START OLD MPF138 (CWB) 24 JAN 2003                           GPD00690
+      *    05  FILLER                        PIC X(10).                 GPD00700
+      ***  END   OLD MPF138 (CWB) 24 JAN 2003                           GPD00710
+      ***  END   NEW MPF630 (JWD) 12 AUG 1999                           GPD00720
+      *                                                                 GPD00730
+      *    GROUP STATUS INFORMATION                                     GPD00740
+      *    ------------------------                                     GPD00750
+      *    PREISSUE RECORD STATUS: 0 - PARTIAL RECORD                   GPD00760
+      *                            1 - COMPLETE RECORD, GROUP NOT ISSUEDGPD00770
+      *                            2 - ISSUE COMPLETE                   GPD00780
+      *                                                                 GPD00790
+           05  GGI-PREISS-STATUS             PIC 9.                     GPD00800
+               88  GGI-PARTIAL                VALUE 0.                  GPD00810
+               88  GGI-COMPLETE-NOT-ISSUE     VALUE 1.                  GPD00820
+               88  GGI-COMPLETE-ISSUE         VALUE 9.                  GPD00830
+      *                                                                 GPD00840
+           05  GGI-REC-ADD-DATE.                                        GPD00850
+               10  GGI-REC-ADD-YYY           PIC 9(3).                  GPD00860
+               10  GGI-REC-ADD-MM            PIC 9(2).                  GPD00870
+               10  GGI-REC-ADD-DD            PIC 9(2).                  GPD00880
+      *                                                                 GPD00890
+      *    GROUP STATUS: 01 - CONTRIBUTION PAYING                       GPD00900
+      *                  02 - DISCONTINUED - CONTINUING PLAN            GPD00910
+      *                  03 - DISCONTINUED - NO CONTINUING PLAN         GPD00920
+      *                  04 - DISCONTINUED - CASH OUT                   GPD00930
+      *                  05 - CANCELLED                                 GPD00940
+      *                  06 - RETIRED LIVES ONLY                        GPD00950
+      *                  09 - PRE-ISSUE                                 GPD00960
+      *                                                                 GPD00970
+           05  GGI-GRP-STATUS                PIC 9(2).                  GPD00980
+               88  GGI-CONT-PAY               VALUE 01.                 GPD00990
+               88  GGI-DISCON-CPLAN           VALUE 02.                 GPD01000
+               88  GGI-DISCON-NOT-CPLAN       VALUE 03.                 GPD01010
+               88  GGI-DISCON-CASHOUT         VALUE 04.                 GPD01020
+               88  GGI-CANCEL                 VALUE 05.                 GPD01030
+               88  GGI-RET-LIVE               VALUE 06.                 GPD01040
+               88  GGI-PREISSUE               VALUE 09.                 GPD01050
+      ***  START NEW GP036 (FWB) 29 APR 94                              GPD01060
+               88  GGI-REAL-TERMINATE         VALUE 05 06.              GPD01070
+      ***  END   NEW GP036 (FWB) 29 APR 94                              GPD01080
+      *                                                                 GPD01090
+           05  GGI-GRP-STATUS-EFF-DATE.                                 GPD01100
+               10  GGI-GRP-STATUS-EFF-YYY    PIC 9(3).                  GPD01110
+               10  GGI-GRP-STATUS-EFF-MM     PIC 9(2).                  GPD01120
+               10  GGI-GRP-STATUS-EFF-DD     PIC 9(2).                  GPD01130
+      *                                                                 GPD01140
+           05  GGI-GRP-STATUS-CHG-DATE.                                 GPD01150
+               10  GGI-GRP-STATUS-CHG-YYY    PIC 9(3).                  GPD01160
+               10  GGI-GRP-STATUS-CHG-MM     PIC 9(2).                  GPD01170
+               10  GGI-GRP-STATUS-CHG-DD     PIC 9(2).                  GPD01180
+      *                                                                 GPD01190
+      ***  START OLD GP067 (RCH) 12 FEB 97                              GPD01200
+      *    05  FILLER                        PIC X(7).                  GPD01210
+      ***  END   OLD GP067 (RCH) 12 FEB 97                              GPD01220
+      ***  START NEW GP067 (RCH) 12 FEB 97                              GPD01230
+      *                                                                 GPD01240
+      *    MPF RELATED CHANGES                                          GPD01250
+      *    -------------------                                          GPD01260
+      *                                                                 GPD01270
+           05  GGI-SCHEME-NUMBER             PIC X(6).                  GPD01280
+           05  GGI-MPF-BENEFIT-TYPE          PIC X(1).                  GPD01290
+               88  GGI-ORSO-SCHEME            VALUE ' '.                GPD01300
+               88  GGI-MPF-BOTH               VALUE 'B'.                GPD01310
+               88  GGI-MPF-MANDATORY          VALUE 'M'.                GPD01320
+               88  GGI-MPF-NON-MANDATORY      VALUE 'N'.                GPD01330
+      ***  END   NEW GP067 (RCH) 12 FEB 97                              GPD01340
+      *                                                                 GPD01350
+      *    GENERAL INFORMATION                                          GPD01360
+      *    -------------------                                          GPD01370
+      *                                                                 GPD01380
+           05  GGI-ISSUE-UNIT                PIC X(5).                  GPD01390
+           05  GGI-ADMIN-UNIT                PIC X(5).                  GPD01400
+      *                                                                 GPD01410
+      *    SPECIAL GROUP TYPE: 01 - MLI COMPANY BENEFIT PLAN            GPD01420
+      *                                                                 GPD01430
+           05  GGI-SPCL-GRP-TYPE             PIC 9(2).                  GPD01440
+               88  GGI-MLI-PLAN               VALUE 01.                 GPD01450
+      ***  START NEW FIRE-FIGHT (DSA) 12 FEB 97                         GPD01460
+               88  GGI-SEX-REQUIRED           VALUE 10.                 GPD01470
+      ***  END   NEW FIRE-FIGHT (DSA) 12 FEB 97                         GPD01480
+      ***  START NEW MPF531 (CYD) 14 OCT 1999                           GPD01490
+               88  GGI-MPF-EXISTING-ORSO      VALUE 50.                 GPD01500
+      ***  END   NEW MPF531 (CYD) 14 OCT 1999                           GPD01510
+      ***  START NEW MPF149 (CYD) 16 MAR 2004                           GPD01520
+               88  GGI-IVC                    VALUE 77.                 GPD01530
+      ***  END   NEW MPF149 (CYD) 16 MAR 2004                           GPD01540
+      ***  START NEW GP073 (HNA) 18 FEB 97                              GPD01550
+               88  GGI-SELF-EMPLOYED          VALUE 88.                 GPD01560
+      ***  END   NEW GP073 (HNA) 18 FEB 97                              GPD01570
+      ***  START NEW MPF531 (CYD) 14 OCT 1999                           GPD01580
+               88  GGI-MIL-AGENT-SELF-EMPLOYED VALUE 89.                GPD01590
+      ***  END   NEW MPF531 (CYD) 14 OCT 1999                           GPD01600
+      ***  START NEW MPF830 (ALM) 13 OCT 2000                           GPD01610
+               88  GGI-SCHEME-POOL-POLICY     VALUE 90.                 GPD01620
+      ***  END   NEW MPF830 (ALM) 13 OCT 2000                           GPD01630
+      ***  START NEW GP004 (JCA) 29 MAY 91                              GPD01640
+               88  GGI-OLD-1-YR-FUND          VALUE 99.                 GPD01650
+      ***  END   NEW GP004 (JCA) 29 MAY 91                              GPD01660
+      *                                                                 GPD01670
+      *    NATURE OF BUSINESS = INDUSTRY CODE                           GPD01680
+      *                                                                 GPD01690
+           05  GGI-NATURE-OF-BUS             PIC X(3).                  GPD01700
+      *                                                                 GPD01710
+      *    SCHEME TYPE: P - PROVIDENT FUND                              GPD01720
+      *                 R - RETIREMENT SCHEME                           GPD01730
+      *                                                                 GPD01740
+           05  GGI-SCHEME-TYPE               PIC X.                     GPD01750
+               88  GGI-PROVIDENT-FUND         VALUE 'P'.                GPD01760
+               88  GGI-RET-SCHEME             VALUE 'R'.                GPD01770
+      *                                                                 GPD01780
+      *    SCHEME APPROVED SIGNAL                                       GPD01790
+      *                                                                 GPD01800
+           05  GGI-SCHEME-STATUS             PIC X.                     GPD01810
+      *** START NEW MPF710 (CYD) 20 JUNE 2000                           GPD01820
+               88  GGI-SCHEME-NA              VALUE SPACES.             GPD01830
+               88  GGI-NON-EXEMPT-ORSO-EXEMPT VALUE 'F'.                GPD01840
+      *** END   NEW MPF710 (CYD) 20 JUNE 2000                           GPD01850
+      *** START NEW GP088 (MYC) 04 DEC 98                               GPD01860
+               88  GGI-SCHEME-ORSO-EXEMPT     VALUE 'E'.                GPD01870
+               88  GGI-SCHEME-ORSO-TRUST      VALUE 'T'.                GPD01880
+      *** END   NEW GP088 (MYC) 04 DEC 98                               GPD01890
+               88  GGI-SCHEME-NOT-APPRV       VALUE 'N'.                GPD01900
+               88  GGI-SCHEME-APPRV           VALUE 'Y'.                GPD01910
+      *                                                                 GPD01920
+      *    ADMINISTRATION TYPE: F - FULLY SERVICED                      GPD01930
+      *                         I - INVESTMENT ONLY                     GPD01940
+      *                                                                 GPD01950
+           05  GGI-ADMIN-TYPE                PIC X.                     GPD01960
+               88  GGI-FULL-SERV              VALUE 'F'.                GPD01970
+               88  GGI-INVESTMENT             VALUE 'I'.                GPD01980
+      *                                                                 GPD01990
+      *    STANDARD MANULIFE CODES                                      GPD02000
+      *                                                                 GPD02010
+           05  GGI-ER-RES-CODE               PIC 9(3).                  GPD02020
+           05  GGI-COMPANY-CODE              PIC 9(3).                  GPD02030
+           05  GGI-GRP-CURRENCY              PIC 9(3).                  GPD02040
+           05  GGI-POL-REGISTER              PIC 9(5).                  GPD02050
+           05  GGI-SERVICE-AGENT-CODE        PIC 9(6).                  GPD02060
+           05  GGI-GRP-TYPE                  PIC 9(3).                  GPD02070
+      ***  START OLD GP064 (HNA) 09 SEP 96                              GPD02080
+      *    05  GGI-ABC-SEG-FUND-BILL-SUB     PIC 9(2).                  GPD02090
+      ***  END   OLD GP064 (HNA) 09 SEP 96                              GPD02100
+      ***  START NEW GP064 (HNA) 09 SEP 96                              GPD02110
+           05  GGI-NEW-GROUP-SIGNAL          PIC 9(2).                  GPD02120
+               88  GGI-NEW-GROUP              VALUE 00.                 GPD02130
+               88  GGI-EXIST-NEW-GROUP        VALUE 01.                 GPD02140
+               88  GGI-CHANGE-PRODUCT-GROUP   VALUE 10.                 GPD02150
+               88  GGI-SPIN-OFF-GROUP         VALUE 11.                 GPD02160
+      ***  END   NEW GP064 (HNA) 09 SEP 96                              GPD02170
+           05  GGI-POLICY-TYPE               PIC X(6).                  GPD02180
+      ***  START OLD GP009 (JCA) 18 NOV 91                              GPD02190
+      *        88  GGI-PRE91                  VALUE 'PRE91 '.           GPD02200
+      *        88  GGI-STD91                  VALUE 'STD91 '.           GPD02210
+      *        88  GGI-SIMP91                 VALUE 'SIMP91'.           GPD02220
+      ***  END   OLD GP009 (JCA) 18 NOV 91                              GPD02230
+      ***  START NEW GP009 (JCA) 18 NOV 91                              GPD02240
+               88  GGI-PRE91                  VALUE 'PRE91 '.           GPD02250
+               88  GGI-SIMP91                 VALUE 'SIMP91'.           GPD02260
+               88  GGI-STD92                  VALUE 'STD92 '.           GPD02270
+               88  GGI-MFLX92                 VALUE 'MFLX92'.           GPD02280
+      ***  END   NEW GP009 (JCA) 18 NOV 91                              GPD02290
+      *** START NEW MPF531 (DCD) 23 NOV 1999                            GPD02300
+               88  GGI-MP2000                 VALUE 'MP2000'.           GPD02310
+      *** END   NEW MPF531 (DCD) 23 NOV 1999                            GPD02320
+      *** START NEW MPF300 (ICA) 15 OCT 2012                            GPD02330
+               88  GGI-MACAU-PLAN             VALUE 'MAC213'.           GPD02340
+      *** END   NEW MPF300 (ICA) 15 OCT 2012                            GPD02350
+      ***  START NEW GP024 (SHA) 25 MAY 93                              GPD02360
+               88  GGI-VALID-POLICY-TYPE      VALUE                     GPD02370
+                   'PRE91 ' 'SIMP91' 'STD92 ' 'STD93 '                  GPD02380
+      ***  START OLD GP025 (CLE) 23 JUL 93                              GPD02390
+      *            'MFLX92' 'MFLX93'.                                   GPD02400
+      ***  END   OLD GP025 (CLE) 23 JUL 93                              GPD02410
+      ***  START NEW GP047 (DSA) 06 MAR 95                              GPD02420
+                   'MFLX95'                                             GPD02430
+      ***  END   NEW GP047 (DSA) 06 MAR 95                              GPD02440
+      *** START NEW MPF300 (ICA) 15 OCT 2012                            GPD02450
+                   'MAC213'                                             GPD02460
+      *** END   NEW MPF300 (ICA) 15 OCT 2012                            GPD02470
+      ***  START NEW GP073 (HNA) 13 FEB 97                              GPD02480
+                   'MPF01'                                              GPD02490
+      ***  END   NEW GP073 (HNA) 13 FEB 97                              GPD02500
+      ***  START NEW MPF151 (JWD) 21 MAY 1999                           GPD02510
+                   'MP2000'                                             GPD02520
+      ***  END   NEW MPF151 (JWD) 21 MAY 1999                           GPD02530
+      ***  START NEW GP025 (CLE) 23 JUL 93                              GPD02540
+                   'MFLX92' 'MFLX93' 'MFD93'.                           GPD02550
+      ***  END   NEW GP025 (CLE) 23 JUL 93                              GPD02560
+               88  GGI-OLD-TYPE               VALUE 'PRE91 '.           GPD02570
+               88  GGI-MANUFUND               VALUE 'SIMP91' 'MFD93 '.  GPD02580
+               88  GGI-STANDARD               VALUE 'STD92 ' 'STD93 '.  GPD02590
+               88  GGI-MANUFLEX               VALUE 'MFLX92' 'MFLX93'.  GPD02600
+      ***  START NEW GP047 (DSA) 06 MAR 95                              GPD02610
+               88  GGI-MANUFLEX-2             VALUE 'MFLX95'.           GPD02620
+      ***  END   NEW GP047 (DSA) 06 MAR 95                              GPD02630
+      ***  END   NEW GP024 (SHA) 25 MAY 93                              GPD02640
+      ***  START NEW MPF151 (JWD) 15 MAR 1999                           GPD02650
+               88  GGI-MPF-POLICY-TYPE        VALUE 'MP2000'.           GPD02660
+      ***  END   NEW MPF151 (JWD) 15 MAR 1999                           GPD02670
+      *                                                                 GPD02680
+      *    DATES                                                        GPD02690
+      *    -----                                                        GPD02700
+      *                                                                 GPD02710
+           05  GGI-GRP-EFF-DATE.                                        GPD02720
+               10  GGI-GRP-EFF-YYY           PIC 9(3).                  GPD02730
+               10  GGI-GRP-EFF-MM            PIC 9(2).                  GPD02740
+               10  GGI-GRP-EFF-DD            PIC 9(2).                  GPD02750
+      *                                                                 GPD02760
+           05  GGI-ANNIV-LAST-CHG-DATE.                                 GPD02770
+               10  GGI-ANNIV-LAST-CHG-YYY    PIC 9(3).                  GPD02780
+               10  GGI-ANNIV-LAST-CHG-MM     PIC 9(2).                  GPD02790
+               10  GGI-ANNIV-LAST-CHG-DD     PIC 9(2).                  GPD02800
+      *                                                                 GPD02810
+           05  GGI-LAST-ANNIV-DATE.                                     GPD02820
+               10  GGI-LAST-ANNIV-YYY        PIC 9(3).                  GPD02830
+               10  GGI-LAST-ANNIV-MM         PIC 9(2).                  GPD02840
+               10  GGI-LAST-ANNIV-DD         PIC 9(2).                  GPD02850
+      *                                                                 GPD02860
+           05  GGI-NEXT-ANNIV-DATE.                                     GPD02870
+               10  GGI-NEXT-ANNIV-YYY        PIC 9(3).                  GPD02880
+               10  GGI-NEXT-ANNIV-MM         PIC 9(2).                  GPD02890
+               10  GGI-NEXT-ANNIV-DD         PIC 9(2).                  GPD02900
+      *                                                                 GPD02910
+           05  GGI-TXJ-LAST-RUN-DATE.                                   GPD02920
+               10  GGI-TXJ-LAST-RUN-YYY      PIC 9(3).                  GPD02930
+               10  GGI-TXJ-LAST-RUN-DDD      PIC 9(3).                  GPD02940
+      *                                                                 GPD02950
+           05  GGI-CERT-TX-REJECT-DATE.                                 GPD02960
+               10  GGI-CERT-TX-REJ-YYY       PIC 9(3).                  GPD02970
+               10  GGI-CERT-TX-REJ-MM        PIC 9(2).                  GPD02980
+               10  GGI-CERT-TX-REJ-DD        PIC 9(2).                  GPD02990
+      *                                                                 GPD03000
+           05  GGI-NO-OF-CERT-FROZEN         PIC S9(5) COMP-3.          GPD03010
+      *                                                                 GPD03020
+           05  GGI-TX-REJECT-TYPE            PIC 9.                     GPD03030
+               88  GGI-REJ-NA                 VALUE 0.                  GPD03040
+               88  GGI-REJ-CERT               VALUE 1.                  GPD03050
+               88  GGI-REJ-BLAC               VALUE 2.                  GPD03060
+               88  GGI-REJ-GLAC               VALUE 3.                  GPD03070
+      *                                                                 GPD03080
+           05  GGI-CONV-EFF-DATE.                                       GPD03090
+               10  GGI-CONV-EFF-YYY          PIC 9(3).                  GPD03100
+               10  GGI-CONV-EFF-MM           PIC 9(2).                  GPD03110
+               10  GGI-CONV-EFF-DD           PIC 9(2).                  GPD03120
+      ***  START NEW GP003 (PCB) 13 MAR 91                              GPD03130
+      *                                                                 GPD03140
+      *    GGI CONVERSION STATUS SIGNAL                                 GPD03150
+      *                                                                 GPD03160
+      *    BLANK - N/A OR CONVERSION COMPLETED                          GPD03170
+      *    N     - NOT CONVERTED (I.E. PRE-STAGE 1)                     GPD03180
+      *    P     - PARTIALLY CONVERTED (I.E. STAGE 1 COMPLETED)         GPD03190
+      *                                                                 GPD03200
+           05  GGI-CONV-STATUS-SIG           PIC X(1).                  GPD03210
+               88  GGI-CONV-NA                VALUE SPACE.              GPD03220
+               88  GGI-NOT-CONV               VALUE 'N'.                GPD03230
+               88  GGI-PART-CONV              VALUE 'P'.                GPD03240
+      *                                                                 GPD03250
+      ***  START OLD GP040 (CLE) 03 JAN 95                              GPD03260
+      *    05  FILLER                        PIC X(5).                  GPD03270
+      ***  END   OLD GP040 (CLE) 03 JAN 95                              GPD03280
+      ***  START NEW GP040 (CLE) 03 JAN 95                              GPD03290
+      *                                                                 GPD03300
+      *    DISTRIBUTION CODE AND EBS CODE                               GPD03310
+      *    ------------------------------                               GPD03320
+           05  GGI-DISTRIBUT-CODE            PIC X.                     GPD03330
+               88 GGI-AGENCY                 VALUE 'A'.                 GPD03340
+               88 GGI-BROKERAGE              VALUE 'B'.                 GPD03350
+               88 GGI-CORPORATE              VALUE 'C'.                 GPD03360
+      *                                                                 GPD03370
+           05  GGI-EBS-CODE                  PIC X(3).                  GPD03380
+      ***  START OLD MPF710 (KLF) 09 JUN 00                             GPD03390
+      *    05  FILLER                        PIC X.                     GPD03400
+      ***  END   OLD MPF710 (KLF) 09 JUN 00                             GPD03410
+      ***  START NEW MPF710 (KLF) 09 JUN 00                             GPD03420
+           05  GGI-PRINT-PRIORITY            PIC 9.                     GPD03430
+               88  GGI-PRINT-HIGHEST          VALUE 1.                  GPD03440
+               88  GGI-PRINT-LOWEST           VALUE 9.                  GPD03450
+      ***  END   NEW MPF710 (KLF) 09 JUN 00                             GPD03460
+      ***  END   NEW GP040 (CLE) 03 JAN 95                              GPD03470
+      ***  END   NEW GP003 (PCB) 13 MAR 91                              GPD03480
+      ***  START OLD GP003 (PCB) 13 MAR 91                              GPD03490
+      *                                                                 GPD03500
+      *    05  FILLER                        PIC X(6).                  GPD03510
+      ***  END   OLD GP003 (PCB) 13 MAR 91                              GPD03520
+      *                                                                 GPD03530
+      *    ALLOWED SIGNALS                                              GPD03540
+      *    ---------------                                              GPD03550
+      *    ADDITION / CHANGE / OPTIONAL ALLOWED SIGNALS:                GPD03560
+      *        1 - ON ANY CONTRIBUTION DUE DATE                         GPD03570
+      *        2 - AT ANNIVERSARY ONLY                                  GPD03580
+      *        3 - FIRST OF ANY POLICY MONTH                            GPD03590
+      *        9 - NOT ALLOWED                                          GPD03600
+      *                                                                 GPD03610
+           05  GGI-ADD-ALLOW-SIG             PIC 9.                     GPD03620
+               88  GGI-A-PREM-DUE-DATE        VALUE 1.                  GPD03630
+               88  GGI-A-ANNIV                VALUE 2.                  GPD03640
+               88  GGI-A-1ST-OF-POL-MTH       VALUE 3.                  GPD03650
+               88  GGI-A-NOT-ALLOW            VALUE 9.                  GPD03660
+      *                                                                 GPD03670
+           05  GGI-CHG-ALLOW-SIG             PIC 9.                     GPD03680
+               88  GGI-C-PREM-DUE-DATE        VALUE 1.                  GPD03690
+               88  GGI-C-ANNIV                VALUE 2.                  GPD03700
+               88  GGI-C-1ST-OF-POL-MTH       VALUE 3.                  GPD03710
+               88  GGI-C-NOT-ALLOW            VALUE 9.                  GPD03720
+      *                                                                 GPD03730
+           05  GGI-OPT-ALLOW-SIG             PIC 9.                     GPD03740
+               88  GGI-O-PREM-DUE-DATE        VALUE 1.                  GPD03750
+               88  GGI-O-ANNIV                VALUE 2.                  GPD03760
+               88  GGI-O-1ST-OF-POL-MTH       VALUE 3.                  GPD03770
+               88  GGI-O-NOT-ALLOW            VALUE 9.                  GPD03780
+      *                                                                 GPD03790
+      *    MAXIMUM OPTIONAL CONTRIBUTION PERCENTAGE                     GPD03800
+      *                                                                 GPD03810
+           05  GGI-MAX-OPT-CONT-PCT          PIC SV9(5) COMP-3.         GPD03820
+      *                                                                 GPD03830
+      *    FUTURE SERVICE (FS) EMPLOYEE (EE) / EMPLOYER (ER)            GPD03840
+      *    CONTRIBUTION ALLOWED SIGNALS                                 GPD03850
+      *                                                                 GPD03860
+           05  GGI-FSEE-ALLOW-SIG            PIC X.                     GPD03870
+               88  GGI-FSEE-NO-CONT           VALUE 'N'.                GPD03880
+               88  GGI-FSEE-CONT              VALUE 'Y'.                GPD03890
+      *                                                                 GPD03900
+           05  GGI-FSER-ALLOW-SIG            PIC X.                     GPD03910
+               88  GGI-FSER-NO-CONT           VALUE 'N'.                GPD03920
+               88  GGI-FSER-CONT              VALUE 'Y'.                GPD03930
+      *                                                                 GPD03940
+      *    PAST SERVICE (PS) EMPLOYEE (EE) / EMPLOYER (ER) CONTRIBUTION GPD03950
+      *    (SINGLE PREMIUM) ALLOWED SIGNALS                             GPD03960
+      *                                                                 GPD03970
+           05  GGI-PSEE-ALLOW-SIG            PIC 9.                     GPD03980
+               88  GGI-PSEE-AMORT-SP          VALUE 1.                  GPD03990
+               88  GGI-PSEE-ONE-SHOT-SP       VALUE 2.                  GPD04000
+               88  GGI-PSEE-NOT-ALLOW         VALUE 9.                  GPD04010
+      *                                                                 GPD04020
+           05  GGI-PSER-ALLOW-SIG            PIC 9.                     GPD04030
+               88  GGI-PSER-AMORT-SP          VALUE 1.                  GPD04040
+               88  GGI-PSER-ONE-SHOT-SP       VALUE 2.                  GPD04050
+               88  GGI-PSER-NOT-ALLOW         VALUE 9.                  GPD04060
+      *                                                                 GPD04070
+      *    COMPULSORY COVERAGE SIGNAL                                   GPD04080
+      *                                                                 GPD04090
+           05  GGI-COMPUL-COV-SIG            PIC X.                     GPD04100
+               88  GGI-NOT-COMPUL-COV         VALUE 'N'.                GPD04110
+               88  GGI-COMPUL-COV             VALUE 'Y'.                GPD04120
+      *                                                                 GPD04130
+      *    CONTRIBUTION AFTER NRD ALLOWED SIGNAL                        GPD04140
+      *                                                                 GPD04150
+           05  GGI-CONT-AFTER-NRD-ALLOW-SIG  PIC X.                     GPD04160
+               88  GGI-NOT-CONT-AFTER-NRD     VALUE 'N'.                GPD04170
+               88  GGI-CONT-AFTER-NRD         VALUE 'Y'.                GPD04180
+      *                                                                 GPD04190
+      *    FREEZE INFORMATION                                           GPD04200
+      *    ------------------                                           GPD04210
+      *    FREEZE SIGNAL: NA - ACTIVE                                   GPD04220
+      *                   IN - INTERNAL                                 GPD04230
+      *                   EX - EXTERNAL                                 GPD04240
+      *                                                                 GPD04250
+           05  GGI-GRP-FREEZE-SIG            PIC 9.                     GPD04260
+               88  GGI-GRP-FREEZE-NA          VALUE 0.                  GPD04270
+               88  GGI-GRP-FREEZE-IN          VALUE 1.                  GPD04280
+               88  GGI-GRP-FREEZE-EX          VALUE 2.                  GPD04290
+      *                                                                 GPD04300
+           05  GGI-GRP-FREEZE-DATE.                                     GPD04310
+               10  GGI-GRP-FREEZE-YYY        PIC 9(3).                  GPD04320
+               10  GGI-GRP-FREEZE-MM         PIC 9(2).                  GPD04330
+               10  GGI-GRP-FREEZE-DD         PIC 9(2).                  GPD04340
+      *                                                                 GPD04350
+           05  GGI-INT-CALC-FREEZE-SIG       PIC 9.                     GPD04360
+               88  GGI-INT-CALC-FREEZE-NA     VALUE 0.                  GPD04370
+               88  GGI-INT-CALC-FREEZE-IN     VALUE 1.                  GPD04380
+               88  GGI-INT-CALC-FREEZE-EX     VALUE 2.                  GPD04390
+      *                                                                 GPD04400
+           05  GGI-INT-CALC-FREEZE-DATE.                                GPD04410
+               10  GGI-INT-CALC-FREEZE-YYY   PIC 9(3).                  GPD04420
+               10  GGI-INT-CALC-FREEZE-MM    PIC 9(2).                  GPD04430
+               10  GGI-INT-CALC-FREEZE-DD    PIC 9(2).                  GPD04440
+      *                                                                 GPD04450
+      ***  START OLD MPF560 (DHA) 06 JUL 99                             GPD04460
+      *    05  FILLER                        PIC X(7).                  GPD04470
+      ***  END   OLD MPF560 (DHA) 06 JUL 99                             GPD04480
+      ***  START OLD MPF330 (ACI) 04 MAY 2000                           GPD04490
+      ***  START NEW MPF560 (DHA) 06 JUL 99                             GPD04500
+      *    05  FILLER                        PIC X(6).                  GPD04510
+      ***  END   NEW MPF560 (DHA) 06 JUL 99                             GPD04520
+      ***  END   OLD MPF330 (ACI) 04 MAY 2000                           GPD04530
+      ***  START NEW MPF330 (ACI) 04 MAY 2000                           GPD04540
+           05  FILLER                        PIC X(5).                  GPD04550
+      ***                                                               GPD04560
+      *    ER PIN SIGNAL                                                GPD04570
+      ***                                                               GPD04580
+           05  GGI-ER-PIN-SIGNAL             PIC X.                     GPD04590
+               88  GGI-ER-PIN-NA              VALUE 'N'.                GPD04600
+               88  GGI-ER-PIN-GROUP           VALUE 'G'.                GPD04610
+               88  GGI-ER-PIN-SUBGROUP        VALUE 'S'.                GPD04620
+      ***  END   NEW MPF330 (ACI) 04 MAY 2000                           GPD04630
+      *                                                                 GPD04640
+      *    TYPES & SIGNALS                                              GPD04650
+      *    ---------------                                              GPD04660
+      *                                                                 GPD04670
+      *    IVR SIGNAL                                                   GPD04680
+      *                                                                 GPD04690
+      ***  START NEW MPF560 (DHA) 06 JUL 99                             GPD04700
+           05  GGI-IVR-SIGNAL                PIC X.                     GPD04710
+               88  GGI-IVR-ALLOW              VALUE 'Y'.                GPD04720
+               88  GGI-IVR-NA                 VALUE 'N'.                GPD04730
+      ***  END   NEW MPF560 (DHA) 06 JUL 99                             GPD04740
+      *                                                                 GPD04750
+      *    EMPLOYEE WITHDRAWAL CREDIT (EEWCR) REFUND TYPE & PAYEE SIGNALGPD04760
+      *                                                                 GPD04770
+           05  GGI-EEWCR-REFUND-TYPE         PIC X.                     GPD04780
+               88  GGI-EEWCR-REFUND-IMD       VALUE 'I'.                GPD04790
+               88  GGI-EEWCR-REFUND-DFR       VALUE 'D'.                GPD04800
+               88  GGI-EEWCR-REFUND-NO        VALUE 'N'.                GPD04810
+               88  GGI-EEWCR-REFUND-REQ       VALUE 'R'.                GPD04820
+      *                                                                 GPD04830
+           05  GGI-EEWCR-PAYEE-SIG           PIC 9.                     GPD04840
+               88  GGI-EEWCR-GRP-PHDR         VALUE 1.                  GPD04850
+               88  GGI-EEWCR-BILL-CL-PHDR     VALUE 2.                  GPD04860
+               88  GGI-EEWCR-EE               VALUE 3.                  GPD04870
+      *                                                                 GPD04880
+      *    UNFUNDED PAST SERVICE (PS) SIGNAL                            GPD04890
+      *                                                                 GPD04900
+           05  GGI-UNFUND-PS-SIG             PIC 9.                     GPD04910
+               88  GGI-UFD-PS-NA              VALUE 0.                  GPD04920
+               88  GGI-UFD-PS-NOT-PUR-WDL     VALUE 1.                  GPD04930
+               88  GGI-UFD-PS-PUR-WDL         VALUE 2.                  GPD04940
+               88  GGI-UFD-PS-PUR-SPFD        VALUE 3.                  GPD04950
+      *                                                                 GPD04960
+      *    CERT NUMBER ASSIGNMENT TYPE & LAST CERT NUMBER               GPD04970
+      *                                                                 GPD04980
+           05  GGI-CERT-NO-TYPE              PIC X.                     GPD04990
+               88  GGI-CERT-NO-AUTO           VALUE 'A'.                GPD05000
+               88  GGI-CERT-NO-SPFD           VALUE 'S'.                GPD05010
+           05  GGI-LAST-SEQ-CERT-NO          PIC X(10).                 GPD05020
+           05  GGI-LAST-SEQ-CERT-NO-9 REDEFINES GGI-LAST-SEQ-CERT-NO    GPD05030
+                                             PIC 9(10).                 GPD05040
+      *                                                                 GPD05050
+      *    REPORT PRINTING ORDER SIGNAL                                 GPD05060
+      *                                                                 GPD05070
+           05  GGI-PRINT-ORDER-SIG           PIC X.                     GPD05080
+               88  GGI-PRINT-ALPHA            VALUE 'A'.                GPD05090
+               88  GGI-PRINT-CERT-NO          VALUE 'N'.                GPD05100
+      *                                                                 GPD05110
+      *    EMPLOYER WITHDRAWAL CREDIT (ERWCR) ANNIVERSARY ALLOCATION    GPD05120
+      *    TYPE & METHOD                                                GPD05130
+      *                                                                 GPD05140
+           05  GGI-ERWCR-ANNIV-ALLOC-TYPE    PIC 9.                     GPD05150
+               88  GGI-ERWCR-ALLOC-NA         VALUE 0.                  GPD05160
+               88  GGI-ERWCR-ALLOC-BILL-CL    VALUE 1.                  GPD05170
+               88  GGI-ERWCR-ALLOC-GRP        VALUE 2.                  GPD05180
+      *                                                                 GPD05190
+           05  GGI-ERWCR-ANNIV-ALLOC-METHOD  PIC 9(2).                  GPD05200
+      *                                                                 GPD05210
+      ***  START OLD MPF150 (JWD) 02 MAR 98                             GPD05220
+      *    05  FILLER                        PIC X(8).                  GPD05230
+      ***  END   OLD MPF150 (JWD) 02 MAR 98                             GPD05240
+      ***  START NEW MPF150 (JWD) 02 MAR 98                             GPD05250
+           05  FILLER                        PIC X(2).                  GPD05260
+      ***  END   NEW MPF150 (JWD) 02 MAR 98                             GPD05270
+      *                                                                 GPD05280
+      *    HIT DATES                                                    GPD05290
+      *    ---------                                                    GPD05300
+      *                                                                 GPD05310
+      ***  START NEW MPF150 (JWD) 02 MAR 98                             GPD05320
+           05  GGI-NEXT-COMM-RECON-HIT-DATE.                            GPD05330
+               10  GGI-NEXT-COMM-RECON-HIT-YYY PIC 9(3).                GPD05340
+               10  GGI-NEXT-COMM-RECON-HIT-DDD PIC 9(3).                GPD05350
+      ***  END   NEW MPF150 (JWD) 02 MAR 98                             GPD05360
+      *                                                                 GPD05370
+           05  GGI-NEXT-BILL-CL-HIT-DATE.                               GPD05380
+               10  GGI-NEXT-BILL-CL-HIT-YYY  PIC 9(3).                  GPD05390
+               10  GGI-NEXT-BILL-CL-HIT-DDD  PIC 9(3).                  GPD05400
+      *                                                                 GPD05410
+           05  GGI-NEXT-DA-FUND-HIT-DATE.                               GPD05420
+               10  GGI-NEXT-DA-FUND-HIT-YYY  PIC 9(3).                  GPD05430
+               10  GGI-NEXT-DA-FUND-HIT-DDD  PIC 9(3).                  GPD05440
+      *                                                                 GPD05450
+           05  GGI-PREISS-HIT-DATE.                                     GPD05460
+               10  GGI-PREISS-HIT-YYY        PIC 9(3).                  GPD05470
+               10  GGI-PREISS-HIT-DDD        PIC 9(3).                  GPD05480
+      *                                                                 GPD05490
+           05  GGI-CHG-LIST-HIT-DATE.                                   GPD05500
+               10  GGI-CHG-LIST-HIT-YYY      PIC 9(3).                  GPD05510
+               10  GGI-CHG-LIST-HIT-DDD      PIC 9(3).                  GPD05520
+      *                                                                 GPD05530
+           05  GGI-ANNIV-HIT-DATE.                                      GPD05540
+               10  GGI-ANNIV-HIT-YYY         PIC 9(3).                  GPD05550
+               10  GGI-ANNIV-HIT-DDD         PIC 9(3).                  GPD05560
+                                                                        GPD05570
+      *                                                                 GPD05580
+      *    ALLOCATION OF CREDITS SIGNAL                                 GPD05590
+      *                                                                 GPD05600
+           05  GGI-ALLOC-OF-CR-SIG           PIC 9.                     GPD05610
+               88  GGI-ALLOC-CR-OFF           VALUE 0.                  GPD05620
+               88  GGI-ALLOC-CR-ON            VALUE 1.                  GPD05630
+      *                                                                 GPD05640
+      ***  START NEW GP088 (CWB) 26 NOV 98                              GPD05650
+           05  GGI-NEXT-BONUS-UNITS-HIT-DATE.                           GPD05660
+               10  GGI-NEXT-BONUS-UNITS-HIT-YYY PIC 9(3).               GPD05670
+               10  GGI-NEXT-BONUS-UNITS-HIT-DDD PIC 9(3).               GPD05680
+                                                                        GPD05690
+      ***  START NEW MPF910 (KNA) 17 JAN 2001                           GPD05700
+           05  GGI-ANNIV-PROCESS-HIT-DATE.                              GPD05710
+               10  GGI-ANNIV-PROCESS-HIT-YYY PIC 9(3).                  GPD05720
+               10  GGI-ANNIV-PROCESS-HIT-DDD PIC 9(3).                  GPD05730
+      ***  END   NEW MPF910 (KNA) 17 JAN 2001                           GPD05740
+                                                                        GPD05750
+      ***  START OLD MPF910 (KNA) 17 JAN 2001                           GPD05760
+      *    05  FILLER                        PIC X(06).                 GPD05770
+      ***  END   OLD MPF910 (KNA) 17 JAN 2001                           GPD05780
+      ***  END   NEW GP088 (CWB) 26 NOV 98                              GPD05790
+      ***  START OLD GP088 (CWB) 26 NOV 98                              GPD05800
+      *    05  FILLER                        PIC X(12).                 GPD05810
+      ***  END   OLD GP088 (CWB) 26 NOV 98                              GPD05820
+      *                                                                 GPD05830
+      *    NUMBER OF GROUP RECORDS (PER CLASS)                          GPD05840
+      *    -----------------------------------                          GPD05850
+      *                                                                 GPD05860
+           05  GGI-NO-OF-FORM-CL             PIC 9(2).                  GPD05870
+           05  GGI-NO-OF-VEST-CL             PIC 9(2).                  GPD05880
+           05  GGI-PS-VEST-CL-SIG            PIC X.                     GPD05890
+               88  GGI-PS-VEST-NA             VALUE 'N'.                GPD05900
+               88  GGI-PS-VEST-YES            VALUE 'Y'.                GPD05910
+           05  GGI-NO-OF-SCH-CL              PIC 9(2).                  GPD05920
+           05  GGI-NO-OF-BILL-CL             PIC 9(2).                  GPD05930
+           05  FILLER                        PIC X(4).                  GPD05940
+      *                                                                 GPD05950
+      *    GROUP RECORD SIGNALS                                         GPD05960
+      *    --------------------                                         GPD05970
+      *                                                                 GPD05980
+           05  GGI-REC-SIGNALS.                                         GPD05990
+               10  GGI-FORM-CL-REC-SIG       PIC X.                     GPD06000
+                   88  GGI-FORM-CL-NOT-OK     VALUE 'N'.                GPD06010
+                   88  GGI-FORM-CL-OK         VALUE 'Y'.                GPD06020
+      *                                                                 GPD06030
+               10  GGI-VEST-CL-REC-SIG       PIC X.                     GPD06040
+                   88  GGI-VEST-CL-NOT-OK     VALUE 'N'.                GPD06050
+                   88  GGI-VEST-CL-OK         VALUE 'Y'.                GPD06060
+      *                                                                 GPD06070
+               10  GGI-ELIG-REC-SIG          PIC X.                     GPD06080
+                   88  GGI-ELIG-NOT-OK        VALUE 'N'.                GPD06090
+                   88  GGI-ELIG-OK            VALUE 'Y'.                GPD06100
+      *                                                                 GPD06110
+               10  GGI-NRD-REC-SIG           PIC X.                     GPD06120
+                   88  GGI-NRD-NOT-OK         VALUE 'N'.                GPD06130
+                   88  GGI-NRD-OK             VALUE 'Y'.                GPD06140
+      *                                                                 GPD06150
+               10  GGI-CL-PROF-REC-SIG       PIC X.                     GPD06160
+                   88  GGI-CL-PROF-NOT-OK     VALUE 'N'.                GPD06170
+                   88  GGI-CL-PROF-OK         VALUE 'Y'.                GPD06180
+      *                                                                 GPD06190
+               10  GGI-COMM-REC-SIG          PIC X.                     GPD06200
+                   88  GGI-COMM-NOT-OK        VALUE 'N'.                GPD06210
+                   88  GGI-COMM-OK            VALUE 'Y'.                GPD06220
+      *                                                                 GPD06230
+               10  GGI-DA-FUND-REC-SIG       PIC X.                     GPD06240
+                   88  GGI-DA-FUND-NOT-OK     VALUE 'N'.                GPD06250
+                   88  GGI-DA-FUND-OK         VALUE 'Y'.                GPD06260
+      *                                                                 GPD06270
+               10  GGI-BILL-CL-REC-SIG       PIC X.                     GPD06280
+                   88  GGI-BILL-CL-NOT-OK     VALUE 'N'.                GPD06290
+                   88  GGI-BILL-CL-OK         VALUE 'Y'.                GPD06300
+      *                                                                 GPD06310
+               10  GGI-CHR-REC-SIG           PIC X.                     GPD06320
+                   88  GGI-CHR-NOT-OK         VALUE 'N'.                GPD06330
+                   88  GGI-CHR-OK             VALUE 'Y'.                GPD06340
+      *                                                                 GPD06350
+      ***  START OLD MPF710 (KLF) 09 JUN 00                             GPD06360
+      *    05  FILLER                        PIC X(2).                  GPD06370
+      ***  END   OLD MPF710 (KLF) 09 JUN 00                             GPD06380
+      ***  START NEW MPF710 (KLF) 09 JUN 00                             GPD06390
+           05  GGI-ASSOCIATION-CODE          PIC X(2).                  GPD06400
+               88  GGI-ASSOCIATION-CODE-NA    VALUE '00'.               GPD06410
+               88  GGI-HK-MEDICAL-ASSOC       VALUE '01'.               GPD06420
+               88  GGI-CANADIAN-CHAMBER       VALUE '02'.               GPD06430
+               88  GGI-BAR-ASSOCIATION        VALUE '03'.               GPD06440
+               88  GGI-INDIAN-CHAMBER         VALUE '04'.               GPD06450
+               88  GGI-CHINESE-MEDICAL-ASSOC  VALUE '05'.               GPD06460
+               88  GGI-INFO-SOFTW-IND-ASSOC   VALUE '06'.               GPD06470
+      ***  END   NEW MPF710 (KLF) 09 JUN 00                             GPD06480
+      ***  START NEW FIRE-FIGHT (ATD) 20 SEP 2000                       GPD06490
+               88  GGI-HK-COMPUTER-IND         VALUE '07'.              GPD06500
+               88  GGI-HK-KLN-TAXI-LORRY-ASSOC VALUE '08'.              GPD06510
+               88  GGI-MOTOR-TRANSPORT-UNION   VALUE '09'.              GPD06520
+               88  GGI-WORLD-FAMILY-LIMITED    VALUE '10'.              GPD06530
+      ***  START NEW 1639P      (WWE) 21 DEC 2000                       GPD06540
+               88  GGI-HK-ELECTRIC-INDUS-ASSOC VALUE '11'.              GPD06550
+               88  GGI-HK-DUMPER-DRIVER-ASSOC  VALUE '12'.              GPD06560
+               88  GGI-HK-UNION-OF-LIGHT-VAN   VALUE '13'.              GPD06570
+               88  GGI-HK-PERFORMING-ART-GUILD VALUE '14'.              GPD06580
+               88  GGI-HK-CHIROPRACTOR-ASSOC   VALUE '15'.              GPD06590
+               88  GGI-PHILIP-SECURITIES       VALUE '16'.              GPD06600
+      ***  END   NEW 1639P      (WWE) 21 DEC 2000                       GPD06610
+               88  GGI-VALID-ASSOC-CODE        VALUE '00', '01', '02',  GPD06620
+                                               '03', '04', '05', '06',  GPD06630
+      ***  START NEW FIRE-FIGHT (KLF) 20 OCT 2000                       GPD06640
+                                               '11',                    GPD06650
+      ***  END   NEW FIRE-FIGHT (KLF) 20 OCT 2000                       GPD06660
+      ***  START NEW 1639P      (WWE) 21 DEC 2000                       GPD06670
+                                               '12', '13', '14', '15',  GPD06680
+                                               '16',                    GPD06690
+      ***  END   NEW 1639P      (WWE) 21 DEC 2000                       GPD06700
+                                               '07', '08', '09', '10'.  GPD06710
+      ***  END   NEW FIRE-FIGHT (ATD) 20 SEP 2000                       GPD06720
+      *                                                                 GPD06730
+      *    SPECIAL COMMENTS                                             GPD06740
+      *    ----------------                                             GPD06750
+      *                                                                 GPD06760
+           05  GGI-SPCL-COMMENTS             PIC X(30)  OCCURS 10 TIMES.GPD06770
+      *                                                                 GPD06780
+      *    SUBSIDIARY COMPANIES                                         GPD06790
+      *    --------------------                                         GPD06800
+      *                                                                 GPD06810
+           05  GGI-SUBSIDIARY-CO             PIC X(50)  OCCURS 5 TIMES. GPD06820
+      *                                                                 GPD06830
+      *    SCHEDULE CLASS INFORMATION                                   GPD06840
+      *    --------------------------                                   GPD06850
+      *                                                                 GPD06860
+           05  GGI-SCH-ENTRY              OCCURS 10 TIMES.              GPD06870
+               10  GGI-SCH-CL-NO             PIC 9(2).                  GPD06880
+               10  GGI-SCH-CL-NAME           PIC X(20).                 GPD06890
+      *                                                                 GPD06900
+      ***  START OLD GP036 (FWB) 29 APR 94                              GPD06910
+      *    05  FILLER                        PIC X(48).                 GPD06920
+      ***  END   OLD GP036 (FWB) 29 APR 94                              GPD06930
+      ***  START NEW GP036 (FWB) 29 APR 94                              GPD06940
+      *                                                                 GPD06950
+      *    ORSO INFORMATION                                             GPD06960
+      *    ----------------                                             GPD06970
+      *                                                                 GPD06980
+           05  GGI-ORSO-REG-NO               PIC X(15).                 GPD06990
+           05  GGI-ORSO-REG-DATE.                                       GPD07000
+               10  GGI-ORSO-REG-YYY          PIC 9(3).                  GPD07010
+               10  GGI-ORSO-REG-MM           PIC 9(2).                  GPD07020
+               10  GGI-ORSO-REG-DD           PIC 9(2).                  GPD07030
+           05  GGI-RELATED-GROUP-NO.                                    GPD07040
+               10  GGI-RELATED-BASE-GRP-NO   PIC 9(7).                  GPD07050
+               10  GGI-RELATED-CHK-DGT       PIC 9.                     GPD07060
+      ***  START OLD MPF650 (KNA) 03 DEC 1999                           GPD07070
+      *    05  FILLER                        PIC X(18).                 GPD07080
+      ***  END   OLD MPF650 (KNA) 03 DEC 1999                           GPD07090
+      ***  START NEW MPF650 (KNA) 03 DEC 1999                           GPD07100
+      ***  START OLD MPF123 (DHA) 09 APR 2002                           GPD07110
+      *    05  FILLER                        PIC X(11).                 GPD07120
+      ***  END   OLD MPF123 (DHA) 09 APR 2002                           GPD07130
+      ***  START NEW MPF123 (DHA) 09 APR 2002                           GPD07140
+           05  FILLER                        PIC X(02).                 GPD07150
+                                                                        GPD07160
+      *    SEP CHARGE INFO                                              GPD07170
+      *    ---------------                                              GPD07180
+           05  GGI-ENROL-FEE-WAIVE-SIG       PIC X(1).                  GPD07190
+           05  GGI-ANNUAL-FEE-WAIVE-SIG      PIC X(1).                  GPD07200
+           05  GGI-ANNUAL-FEE-HIT-DATE.                                 GPD07210
+               10  GGI-ANNUAL-FEE-HIT-YYY    PIC 9(3).                  GPD07220
+               10  GGI-ANNUAL-FEE-HIT-DDD    PIC 9(3).                  GPD07230
+           05  GGI-FEE-REIMBURSE-FLAG        PIC X(1).                  GPD07240
+      *** START NEW GP258 (FWA) 29 NOV 2007                             GPD07250
+               88  GGI-FEE-REIMBURSED        VALUE 'Y'.                 GPD07260
+               88  GGI-FEE-NOT-REIMBURSED    VALUE 'N'.                 GPD07270
+               88  GGI-FEE-CHECKED           VALUE 'C'.                 GPD07280
+               88  GGI-FEE-INCOME            VALUE 'I'.                 GPD07290
+               88  GGI-FEE-TO-BE-PROCESSED   VALUE ' '.                 GPD07300
+      *** END   NEW GP258 (FWA) 29 NOV 2007                             GPD07310
+      ***  END   NEW MPF123 (DHA) 09 APR 2002                           GPD07320
+                                                                        GPD07330
+      *    STABLE FUND                                                  GPD07340
+      *    -----------                                                  GPD07350
+           05  GGI-GTEED-BAL-CALC-START-DATE.                           GPD07360
+               10  GGI-GTEED-BAL-CALC-START-YYY  PIC 9(3).              GPD07370
+               10  GGI-GTEED-BAL-CALC-START-MM   PIC 9(2).              GPD07380
+               10  GGI-GTEED-BAL-CALC-START-DD   PIC 9(2).              GPD07390
+      ***  END   NEW MPF650 (KNA) 03 DEC 1999                           GPD07400
+      ***  END   NEW GP036 (FWB) 29 APR 94                              GPD07410
+      ***  START NEW MPF710 (KLF) 09 JUN 00                             GPD07420
+           05  GGI-MPF-EXEMPT-NO                 PIC X(15).             GPD07430
+      ***  END   NEW MPF710 (KLF) 09 JUN 00                             GPD07440
+      *                                                                 GPD07450
+      *                                                                 GPD07460
+      *    FUND ALLOCATION INFORMATION                                  GPD07470
+      *    ---------------------------                                  GPD07480
+      *    FUND CODE : DHK001 - HK  1 YR DA FUND                        GPD07490
+      *                DHK005 - HK  5 YR DA FUND                        GPD07500
+      *                DHK015 - HK 15 YR DA FUND                        GPD07510
+      *                DPH001 - PHILIPPINES 1 YR DA FUND                GPD07520
+      *                SHK065 - I.E.F                                   GPD07530
+      *                                                                 GPD07540
+           05  GGI-CONT-ALLOC-TYPE           PIC X.                     GPD07550
+               88  GGI-CONT-ALLOC-PCT-BY-GRP  VALUE 'G'.                GPD07560
+               88  GGI-CONT-ALLOC-PCT-BY-CERT VALUE 'C'.                GPD07570
+      ***  START NEW MPF530 (BCC) 06 JUL 99                             GPD07580
+               88  GGI-CONT-ALLOC-PCT-BY-PART VALUE 'P'.                GPD07590
+      ***  END   NEW MPF530 (BCC) 06 JUL 99                             GPD07600
+                                                                        GPD07610
+      ***  START NEW MPF204-O (ATD) 11 JAN 2010                         GPD07620
+           05  GGI-CURR-TRF-QUOTA-ENTRY.                                GPD07630
+               10  GGI-CURR-TRF-QUOTA-TYPE    PIC 9(2) OCCURS 6 TIMES.  GPD07640
+           05  FILLER REDEFINES GGI-CURR-TRF-QUOTA-ENTRY.               GPD07650
+               10  GGI-CURR-TRF-QUOTA-EEMC      PIC 9(2).               GPD07660
+               10  GGI-CURR-TRF-QUOTA-ERMC      PIC 9(2).               GPD07670
+               10  GGI-CURR-TRF-QUOTA-EEVC      PIC 9(2).               GPD07680
+               10  GGI-CURR-TRF-QUOTA-ERVC      PIC 9(2).               GPD07690
+               10  GGI-CURR-TRF-QUOTA-PAC-EEMC  PIC 9(2).               GPD07700
+               10  GGI-CURR-TRF-QUOTA-PAC-EEVC  PIC 9(2).               GPD07710
+                                                                        GPD07720
+           05  GGI-PREV-TRF-QUOTA-ENTRY.                                GPD07730
+               10  GGI-PREV-TRF-QUOTA-TYPE    PIC 9(2) OCCURS 6 TIMES.  GPD07740
+           05  FILLER REDEFINES GGI-PREV-TRF-QUOTA-ENTRY.               GPD07750
+               10  GGI-PREV-TRF-QUOTA-EEMC      PIC 9(2).               GPD07760
+               10  GGI-PREV-TRF-QUOTA-ERMC      PIC 9(2).               GPD07770
+               10  GGI-PREV-TRF-QUOTA-EEVC      PIC 9(2).               GPD07780
+               10  GGI-PREV-TRF-QUOTA-ERVC      PIC 9(2).               GPD07790
+               10  GGI-PREV-TRF-QUOTA-PAC-EEMC  PIC 9(2).               GPD07800
+               10  GGI-PREV-TRF-QUOTA-PAC-EEVC  PIC 9(2).               GPD07810
+      *** START OLD GP339 (ADA) 21 JUL 2011                             GPD07820
+      *    05  FILLER                           PIC X(20).              GPD07830
+      *** END   OLD GP339 (ADA) 21 JUL 2011                             GPD07840
+      ***  END   NEW MPF204-O (ATD) 11 JAN 2010                         GPD07850
+      *** START NEW GP339 (ADA) 21 JUL 2011                             GPD07860
+           05  GGI-1ST-DEFAULTER-DATE.                                  GPD07870
+               10  GGI-1ST-DEFAULTER-YYY        PIC X(3).               GPD07880
+               10  GGI-1ST-DEFAULTER-MM         PIC X(2).               GPD07890
+      ***  START OLD MPF220 (CWB) 31 MAY 2012
+      *    05  FILLER                           PIC X(15).              GPD07900
+      ***  END   OLD MPF220 (CWB) 31 MAY 2012
+      ***  START NEW MPF220 (CWB) 31 MAY 2012
+           05  GGI-DC-STS-UPDATE-DATE.
+               10  GGI-DC-STS-UPDATE-YYY        PIC X(3).
+               10  GGI-DC-STS-UPDATE-MM         PIC X(2).
+               10  GGI-DC-STS-UPDATE-DD         PIC X(2).
+           05  FILLER                           PIC X(08).
+      ***  END   NEW MPF220 (CWB) 31 MAY 2012
+      *** END   NEW GP339 (ADA) 21 JUL 2011                             GPD07910
+                                                                        GPD07920
+           05  GGI-FUND-ENTRY-NO             PIC 9(2).                  GPD07930
+      *                                                                 GPD07940
+         03  GGI-VAR-PORTION.                                           GPD07950
+      *** START OLD MPF131 (DCD) 27 NOV 2002                            GPD07960
+      *    05  GGI-FUND-ENTRY             OCCURS 15 TIMES.              GPD07970
+      *** END   OLD MPF131 (DCD) 27 NOV 2002                            GPD07980
+      *** START NEW MPF131 (DCD) 27 NOV 2002                            GPD07990
+           05  GGI-FUND-ENTRY             OCCURS 99 TIMES.              GPD08000
+      *** END   NEW MPF131 (DCD) 27 NOV 2002                            GPD08020
+               10  GGI-FUND-CODE             PIC X(6).                  GPD08030
+               10  GGI-FUND-CURRENCY         PIC 9(3).                  GPD08040
+               10  GGI-FSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD08050
+               10  GGI-FSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD08060
+               10  GGI-OPT-ALLOC-PCT         PIC S9V9(5) COMP-3.        GPD08070
+               10  GGI-PSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD08080
+               10  GGI-PSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD08090
+      ***  START OLD GP047 (DSA) 06 MAR 95                              GPD08100
+      *        10  FILLER                    PIC X(8).                  GPD08110
+      ***  END   OLD GP047 (DSA) 06 MAR 95                              GPD08120
+      ***  START NEW GP047 (DSA) 06 MAR 95                              GPD08130
+               10  GGI-FUND-USED-SIG         PIC X.                     GPD08140
+                   88  GGI-FUND-NOT-USED     VALUE 'N'.                 GPD08150
+                   88  GGI-FUND-USED         VALUE 'Y'.                 GPD08160
+      ***  START NEW GP088 (CWB) 26 NOV 98                              GPD08170
+               10  GGI-BONUS-UNIT-FACTOR     PIC SV9(5) COMP-3.         GPD08180
+      *** START OLD MPF142 (DSD) 27 MAY 2003                            GPD08190
+      *        10  FILLER                    PIC X(4).                  GPD08200
+      *** END   OLD MPF142 (DSD) 27 MAY 2003                            GPD08210
+      ***  END   NEW GP088 (CWB) 26 NOV 98                              GPD08220
+      ***  START OLD GP088 (CWB) 26 NOV 98                              GPD08230
+      *        10  FILLER                    PIC X(7).                  GPD08240
+      ***  END   OLD GP088 (CWB) 26 NOV 98                              GPD08250
+      ***  END   NEW GP047 (DSA) 06 MAR 95                              GPD08260
+      *** START NEW MPF142 (DSD) 27 MAY 2003                            GPD08270
+               10  GGI-FUND-BU-HIT-DATE.                                GPD08280
+                   15  GGI-FUND-BU-HIT-YYY   PIC 9(3).                  GPD08290
+                   15  GGI-FUND-BU-HIT-DDD   PIC 9(3).                  GPD08300
+               10  FILLER                    PIC X(8).                  GPD08310
+      *** END   NEW MPF142 (DSD) 27 MAY 2003                            GPD08320
+

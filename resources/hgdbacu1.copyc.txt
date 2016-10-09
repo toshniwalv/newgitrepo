@@ -1,0 +1,40 @@
+      ***********************************************************       HGD00010
+      *  DESCRIPTIONS  : BRANCH ACCUM MASTER HEADER                     HGD00020
+      *                                                                 HGD00030
+      *  FILE NAME     : HGBACUM                                        HGD00040
+      *                                                                 HGD00050
+      *  FILE TYPE     : KSDS                                           HGD00060
+      *                                                                 HGD00070
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00080
+      *  RECORD LENGTH : 2000                                           HGD00090
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00100
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00110
+      *  RECORD LENGTH : 1500                                           HGD00120
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00130
+      *                                                                 HGD00140
+      ***********************************************************       HGD00150
+      ***************************************************************** HGD00160
+      * MOD NO.  : HAG-993-CC-01            RELEASE DATE : 1999/05/04 * HGD00170
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 1999/03/23 * HGD00180
+      * MOD DESC :                                                    * HGD00190
+      *   - ENLARGE RECORD LENGTH FROM 1500 TO 2000                   * HGD00200
+      ***************************************************************** HGD00210
+                                                                        HGD00220
+       01  BA-BR-ACCUM-MASTER-HEADER.                                   HGD00230
+           05  BA-BRANCH-CODE-LOC           PIC X(5).                   HGD00240
+                                                                        HGD00250
+           05  BA-LOW-PROC-DATE.                                        HGD00260
+               10  BA-LOW-PROC-YYYY         PIC 9(4).                   HGD00270
+               10  BA-LOW-PROC-MM           PIC 9(2).                   HGD00280
+               10  BA-LOW-PROC-DD           PIC 9(2).                   HGD00290
+           05  BA-HIGH-PROC-DATE.                                       HGD00300
+               10  BA-HIGH-PROC-YYYY        PIC 9(4).                   HGD00310
+               10  BA-HIGH-PROC-MM          PIC 9(2).                   HGD00320
+               10  BA-HIGH-PROC-DD          PIC 9(2).                   HGD00330
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00340
+      *    05  FILLER                       PIC X(1479).                HGD00350
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00360
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00370
+           05  FILLER                       PIC X(1979).                HGD00380
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** HGD00390
+

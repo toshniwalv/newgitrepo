@@ -1,0 +1,18 @@
+      ***********************************************************
+      *  DESCRIPTIONS  : BRANCH MASTER HEADER
+      *
+      *  RECORD LENGTH : 80
+      *
+      ***********************************************************
+
+       01  BR-MASTER-HEADER.
+           05  BR-BRANCH-CODE-LOC           PIC X(5).
+           05  BR-LOW-PROC-DATE.
+               10  BR-LOW-PROC-YYYY         PIC 9(4).
+               10  BR-LOW-PROC-MM           PIC 9(2).
+               10  BR-LOW-PROC-DD           PIC 9(2).
+           05  BR-HIGH-PROC-DATE.
+               10  BR-HIGH-PROC-YYYY        PIC 9(4).
+               10  BR-HIGH-PROC-MM          PIC 9(2).
+               10  BR-HIGH-PROC-DD          PIC 9(2).
+           05  FILLER                       PIC X(59).

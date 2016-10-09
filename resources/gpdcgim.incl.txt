@@ -1,0 +1,215 @@
+       01  CGI-RECORD.                                                  GPD00820
+         03  CGI-FIXED-PORTION.                                         GPD00830
+           05  CGI-KEY.                                                 GPD00840
+               10  CGI-GROUP-NO.                                        GPD00850
+                   15  CGI-BASE-GROUP-NO     PIC 9(7).                  GPD00860
+                   15  CGI-CHK-DGT           PIC 9.                     GPD00870
+               10  CGI-CERT-NO               PIC X(10).                 GPD00880
+           05  CGI-ALT-KEY.                                             GPD00890
+               10  CGI-ALT-GROUP-NO          PIC 9(8).                  GPD00900
+               10  CGI-BILL-CL               PIC 9(2).                  GPD00910
+               10  CGI-ALT-CERT-NO           PIC X(10).                 GPD00920
+           05  CGI-CERT-STATUS               PIC 9(2).                  GPD01150
+           05  CGI-CERT-STATUS-EFF-DATE.                                GPD01360
+               10  CGI-CERT-STATUS-EFF-YYY   PIC 9(3).                  GPD01370
+               10  CGI-CERT-STATUS-EFF-MM    PIC 9(2).                  GPD01380
+               10  CGI-CERT-STATUS-EFF-DD    PIC 9(2).                  GPD01390
+           05  CGI-CERT-STATUS-CHG-DATE.                                GPD01400
+               10  CGI-CERT-STATUS-CHG-YYY   PIC 9(3).                  GPD01410
+               10  CGI-CERT-STATUS-CHG-MM    PIC 9(2).                  GPD01420
+               10  CGI-CERT-STATUS-CHG-DD    PIC 9(2).                  GPD01430
+           05  CGI-WDR-PEND-SIG              PIC X.                     GPD01450
+           05  CGI-EE-NEW-BU-FLAG            PIC X(1).                  GPD01810
+           05  FILLER                        PIC X(1).                  GPD01820
+           05  CGI-AGENT-CODE                PIC X(6).                  GPD01840
+           05  CGI-RETIRE-OPT                PIC X.                     GPD01890
+           05  CGI-SURNAME                   PIC X(20).                 GPD02160
+           05  CGI-OTHER-NAME                PIC X(20).                 GPD02170
+           05  CGI-SEX                       PIC X.                     GPD02180
+           05  CGI-BIRTH-DATE.                                          GPD02240
+               10  CGI-BIRTH-YYY             PIC 9(3).                  GPD02250
+               10  CGI-BIRTH-MM              PIC 9(2).                  GPD02260
+               10  CGI-BIRTH-DD              PIC 9(2).                  GPD02270
+           05  CGI-JOB-CAT                   PIC 9(3).                  GPD02280
+           05  CGI-RELATED-GROUP-NO          PIC X(8).                  GPD02330
+           05  CGI-PREV-BILL-CL              PIC 9(2).                  GPD02390
+           05  CGI-FORM-CL                   PIC 9(2).                  GPD02400
+           05  CGI-SCH-CL                    PIC 9(2).                  GPD02410
+           05  CGI-VEST-CL                   PIC 9(2).                  GPD02420
+           05  CGI-PS-VEST-CL                PIC 9(2).                  GPD02430
+           05  CGI-DC-STS-UPDATE-DATE        PIC 9(7) COMP-3.           GPD02560
+           05  CGI-ORIG-CERT-NO              PIC X(10).                 GPD02570
+           05  CGI-MBS-PRINT-SIG             PIC X(1).                  GPD02640
+           05  CGI-CERT-FREEZE-SIG           PIC 9.                     GPD02760
+           05  CGI-CERT-FREEZE-DATE.                                    GPD02800
+               10  CGI-CERT-FREEZE-YYY       PIC 9(3).                  GPD02810
+               10  CGI-CERT-FREEZE-MM        PIC 9(2).                  GPD02820
+               10  CGI-CERT-FREEZE-DD        PIC 9(2).                  GPD02830
+           05  CGI-NRA                       PIC 9(2).                  GPD02880
+           05  CGI-NRD.                                                 GPD02890
+               10  CGI-NRD-YYY               PIC 9(3).                  GPD02900
+               10  CGI-NRD-MM                PIC 9(2).                  GPD02910
+               10  CGI-NRD-DD                PIC 9(2).                  GPD02920
+           05  CGI-EMP-DATE.                                            GPD02930
+               10  CGI-EMP-YYY               PIC 9(3).                  GPD02940
+               10  CGI-EMP-MM                PIC 9(2).                  GPD02950
+               10  CGI-EMP-DD                PIC 9(2).                  GPD02960
+           05  CGI-COV-DATE.                                            GPD02970
+               10  CGI-COV-YYY               PIC 9(3).                  GPD02980
+               10  CGI-COV-MM                PIC 9(2).                  GPD02990
+               10  CGI-COV-DD                PIC 9(2).                  GPD03000
+           05  CGI-EMP-VEST-DATE.                                       GPD03010
+               10  CGI-EMP-VEST-YYY          PIC 9(3).                  GPD03020
+               10  CGI-EMP-VEST-MM           PIC 9(2).                  GPD03030
+               10  CGI-EMP-VEST-DD           PIC 9(2).                  GPD03040
+           05  CGI-COV-VEST-DATE.                                       GPD03050
+               10  CGI-COV-VEST-YYY          PIC 9(3).                  GPD03060
+               10  CGI-COV-VEST-MM           PIC 9(2).                  GPD03070
+               10  CGI-COV-VEST-DD           PIC 9(2).                  GPD03080
+           05  CGI-NO-PAY-LEAVE-MTHS         PIC 9(3).                  GPD03100
+           05  CGI-FS-VEST-PCT               PIC S9V9(5) COMP-3.        GPD03120
+           05  CGI-PS-VEST-PCT               PIC S9V9(5) COMP-3.        GPD03130
+           05  CGI-LAST-TX-TYPE              PIC 9(3).                  GPD03150
+           05  CGI-LAST-TX-EFF-DATE.                                    GPD03160
+               10  CGI-LAST-TX-EFF-YYY       PIC 9(3).                  GPD03170
+               10  CGI-LAST-TX-EFF-MM        PIC 9(2).                  GPD03180
+               10  CGI-LAST-TX-EFF-DD        PIC 9(2).                  GPD03190
+           05  CGI-TXJ-LAST-RUN-DATE.                                   GPD03210
+               10  CGI-TXJ-LAST-RUN-YYY      PIC 9(3).                  GPD03220
+               10  CGI-TXJ-LAST-RUN-DDD      PIC 9(3).                  GPD03230
+           05  CGI-CERT-TX-REJECT-DATE.                                 GPD03250
+               10  CGI-CERT-TX-REJ-YYY       PIC 9(3).                  GPD03260
+               10  CGI-CERT-TX-REJ-MM        PIC 9(2).                  GPD03270
+               10  CGI-CERT-TX-REJ-DD        PIC 9(2).                  GPD03280
+           05  CGI-AMORT-PS-CONT-END-DATE.                              GPD03300
+               10  CGI-AMORT-PS-CONT-END-YYY PIC 9(3).                  GPD03310
+               10  CGI-AMORT-PS-CONT-END-MM  PIC 9(2).                  GPD03320
+           05  CGI-LAST-INTERFD-TRF-DATE.                               GPD03370
+               10  CGI-LAST-INTERFD-TRF-YYY  PIC 9(3).                  GPD03380
+               10  CGI-LAST-INTERFD-TRF-MM   PIC 9(2).                  GPD03390
+               10  CGI-LAST-INTERFD-TRF-DD   PIC 9(2).                  GPD03400
+           05  CGI-RS-TERM-SIG               PIC X(1).                  GPD03430
+           05  CGI-UNCLAIM-REASON            PIC X(1).                  GPD03450
+           05  CGI-PRERET-HIT-DATE.                                     GPD03590
+               10  CGI-PRERET-HIT-YYY        PIC 9(3).                  GPD03600
+               10  CGI-PRERET-HIT-DDD        PIC 9(3).                  GPD03610
+           05  CGI-RET-HIT-DATE.                                        GPD03620
+               10  CGI-RET-HIT-YYY           PIC 9(3).                  GPD03630
+               10  CGI-RET-HIT-DDD           PIC 9(3).                  GPD03640
+           05  CGI-NEXT-FS-AUTO-CHG-HIT-DATE.                           GPD03650
+               10  CGI-NEXT-FS-CHG-HIT-YYY   PIC 9(3).                  GPD03660
+               10  CGI-NEXT-FS-CHG-HIT-DDD   PIC 9(3).                  GPD03670
+           05  CGI-TERM-EMPLOY-DATE.                                    GPD03720
+               10  CGI-TERM-EMPLOY-YYY       PIC 9(3).                  GPD03730
+               10  CGI-TERM-EMPLOY-MM        PIC 9(2).                  GPD03740
+               10  CGI-TERM-EMPLOY-DD        PIC 9(2).                  GPD03750
+           05  CGI-CPY-VC-WDL-COUNT          PIC 9(3) COMP-3.           GPD03800
+           05  CGI-TOTAL-VC-WDL-COUNT        PIC 9(5) COMP-3.           GPD03810
+           05  CGI-CURR-MTHLY-SAL            PIC S9(9)V99 COMP-3.       GPD03880
+           05  CGI-CURR-OPT-PCT              PIC SV9(5)   COMP-3.       GPD03890
+           05  CGI-CURR-FSEE-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03900
+           05  CGI-CURR-FSER-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03910
+           05  CGI-CURR-OPT-MTHLY-CONT       PIC S9(9)V99 COMP-3.       GPD03920
+           05  CGI-CURR-PSEE-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03930
+           05  CGI-CURR-PSER-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03940
+           05  CGI-TERM-NOTIFN-DATE.                                    GPD03990
+               10  CGI-TERM-NOTIFN-YYY       PIC 9(3).                  GPD04000
+               10  CGI-TERM-NOTIFN-MM        PIC 9(2).                  GPD04010
+               10  CGI-TERM-NOTIFN-DD        PIC 9(2).                  GPD04020
+           05  FILLER                        PIC X(5).                  GPD04030
+           05  CGI-FSEE-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04090
+           05  CGI-FSER-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04100
+           05  CGI-OPT-NEXT-CONT-ADJ         PIC S9(9)V99 COMP-3.       GPD04110
+           05  CGI-PSEE-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04120
+           05  CGI-PSER-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04130
+           05  CGI-FSEE-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04150
+           05  CGI-FSER-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04160
+           05  CGI-OPT-NEXT-NET-CONT-ADJ     PIC S9(9)V99 COMP-3.       GPD04170
+           05  CGI-PSEE-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04180
+           05  CGI-PSER-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04190
+           05  CGI-TRF-TAXABLE-AMT           PIC S9(9)V99 COMP-3.       GPD04290
+           05  CGI-ID-NUMBER                 PIC X(15).                 GPD04350
+           05  CGI-MPF-TRF-BEN-SIG           PIC X.                     GPD04360
+           05  CGI-SELFEMPLOY-TYPE           PIC X.                     GPD04500
+           05  CGI-SELFEMPLOY-EARN-TYPE      PIC X(2).                  GPD04540
+           05  CGI-CASUAL-EE-SIG             PIC X.                     GPD04640
+           05  CGI-SE-NEXT-YR-ANNUAL-EARNING PIC S9(9)V99 COMP-3.       GPD04740
+           05  CGI-SE-NEXT-YR-VOLUNTARY-CONT PIC S9(9)V99 COMP-3.       GPD04760
+           05  CGI-OS-CONT-HIT-DATE.                                    GPD04800
+               10  CGI-OS-CONT-HIT-YYY       PIC 9(3).                  GPD04810
+               10  CGI-OS-CONT-HIT-DDD       PIC 9(3).                  GPD04820
+           05  CGI-OS-TRF-WDRL-FORM-HIT-DATE.                           GPD04830
+               10  CGI-OS-TRF-WDRL-FORM-HIT-YYY  PIC 9(3).              GPD04840
+               10  CGI-OS-TRF-WDRL-FORM-HIT-DDD  PIC 9(3).              GPD04850
+           05  CGI-UNVESTED-ER-VOL           PIC S9(11)V99 COMP-3.      GPD04900
+           05  CGI-LSP-SP-AMT-DEDUCTED-MAND  PIC S9(9)V99 COMP-3.       GPD04920
+           05  CGI-LSP-SP-AMT-DEDUCTED-VOL   PIC S9(9)V99 COMP-3.       GPD04930
+           05  CGI-OPEN-VEST-BEN-MAND        PIC S9(11)V99 COMP-3.      GPD05010
+           05  CGI-OPEN-VEST-BEN-VOL         PIC S9(11)V99 COMP-3.      GPD05020
+           05  CGI-UNCLAIMED-BEN-DATE.                                  GPD05090
+               10  CGI-UNCLAIMED-BEN-YYY     PIC 9(3).                  GPD05100
+               10  CGI-UNCLAIMED-BEN-MM      PIC 9(2).                  GPD05110
+               10  CGI-UNCLAIMED-BEN-DD      PIC 9(2).                  GPD05120
+           05  CGI-ANNUAL-NEWSPAPER-CNT      PIC 9(2).                  GPD05130
+           05  CGI-GRP-TRF-BYPASS-SIG        PIC X(01).                 GPD05180
+           05  FILLER                        PIC X(2).                  GPD05280
+           05  CGI-REC-CREATE-DATE.                                     GPD05310
+               10  CGI-REC-CREATE-YYY        PIC 9(03).                 GPD05320
+               10  CGI-REC-CREATE-MM         PIC 9(02).                 GPD05330
+               10  CGI-REC-CREATE-DD         PIC 9(02).                 GPD05340
+           05  CGI-LAST-PARTIAL-WDRL-DATE    PIC 9(7) COMP-3.           GPD05400
+           05  CGI-DEATH-EVID-SIG            PIC X(1).                  GPD05440
+           05  CGI-DEATH-EVID-UPD-DATE.                                 GPD05450
+               10  CGI-DEATH-EVID-UPD-YYY    PIC 9(03).                 GPD05460
+               10  CGI-DEATH-EVID-UPD-MM     PIC 9(02).                 GPD05470
+               10  CGI-DEATH-EVID-UPD-DD     PIC 9(02).                 GPD05480
+           05  CGI-REPORTED-LSP-SP-AMT       PIC S9(11)V99 COMP-3.      GPD05540
+           05  CGI-PEND-ALLOC-COUNT          PIC 9(5) COMP-3.           GPD05560
+           05  CGI-PEND-ALLOC-COUNT-SUSPEND  PIC 9(5) COMP-3.           GPD05570
+           05  CGI-CURR-TRF-COUNT-ENTRY.                                GPD05620
+*               10  CGI-CURR-TRF-COUNT-TYPE  PIC 9(2) OCCURS 6 TIMES.    GPD05630
+           05  FILLER REDEFINES CGI-CURR-TRF-COUNT-ENTRY.               GPD05640
+               10  CGI-CURR-TRF-COUNT-EEMC     PIC 9(2).                GPD05650
+               10  CGI-CURR-TRF-COUNT-ERMC     PIC 9(2).                GPD05660
+               10  CGI-CURR-TRF-COUNT-EEVC     PIC 9(2).                GPD05670
+               10  CGI-CURR-TRF-COUNT-ERVC     PIC 9(2).                GPD05680
+               10  CGI-CURR-TRF-COUNT-PAC-EEMC PIC 9(2).                GPD05690
+               10  CGI-CURR-TRF-COUNT-PAC-EEVC PIC 9(2).                GPD05700
+                                                                        GPD05710
+           05  CGI-PREV-TRF-COUNT-ENTRY.                                GPD05720
+*              10  CGI-PREV-TRF-COUNT-TYPE  PIC 9(2) OCCURS 6 TIMES.    GPD05730
+           05  FILLER REDEFINES CGI-PREV-TRF-COUNT-ENTRY.               GPD05740
+               10  CGI-PREV-TRF-COUNT-EEMC     PIC 9(2).                GPD05750
+               10  CGI-PREV-TRF-COUNT-ERMC     PIC 9(2).                GPD05760
+               10  CGI-PREV-TRF-COUNT-EEVC     PIC 9(2).                GPD05770
+               10  CGI-PREV-TRF-COUNT-ERVC     PIC 9(2).                GPD05780
+               10  CGI-PREV-TRF-COUNT-PAC-EEMC PIC 9(2).                GPD05790
+               10  CGI-PREV-TRF-COUNT-PAC-EEVC PIC 9(2).                GPD05800
+                                                                        GPD05810
+           05  CGI-LAST-NEW-TR-RCV-DATE.                                GPD05820
+               10  CGI-LAST-NEW-TR-RCV-YYY     PIC 9(3).                GPD05830
+               10  CGI-LAST-NEW-TR-RCV-MM      PIC 9(2).                GPD05840
+               10  CGI-LAST-NEW-TR-RCV-DD      PIC 9(2).                GPD05850
+           05  CGI-PA-BY-DEFAULT               PIC X(1).                GPD05870
+           05  CGI-ID-TYPE                     PIC X(1).                GPD05890
+           05  CGI-CURR-ANNUAL-SAL             PIC S9(9)V99 COMP-3.     GPD05950
+           05  CGI-SPCL-BU-FLAG                PIC X(01).               GPD05970
+           05  FILLER                          PIC X(04).               GPD05980
+           05  CGI-FUND-ENTRY-NO             PIC 9(2).                  GPD06420
+         03  CGI-VAR-PORTION.                                           GPD06440
+           05  CGI-FUND-ENTRY             OCCURS 99 TIMES DEPENDING ON CGI-FUND-ENTRY-NO.              GPD06490
+               10  CGI-FUND-CODE             PIC X(6).                  GPD06520
+               10  CGI-CURR-FUND-BAL-SIG     PIC X.                     GPD06530
+               10  CGI-FSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06560
+               10  CGI-FSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06570
+               10  CGI-OPT-ALLOC-PCT         PIC S9V9(5) COMP-3.        GPD06580
+               10  CGI-PSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06590
+               10  CGI-PSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06600
+               10  CGI-FUND-DATE.                                       GPD06650
+                   15  CGI-FUND-YYY          PIC 9(3).                  GPD06660
+                   15  CGI-FUND-MM           PIC 9(2).                  GPD06670
+                   15  CGI-FUND-DD           PIC 9(2).                  GPD06680
+               10  CGI-FUND-FROM-INCEPT      PIC X.                     GPD06700
+               10  CGI-GRANDFATHER-FACTOR    PIC SV9(5) COMP-3.         GPD06730
+               10  CGI-OVERRIDE-FACTOR       PIC SV9(5) COMP-3.         GPD06740
+               10  FILLER                    PIC X(4).                  GPD06750

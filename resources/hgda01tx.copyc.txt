@@ -1,0 +1,83 @@
+      ***********************************************************
+      *                                                         *
+      *  DESCRIPTIONS  : BRANCH MAINTENANCE TRANSACTION         *
+      *                                                         *
+      *  RECORD LENGTH : 9000                                   *
+      *                                                         *
+      ***********************************************************
+      *****************************************************************
+      *                                                               *
+      * CHANGE CONTROL NO : HAG-2002-04-SA-01   REL DATE : 2002/09/16 *
+      * MODIFIED BY       : WINNIE WONG (WWF)   MOD DATE : 2002/11/23 *
+      * DESCRIPTION       : EXPAND USER ID TO 8 CHARACTERS            *
+      *                                                               *
+      *****************************************************************
+      * CHANGE CONTROL NO : HAG-2003-02-CB-01   REL DATE : 2003/07/21 *
+      * MODIFIED BY       : JANET CHEUNG (JCN)  MOD DATE : 2003/05/26 *
+      * DESCRIPTION       : EXPAND CB TXNS FROM 550 TO 700 BYTES      *
+      *****************************************************************
+      * MOD NO.     : HAG-2013-JAN-CB-01    RELEASE DATE : 2013/01/27 * HGC00800
+      * MODIFY BY   : AVISHEK SAHA (ASA)    MODIFY  DATE : 2012/11/14 * HGC00810
+      * MODIFY DESC :                                                 * HGC00820
+      * - EXPAND C&B TXN FROM 700 TO 9000 BYTES                       * HGC00830
+      ***************************************************************** HGC00840
+
+       01  A01-TXN-REC.
+
+      **   KEY
+           05  A01-TXN-KEY.
+               10  A01-TXN-CODE                 PIC X(3).
+      *** START OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *        10  A01-TXN-USER-ID              PIC X(4).
+      ***  END  OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *** START NEW HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+               10  A01-TXN-USER-ID              PIC X(8).
+      ***  END  NEW HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+               10  A01-TXN-SEQUENCE             PIC 9(4).
+      *** START OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *        10  FILLER                       PIC X(4).
+      ***  END  OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      **   DATA
+           05  A01-TXN-AIX-KEY.
+               10  A01-TXN-AIX-CODE             PIC X(3).
+               10  A01-TXN-BRANCH-CODE          PIC X(5).
+               10  FILLER                       PIC X(1).
+               10  A01-TXN-ACTION               PIC X(1).
+      *** START OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *        10  A01-TXN-AIX-USER-ID          PIC X(4).
+      ***  END  OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *** START NEW HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+               10  A01-TXN-AIX-USER-ID          PIC X(8).
+      ***  END  NEW HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+               10  A01-TXN-AIX-SEQUENCE         PIC 9(4).
+               10  FILLER                       PIC X(2).
+           05  FILLER                           PIC X(10).
+           05  A01-TXN-DATA.
+               10  A01-TXN-BRANCH-NAME          PIC X(30).
+               10  A01-TXN-HEAD-AGENT-CODE      PIC X(6).
+               10  A01-TXN-BRANCH-EFF-DATE.
+                   15 A01-TXN-BRANCH-EFF-DATE-YR PIC 9(4).
+                   15 A01-TXN-BRANCH-EFF-DATE-MM PIC 9(2).
+                   15 A01-TXN-BRANCH-EFF-DATE-DD PIC 9(2).
+               10  A01-TXN-BRANCH-TERM-DATE.
+                   15 A01-TXN-BRANCH-TERM-DATE-YR PIC 9(4).
+                   15 A01-TXN-BRANCH-TERM-DATE-MM PIC 9(2).
+                   15 A01-TXN-BRANCH-TERM-DATE-DD PIC 9(2).
+               10  A01-TXN-BRANCH-STATUS        PIC X(1).
+      *** START NEW HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+               10  FILLER                       PIC X(8898).
+      *** END   NEW HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+      *** START OLD HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+      **** START NEW HAG-2003-02-CB-01 (JCN)
+      *        10  FILLER                       PIC X(598).
+      **** END   NEW HAG-2003-02-CB-01 (JCN)
+      *** END   OLD HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+      *** START NEW HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      **** START OLD HAG-2003-02-CB-01 (JCN)
+      *        10  FILLER                       PIC X(448).
+      **** END   OLD HAG-2003-02-CB-01 (JCN)
+      ***  END  NEW HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *** START OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+      *        10  FILLER                       PIC X(452).
+      ***  END  OLD HAG-2002-04-SA-01 (WWF)  16 SEP 2002  ***
+

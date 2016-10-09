@@ -1,0 +1,18 @@
+01  USER-RECORD.                                                 
+   05  USER-KEY                     PIC X(8).                   
+   05  USER-CLASS                   PIC X(1).                   
+   05  USER-DEPARTMENT.                                         
+       10  USER-DEPT-BYTE-1         PIC X(1).                   
+       10  USER-DEPT-BYTE-2         PIC X(1).                   
+   05  USER-PASSWORD                PIC X(10).                  
+   05  USER-PSW-EFF-DATE            PIC 9(8).                   
+   05  USER-PSW-TERM-DATE           PIC 9(8).                   
+   05  USER-PSW-NOTICE-DATE         PIC 9(8).                   
+   05  USER-SUPPRESS-EXP-SIGNAL     PIC X(1).                   
+   05  USER-PSW-POINTER             PIC 9(2).                   
+   05  USER-POS                     PIC X(1).                   
+   05  USER-INVALID-ATTEMPT         PIC 9(1).                   
+   05  USER-STATUS                  PIC X(1).                   
+   05  FILLER                       PIC X(19).                  
+   05  USER-OLD-PSW-TABLE.                                      
+       10  USER-OLD-PSW PIC X(10) OCCURS 13 TIMES.              

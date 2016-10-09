@@ -1,0 +1,412 @@
+       01  GGI-RECORD.                                                  
+         03  GGI-FIXED-PORTION.                                         
+           05  GGI-KEY.                                                 
+               10  GGI-GROUP-NO.                                        
+                   15  GGI-BASE-GROUP-NO     PIC 9(7).                  
+                   15  GGI-CHK-DGT           PIC 9.                     
+           05  GGI-POLICYHOLDER-NAME         PIC X(30)  OCCURS 3 TIMES. 
+           05  GGI-POLICYHOLDER-ADDR         PIC X(35)  OCCURS 6 TIMES. 
+           05  GGI-ADDR-LINE-TYPE            PIC X(1)   OCCURS 6 TIMES. 
+           05  GGI-ATTN-PERSON               PIC X(35).                 
+           05  GGI-TAG-ALLOC-SIG             PIC X(1).                  
+           05  GGI-ERP-PRINT-PRIORITY        PIC X(1).                  
+           05  GGI-PART-PROVIDE-DATE.                                   
+               10  GGI-PART-PROVIDE-YYY      PIC 9(3).                  
+               10  GGI-PART-PROVIDE-MM       PIC 9(2).                  
+               10  GGI-PART-PROVIDE-DD       PIC 9(2).                  
+           05  GGI-ER-NEW-BU-FLAG            PIC X(1).                  
+           05  GGI-PREISS-STATUS             PIC 9.                     
+               88  GGI-PARTIAL                VALUE 0.                  
+               88  GGI-COMPLETE-NOT-ISSUE     VALUE 1.                  
+               88  GGI-COMPLETE-ISSUE         VALUE 9.                  
+           05  GGI-REC-ADD-DATE.                                        
+               10  GGI-REC-ADD-YYY           PIC 9(3).                  
+               10  GGI-REC-ADD-MM            PIC 9(2).                  
+               10  GGI-REC-ADD-DD            PIC 9(2).                  
+           05  GGI-GRP-STATUS                PIC 9(2).                  
+               88  GGI-CONT-PAY               VALUE 01.                 
+               88  GGI-DISCON-CPLAN           VALUE 02.                 
+               88  GGI-DISCON-NOT-CPLAN       VALUE 03.                 
+               88  GGI-DISCON-CASHOUT         VALUE 04.                 
+               88  GGI-CANCEL                 VALUE 05.                 
+               88  GGI-RET-LIVE               VALUE 06.                 
+               88  GGI-PREISSUE               VALUE 09.                 
+               88  GGI-REAL-TERMINATE         VALUE 05 06.              
+           05  GGI-GRP-STATUS-EFF-DATE.                                 
+               10  GGI-GRP-STATUS-EFF-YYY    PIC 9(3).                  
+               10  GGI-GRP-STATUS-EFF-MM     PIC 9(2).                  
+               10  GGI-GRP-STATUS-EFF-DD     PIC 9(2).                  
+           05  GGI-GRP-STATUS-CHG-DATE.                                 
+               10  GGI-GRP-STATUS-CHG-YYY    PIC 9(3).                  
+               10  GGI-GRP-STATUS-CHG-MM     PIC 9(2).                  
+               10  GGI-GRP-STATUS-CHG-DD     PIC 9(2).                  
+           05  GGI-SCHEME-NUMBER             PIC X(6).                  
+           05  GGI-MPF-BENEFIT-TYPE          PIC X(1).                  
+               88  GGI-ORSO-SCHEME            VALUE ' '.                
+               88  GGI-MPF-BOTH               VALUE 'B'.                
+               88  GGI-MPF-MANDATORY          VALUE 'M'.                
+               88  GGI-MPF-NON-MANDATORY      VALUE 'N'.                
+           05  GGI-ISSUE-UNIT                PIC X(5).                  
+           05  GGI-ADMIN-UNIT                PIC X(5).                  
+           05  GGI-SPCL-GRP-TYPE             PIC 9(2).                  
+               88  GGI-MLI-PLAN               VALUE 01.                 
+               88  GGI-SEX-REQUIRED           VALUE 10.                 
+               88  GGI-MPF-EXISTING-ORSO      VALUE 50.                 
+               88  GGI-IVC                    VALUE 77.                 
+               88  GGI-SELF-EMPLOYED          VALUE 88.                 
+               88  GGI-MIL-AGENT-SELF-EMPLOYED VALUE 89.                
+               88  GGI-SCHEME-POOL-POLICY     VALUE 90.                 
+               88  GGI-OLD-1-YR-FUND          VALUE 99.                 
+           05  GGI-NATURE-OF-BUS             PIC X(3).                  
+           05  GGI-SCHEME-TYPE               PIC X.                     
+               88  GGI-PROVIDENT-FUND         VALUE 'P'.                
+               88  GGI-RET-SCHEME             VALUE 'R'.                
+           05  GGI-SCHEME-STATUS             PIC X.                     
+               88  GGI-SCHEME-NA              VALUE SPACES.             
+               88  GGI-NON-EXEMPT-ORSO-EXEMPT VALUE 'F'.                
+               88  GGI-SCHEME-ORSO-EXEMPT     VALUE 'E'.                
+               88  GGI-SCHEME-ORSO-TRUST      VALUE 'T'.                
+               88  GGI-SCHEME-NOT-APPRV       VALUE 'N'.                
+               88  GGI-SCHEME-APPRV           VALUE 'Y'.                
+           05  GGI-ADMIN-TYPE                PIC X.                     
+               88  GGI-FULL-SERV              VALUE 'F'.                
+               88  GGI-INVESTMENT             VALUE 'I'.                
+           05  GGI-ER-RES-CODE               PIC 9(3).                  
+           05  GGI-COMPANY-CODE              PIC 9(3).                  
+           05  GGI-GRP-CURRENCY              PIC 9(3).                  
+           05  GGI-POL-REGISTER              PIC 9(5).                  
+           05  GGI-SERVICE-AGENT-CODE        PIC 9(6).                  
+           05  GGI-GRP-TYPE                  PIC 9(3).                  
+           05  GGI-NEW-GROUP-SIGNAL          PIC 9(2).                  
+               88  GGI-NEW-GROUP              VALUE 00.                 
+               88  GGI-EXIST-NEW-GROUP        VALUE 01.                 
+               88  GGI-CHANGE-PRODUCT-GROUP   VALUE 10.                 
+               88  GGI-SPIN-OFF-GROUP         VALUE 11.                 
+           05  GGI-POLICY-TYPE               PIC X(6).                  
+               88  GGI-PRE91                  VALUE 'PRE91 '.           
+               88  GGI-SIMP91                 VALUE 'SIMP91'.           
+               88  GGI-STD92                  VALUE 'STD92 '.           
+               88  GGI-MFLX92                 VALUE 'MFLX92'.           
+               88  GGI-MP2000                 VALUE 'MP2000'.           
+               88  GGI-MACAU-PLAN             VALUE 'MAC213'.           
+               88  GGI-VALID-POLICY-TYPE      VALUE                     
+                   'PRE91 ' 'SIMP91' 'STD92 ' 'STD93 '                  
+                   'MFLX95'                                             
+                   'MAC213'                                             
+                   'MPF01'                                              
+                   'MP2000'                                             
+                   'MFLX92' 'MFLX93' 'MFD93'.                           
+               88  GGI-OLD-TYPE               VALUE 'PRE91 '.           
+               88  GGI-MANUFUND               VALUE 'SIMP91' 'MFD93 '.  
+               88  GGI-STANDARD               VALUE 'STD92 ' 'STD93 '.  
+               88  GGI-MANUFLEX               VALUE 'MFLX92' 'MFLX93'.  
+               88  GGI-MANUFLEX-2             VALUE 'MFLX95'.           
+               88  GGI-MPF-POLICY-TYPE        VALUE 'MP2000'.           
+           05  GGI-GRP-EFF-DATE.                                        
+               10  GGI-GRP-EFF-YYY           PIC 9(3).                  
+               10  GGI-GRP-EFF-MM            PIC 9(2).                  
+               10  GGI-GRP-EFF-DD            PIC 9(2).                  
+           05  GGI-ANNIV-LAST-CHG-DATE.                                 
+               10  GGI-ANNIV-LAST-CHG-YYY    PIC 9(3).                  
+               10  GGI-ANNIV-LAST-CHG-MM     PIC 9(2).                  
+               10  GGI-ANNIV-LAST-CHG-DD     PIC 9(2).                  
+           05  GGI-LAST-ANNIV-DATE.                                     
+               10  GGI-LAST-ANNIV-YYY        PIC 9(3).                  
+               10  GGI-LAST-ANNIV-MM         PIC 9(2).                  
+               10  GGI-LAST-ANNIV-DD         PIC 9(2).                  
+           05  GGI-NEXT-ANNIV-DATE.                                     
+               10  GGI-NEXT-ANNIV-YYY        PIC 9(3).                  
+               10  GGI-NEXT-ANNIV-MM         PIC 9(2).                  
+               10  GGI-NEXT-ANNIV-DD         PIC 9(2).                  
+           05  GGI-TXJ-LAST-RUN-DATE.                                   
+               10  GGI-TXJ-LAST-RUN-YYY      PIC 9(3).                  
+               10  GGI-TXJ-LAST-RUN-DDD      PIC 9(3).                  
+           05  GGI-CERT-TX-REJECT-DATE.                                 
+               10  GGI-CERT-TX-REJ-YYY       PIC 9(3).                  
+               10  GGI-CERT-TX-REJ-MM        PIC 9(2).                  
+               10  GGI-CERT-TX-REJ-DD        PIC 9(2).                  
+           05  GGI-NO-OF-CERT-FROZEN         PIC S9(5) COMP-3.          
+           05  GGI-TX-REJECT-TYPE            PIC 9.                     
+               88  GGI-REJ-NA                 VALUE 0.                  
+               88  GGI-REJ-CERT               VALUE 1.                  
+               88  GGI-REJ-BLAC               VALUE 2.                  
+               88  GGI-REJ-GLAC               VALUE 3.                  
+           05  GGI-CONV-EFF-DATE.                                       
+               10  GGI-CONV-EFF-YYY          PIC 9(3).                  
+               10  GGI-CONV-EFF-MM           PIC 9(2).                  
+               10  GGI-CONV-EFF-DD           PIC 9(2).                  
+           05  GGI-CONV-STATUS-SIG           PIC X(1).                  
+               88  GGI-CONV-NA                VALUE SPACE.              
+               88  GGI-NOT-CONV               VALUE 'N'.                
+               88  GGI-PART-CONV              VALUE 'P'.                
+           05  GGI-DISTRIBUT-CODE            PIC X.                     
+               88 GGI-AGENCY                 VALUE 'A'.                 
+               88 GGI-BROKERAGE              VALUE 'B'.                 
+               88 GGI-CORPORATE              VALUE 'C'.                 
+           05  GGI-EBS-CODE                  PIC X(3).                  
+           05  GGI-PRINT-PRIORITY            PIC 9.                     
+               88  GGI-PRINT-HIGHEST          VALUE 1.                  
+               88  GGI-PRINT-LOWEST           VALUE 9.                  
+           05  GGI-ADD-ALLOW-SIG             PIC 9.                     
+               88  GGI-A-PREM-DUE-DATE        VALUE 1.                  
+               88  GGI-A-ANNIV                VALUE 2.                  
+               88  GGI-A-1ST-OF-POL-MTH       VALUE 3.                  
+               88  GGI-A-NOT-ALLOW            VALUE 9.                  
+           05  GGI-CHG-ALLOW-SIG             PIC 9.                     
+               88  GGI-C-PREM-DUE-DATE        VALUE 1.                  
+               88  GGI-C-ANNIV                VALUE 2.                  
+               88  GGI-C-1ST-OF-POL-MTH       VALUE 3.                  
+               88  GGI-C-NOT-ALLOW            VALUE 9.                  
+           05  GGI-OPT-ALLOW-SIG             PIC 9.                     
+               88  GGI-O-PREM-DUE-DATE        VALUE 1.                  
+               88  GGI-O-ANNIV                VALUE 2.                  
+               88  GGI-O-1ST-OF-POL-MTH       VALUE 3.                  
+               88  GGI-O-NOT-ALLOW            VALUE 9.                  
+           05  GGI-MAX-OPT-CONT-PCT          PIC SV9(5) COMP-3.         
+           05  GGI-FSEE-ALLOW-SIG            PIC X.                     
+               88  GGI-FSEE-NO-CONT           VALUE 'N'.                
+               88  GGI-FSEE-CONT              VALUE 'Y'.                
+           05  GGI-FSER-ALLOW-SIG            PIC X.                     
+               88  GGI-FSER-NO-CONT           VALUE 'N'.                
+               88  GGI-FSER-CONT              VALUE 'Y'.                
+           05  GGI-PSEE-ALLOW-SIG            PIC 9.                     
+               88  GGI-PSEE-AMORT-SP          VALUE 1.                  
+               88  GGI-PSEE-ONE-SHOT-SP       VALUE 2.                  
+               88  GGI-PSEE-NOT-ALLOW         VALUE 9.                  
+           05  GGI-PSER-ALLOW-SIG            PIC 9.                     
+               88  GGI-PSER-AMORT-SP          VALUE 1.                  
+               88  GGI-PSER-ONE-SHOT-SP       VALUE 2.                  
+               88  GGI-PSER-NOT-ALLOW         VALUE 9.                  
+           05  GGI-COMPUL-COV-SIG            PIC X.                     
+               88  GGI-NOT-COMPUL-COV         VALUE 'N'.                
+               88  GGI-COMPUL-COV             VALUE 'Y'.                
+           05  GGI-CONT-AFTER-NRD-ALLOW-SIG  PIC X.                     
+               88  GGI-NOT-CONT-AFTER-NRD     VALUE 'N'.                
+               88  GGI-CONT-AFTER-NRD         VALUE 'Y'.                
+           05  GGI-GRP-FREEZE-SIG            PIC 9.                     
+               88  GGI-GRP-FREEZE-NA          VALUE 0.                  
+               88  GGI-GRP-FREEZE-IN          VALUE 1.                  
+               88  GGI-GRP-FREEZE-EX          VALUE 2.                  
+           05  GGI-GRP-FREEZE-DATE.                                     
+               10  GGI-GRP-FREEZE-YYY        PIC 9(3).                  
+               10  GGI-GRP-FREEZE-MM         PIC 9(2).                  
+               10  GGI-GRP-FREEZE-DD         PIC 9(2).                  
+           05  GGI-INT-CALC-FREEZE-SIG       PIC 9.                     
+               88  GGI-INT-CALC-FREEZE-NA     VALUE 0.                  
+               88  GGI-INT-CALC-FREEZE-IN     VALUE 1.                  
+               88  GGI-INT-CALC-FREEZE-EX     VALUE 2.                  
+           05  GGI-INT-CALC-FREEZE-DATE.                                
+               10  GGI-INT-CALC-FREEZE-YYY   PIC 9(3).                  
+               10  GGI-INT-CALC-FREEZE-MM    PIC 9(2).                  
+               10  GGI-INT-CALC-FREEZE-DD    PIC 9(2).                  
+           05  FILLER                        PIC X(5).                  
+           05  GGI-ER-PIN-SIGNAL             PIC X.                     
+               88  GGI-ER-PIN-NA              VALUE 'N'.                
+               88  GGI-ER-PIN-GROUP           VALUE 'G'.                
+               88  GGI-ER-PIN-SUBGROUP        VALUE 'S'.                
+           05  GGI-IVR-SIGNAL                PIC X.                     
+               88  GGI-IVR-ALLOW              VALUE 'Y'.                
+               88  GGI-IVR-NA                 VALUE 'N'.                
+           05  GGI-EEWCR-REFUND-TYPE         PIC X.                     
+               88  GGI-EEWCR-REFUND-IMD       VALUE 'I'.                
+               88  GGI-EEWCR-REFUND-DFR       VALUE 'D'.                
+               88  GGI-EEWCR-REFUND-NO        VALUE 'N'.                
+               88  GGI-EEWCR-REFUND-REQ       VALUE 'R'.                
+           05  GGI-EEWCR-PAYEE-SIG           PIC 9.                     
+               88  GGI-EEWCR-GRP-PHDR         VALUE 1.                  
+               88  GGI-EEWCR-BILL-CL-PHDR     VALUE 2.                  
+               88  GGI-EEWCR-EE               VALUE 3.                  
+           05  GGI-UNFUND-PS-SIG             PIC 9.                     
+               88  GGI-UFD-PS-NA              VALUE 0.                  
+               88  GGI-UFD-PS-NOT-PUR-WDL     VALUE 1.                  
+               88  GGI-UFD-PS-PUR-WDL         VALUE 2.                  
+               88  GGI-UFD-PS-PUR-SPFD        VALUE 3.                  
+           05  GGI-CERT-NO-TYPE              PIC X.                     
+               88  GGI-CERT-NO-AUTO           VALUE 'A'.                
+               88  GGI-CERT-NO-SPFD           VALUE 'S'.                
+           05  GGI-LAST-SEQ-CERT-NO          PIC X(10).                 
+           05  GGI-LAST-SEQ-CERT-NO-9 REDEFINES GGI-LAST-SEQ-CERT-NO    
+                                             PIC 9(10).                 
+           05  GGI-PRINT-ORDER-SIG           PIC X.                     
+               88  GGI-PRINT-ALPHA            VALUE 'A'.                
+               88  GGI-PRINT-CERT-NO          VALUE 'N'.                
+           05  GGI-ERWCR-ANNIV-ALLOC-TYPE    PIC 9.                     
+               88  GGI-ERWCR-ALLOC-NA         VALUE 0.                  
+               88  GGI-ERWCR-ALLOC-BILL-CL    VALUE 1.                  
+               88  GGI-ERWCR-ALLOC-GRP        VALUE 2.                  
+           05  GGI-ERWCR-ANNIV-ALLOC-METHOD  PIC 9(2).                  
+           05  FILLER                        PIC X(2).                  
+           05  GGI-NEXT-COMM-RECON-HIT-DATE.                            
+               10  GGI-NEXT-COMM-RECON-HIT-YYY PIC 9(3).                
+               10  GGI-NEXT-COMM-RECON-HIT-DDD PIC 9(3).                
+           05  GGI-NEXT-BILL-CL-HIT-DATE.                               
+               10  GGI-NEXT-BILL-CL-HIT-YYY  PIC 9(3).                  
+               10  GGI-NEXT-BILL-CL-HIT-DDD  PIC 9(3).                  
+           05  GGI-NEXT-DA-FUND-HIT-DATE.                               
+               10  GGI-NEXT-DA-FUND-HIT-YYY  PIC 9(3).                  
+               10  GGI-NEXT-DA-FUND-HIT-DDD  PIC 9(3).                  
+           05  GGI-PREISS-HIT-DATE.                                     
+               10  GGI-PREISS-HIT-YYY        PIC 9(3).                  
+               10  GGI-PREISS-HIT-DDD        PIC 9(3).                  
+           05  GGI-CHG-LIST-HIT-DATE.                                   
+               10  GGI-CHG-LIST-HIT-YYY      PIC 9(3).                  
+               10  GGI-CHG-LIST-HIT-DDD      PIC 9(3).                  
+           05  GGI-ANNIV-HIT-DATE.                                      
+               10  GGI-ANNIV-HIT-YYY         PIC 9(3).                  
+               10  GGI-ANNIV-HIT-DDD         PIC 9(3).                  
+                                                                        
+           05  GGI-ALLOC-OF-CR-SIG           PIC 9.                     
+               88  GGI-ALLOC-CR-OFF           VALUE 0.                  
+               88  GGI-ALLOC-CR-ON            VALUE 1.                  
+           05  GGI-NEXT-BONUS-UNITS-HIT-DATE.                           
+               10  GGI-NEXT-BONUS-UNITS-HIT-YYY PIC 9(3).               
+               10  GGI-NEXT-BONUS-UNITS-HIT-DDD PIC 9(3).               
+                                                                        
+           05  GGI-ANNIV-PROCESS-HIT-DATE.                              
+               10  GGI-ANNIV-PROCESS-HIT-YYY PIC 9(3).                  
+               10  GGI-ANNIV-PROCESS-HIT-DDD PIC 9(3).                  
+                                                                        
+           05  GGI-NO-OF-FORM-CL             PIC 9(2).                  
+           05  GGI-NO-OF-VEST-CL             PIC 9(2).                  
+           05  GGI-PS-VEST-CL-SIG            PIC X.                     
+               88  GGI-PS-VEST-NA             VALUE 'N'.                
+               88  GGI-PS-VEST-YES            VALUE 'Y'.                
+           05  GGI-NO-OF-SCH-CL              PIC 9(2).                  
+           05  GGI-NO-OF-BILL-CL             PIC 9(2).                  
+           05  FILLER                        PIC X(4).                  
+           05  GGI-REC-SIGNALS.                                         
+               10  GGI-FORM-CL-REC-SIG       PIC X.                     
+                   88  GGI-FORM-CL-NOT-OK     VALUE 'N'.                
+                   88  GGI-FORM-CL-OK         VALUE 'Y'.                
+               10  GGI-VEST-CL-REC-SIG       PIC X.                     
+                   88  GGI-VEST-CL-NOT-OK     VALUE 'N'.                
+                   88  GGI-VEST-CL-OK         VALUE 'Y'.                
+               10  GGI-ELIG-REC-SIG          PIC X.                     
+                   88  GGI-ELIG-NOT-OK        VALUE 'N'.                
+                   88  GGI-ELIG-OK            VALUE 'Y'.                
+               10  GGI-NRD-REC-SIG           PIC X.                     
+                   88  GGI-NRD-NOT-OK         VALUE 'N'.                
+                   88  GGI-NRD-OK             VALUE 'Y'.                
+               10  GGI-CL-PROF-REC-SIG       PIC X.                     
+                   88  GGI-CL-PROF-NOT-OK     VALUE 'N'.                
+                   88  GGI-CL-PROF-OK         VALUE 'Y'.                
+               10  GGI-COMM-REC-SIG          PIC X.                     
+                   88  GGI-COMM-NOT-OK        VALUE 'N'.                
+                   88  GGI-COMM-OK            VALUE 'Y'.                
+               10  GGI-DA-FUND-REC-SIG       PIC X.                     
+                   88  GGI-DA-FUND-NOT-OK     VALUE 'N'.                
+                   88  GGI-DA-FUND-OK         VALUE 'Y'.                
+               10  GGI-BILL-CL-REC-SIG       PIC X.                     
+                   88  GGI-BILL-CL-NOT-OK     VALUE 'N'.                
+                   88  GGI-BILL-CL-OK         VALUE 'Y'.                
+               10  GGI-CHR-REC-SIG           PIC X.                     
+                   88  GGI-CHR-NOT-OK         VALUE 'N'.                
+                   88  GGI-CHR-OK             VALUE 'Y'.                
+           05  GGI-ASSOCIATION-CODE          PIC X(2).                  
+               88  GGI-ASSOCIATION-CODE-NA    VALUE '00'.               
+               88  GGI-HK-MEDICAL-ASSOC       VALUE '01'.               
+               88  GGI-CANADIAN-CHAMBER       VALUE '02'.               
+               88  GGI-BAR-ASSOCIATION        VALUE '03'.               
+               88  GGI-INDIAN-CHAMBER         VALUE '04'.               
+               88  GGI-CHINESE-MEDICAL-ASSOC  VALUE '05'.               
+               88  GGI-INFO-SOFTW-IND-ASSOC   VALUE '06'.               
+               88  GGI-HK-COMPUTER-IND         VALUE '07'.              
+               88  GGI-HK-KLN-TAXI-LORRY-ASSOC VALUE '08'.              
+               88  GGI-MOTOR-TRANSPORT-UNION   VALUE '09'.              
+               88  GGI-WORLD-FAMILY-LIMITED    VALUE '10'.              
+               88  GGI-HK-ELECTRIC-INDUS-ASSOC VALUE '11'.              
+               88  GGI-HK-DUMPER-DRIVER-ASSOC  VALUE '12'.              
+               88  GGI-HK-UNION-OF-LIGHT-VAN   VALUE '13'.              
+               88  GGI-HK-PERFORMING-ART-GUILD VALUE '14'.              
+               88  GGI-HK-CHIROPRACTOR-ASSOC   VALUE '15'.              
+               88  GGI-PHILIP-SECURITIES       VALUE '16'.              
+               88  GGI-VALID-ASSOC-CODE        VALUE '00', '01', '02',  
+                                               '03', '04', '05', '06',  
+                                               '11',                    
+                                               '12', '13', '14', '15',  
+                                               '16',                    
+                                               '07', '08', '09', '10'.  
+           05  GGI-SPCL-COMMENTS             PIC X(30)  OCCURS 10 TIMES.
+           05  GGI-SUBSIDIARY-CO             PIC X(50)  OCCURS 5 TIMES. 
+           05  GGI-SCH-ENTRY              OCCURS 10 TIMES.              
+               10  GGI-SCH-CL-NO             PIC 9(2).                  
+               10  GGI-SCH-CL-NAME           PIC X(20).                 
+           05  GGI-ORSO-REG-NO               PIC X(15).                 
+           05  GGI-ORSO-REG-DATE.                                       
+               10  GGI-ORSO-REG-YYY          PIC 9(3).                  
+               10  GGI-ORSO-REG-MM           PIC 9(2).                  
+               10  GGI-ORSO-REG-DD           PIC 9(2).                  
+           05  GGI-RELATED-GROUP-NO.                                    
+               10  GGI-RELATED-BASE-GRP-NO   PIC 9(7).                  
+               10  GGI-RELATED-CHK-DGT       PIC 9.                     
+           05  FILLER                        PIC X(02).                 
+                                                                        
+           05  GGI-ENROL-FEE-WAIVE-SIG       PIC X(1).                  
+           05  GGI-ANNUAL-FEE-WAIVE-SIG      PIC X(1).                  
+           05  GGI-ANNUAL-FEE-HIT-DATE.                                 
+               10  GGI-ANNUAL-FEE-HIT-YYY    PIC 9(3).                  
+               10  GGI-ANNUAL-FEE-HIT-DDD    PIC 9(3).                  
+           05  GGI-FEE-REIMBURSE-FLAG        PIC X(1).                  
+               88  GGI-FEE-REIMBURSED        VALUE 'Y'.                 
+               88  GGI-FEE-NOT-REIMBURSED    VALUE 'N'.                 
+               88  GGI-FEE-CHECKED           VALUE 'C'.                 
+               88  GGI-FEE-INCOME            VALUE 'I'.                 
+               88  GGI-FEE-TO-BE-PROCESSED   VALUE ' '.                 
+                                                                        
+           05  GGI-GTEED-BAL-CALC-START-DATE.                           
+               10  GGI-GTEED-BAL-CALC-START-YYY  PIC 9(3).              
+               10  GGI-GTEED-BAL-CALC-START-MM   PIC 9(2).              
+               10  GGI-GTEED-BAL-CALC-START-DD   PIC 9(2).              
+           05  GGI-MPF-EXEMPT-NO                 PIC X(15).             
+           05  GGI-CONT-ALLOC-TYPE           PIC X.                     
+               88  GGI-CONT-ALLOC-PCT-BY-GRP  VALUE 'G'.                
+               88  GGI-CONT-ALLOC-PCT-BY-CERT VALUE 'C'.                
+               88  GGI-CONT-ALLOC-PCT-BY-PART VALUE 'P'.                
+                                                                        
+           05  GGI-CURR-TRF-QUOTA-ENTRY.                                
+               10  GGI-CURR-TRF-QUOTA-TYPE    PIC 9(2) OCCURS 6 TIMES.  
+           05  FILLER REDEFINES GGI-CURR-TRF-QUOTA-ENTRY.               
+               10  GGI-CURR-TRF-QUOTA-EEMC      PIC 9(2).               
+               10  GGI-CURR-TRF-QUOTA-ERMC      PIC 9(2).               
+               10  GGI-CURR-TRF-QUOTA-EEVC      PIC 9(2).               
+               10  GGI-CURR-TRF-QUOTA-ERVC      PIC 9(2).               
+               10  GGI-CURR-TRF-QUOTA-PAC-EEMC  PIC 9(2).               
+               10  GGI-CURR-TRF-QUOTA-PAC-EEVC  PIC 9(2).               
+                                                                        
+           05  GGI-PREV-TRF-QUOTA-ENTRY.                                
+               10  GGI-PREV-TRF-QUOTA-TYPE    PIC 9(2) OCCURS 6 TIMES.  
+           05  FILLER REDEFINES GGI-PREV-TRF-QUOTA-ENTRY.               
+               10  GGI-PREV-TRF-QUOTA-EEMC      PIC 9(2).               
+               10  GGI-PREV-TRF-QUOTA-ERMC      PIC 9(2).               
+               10  GGI-PREV-TRF-QUOTA-EEVC      PIC 9(2).               
+               10  GGI-PREV-TRF-QUOTA-ERVC      PIC 9(2).               
+               10  GGI-PREV-TRF-QUOTA-PAC-EEMC  PIC 9(2).               
+               10  GGI-PREV-TRF-QUOTA-PAC-EEVC  PIC 9(2).               
+           05  GGI-1ST-DEFAULTER-DATE.                                  
+               10  GGI-1ST-DEFAULTER-YYY        PIC X(3).               
+               10  GGI-1ST-DEFAULTER-MM         PIC X(2).               
+           05  GGI-DC-STS-UPDATE-DATE.
+               10  GGI-DC-STS-UPDATE-YYY        PIC X(3).
+               10  GGI-DC-STS-UPDATE-MM         PIC X(2).
+               10  GGI-DC-STS-UPDATE-DD         PIC X(2).
+           05  FILLER                           PIC X(08).
+                                                                        
+           05  GGI-FUND-ENTRY-NO             PIC 9(2).                  
+         03  GGI-VAR-PORTION.                                           
+           05  GGI-FUND-ENTRY             OCCURS 99 TIMES.              
+               10  GGI-FUND-CODE             PIC X(6).                  
+               10  GGI-FUND-CURRENCY         PIC 9(3).                  
+               10  GGI-FSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        
+               10  GGI-FSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        
+               10  GGI-OPT-ALLOC-PCT         PIC S9V9(5) COMP-3.        
+               10  GGI-PSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        
+               10  GGI-PSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        
+               10  GGI-FUND-USED-SIG         PIC X.                     
+                   88  GGI-FUND-NOT-USED     VALUE 'N'.                 
+                   88  GGI-FUND-USED         VALUE 'Y'.                 
+               10  GGI-BONUS-UNIT-FACTOR     PIC SV9(5) COMP-3.         
+               10  GGI-FUND-BU-HIT-DATE.                                
+                   15  GGI-FUND-BU-HIT-YYY   PIC 9(3).                  
+                   15  GGI-FUND-BU-HIT-DDD   PIC 9(3).                  
+               10  FILLER                    PIC X(8).                  
+

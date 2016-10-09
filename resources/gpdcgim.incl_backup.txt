@@ -1,0 +1,685 @@
+      ******************************************************************GPD00010
+      *                                                                *GPD00020
+      *    CERTIFICATE GENERAL INFORMATION RECORD  (ONE PER CERT)      *GPD00030
+      *                                                                *GPD00040
+      *    COPYBOOK NAME  :  GPDCGIM                                   *GPD00050
+      *                                                                *GPD00060
+      *    RECORD FORMAT  :  VARIABLE LENGTH                           *GPD00070
+      *                      FIXED PORTION    =  483 BYTES             *GPD00080
+      *                      VARIABLE PORTION =  525 BYTES (15 * 35)   *GPD00090
+      *                      MAXIMIUM         = 1008 BYTES             *GPD00100
+      *      NEW DEC 2002    VARIABLE PORTION = 3465 BYTES (99 * 35)   *GPD00110
+      *      NEW DEC 2002    MAXIMIUM         = 3948 BYTES             *GPD00120
+      *                                                                *GPD00130
+      * MPF910-2(2005-03-31) FIXED PORTION    =  535 BYTES             *GPD00140
+      *         (2005-03-31) VARIABLE PORTION = 4455 BYTES (99 * 45)   *GPD00150
+      *         (2005-03-31) MAXIMIUM         = 4990 BYTES             *GPD00160
+      *                                                                *GPD00170
+      *  JAN 23,2010 MPF204-O FIXED PORTION    =  555 BYTES            *GPD00180
+      *              MPF204-O VARIABLE PORTION = 4455 BYTES (99 * 45)  *GPD00190
+      *              MPF204-O MAXIMUM          = 5010 BYTES            *GPD00200
+      ******************************************************************GPD00210
+      ******************************************************************GPD00220
+      *                                                                *GPD00230
+      *  PROGRAM AMENDMENT DETAILS : -                                 *GPD00240
+      *  -----------------------------                                 *GPD00250
+      *                                                                *GPD00260
+      *  PGRM CHANGE NO.  :  MPF830                                    *GPD00270
+      *  PROGRAMMER       :  ARION CHENG (CWM)                         *GPD00280
+      *  CHANGE DATE      :  19 OCT 2000                               *GPD00290
+      *  DESCRIPTION      :  THE LENGTH OF FIXED PORTION INCREASED     *GPD00300
+      *                      FROM 475 TO 483 BYTES. THEN MAXIMIUM      *GPD00310
+      *                      LENGTH CHANGED TO 1008 ACCORDINGLY        *GPD00320
+      *   A. FIXED PORTION AMENDMENT :-                                *GPD00330
+      *                   1. ADD NEW CONDITIONAL VALUE TO              *GPD00340
+      *                          CGI-WDR-PEND-SIG                      *GPD00350
+      *                    - CGI-WDR-PEND-TRF           VALUE 'T'.     *GPD00360
+      *                    - CGI-WDR-PEND-DEAD          VALUE 'D'.     *GPD00370
+      *                    - CGI-WDR-PEND-TTL-INCAP     VALUE 'I'.     *GPD00380
+      *                    - CGI-WDR-OTH-WDRL           VALUE 'W'.     *GPD00390
+      *                                                                *GPD00400
+      *                   2. CHANGE CONDITIONAL VALUE                  *GPD00410
+      *                        FROM                                    *GPD00420
+      *                          CGI-WDR-PEND                          *GPD00430
+      *                        TO                                      *GPD00440
+      *                          CGI-WDR-PEND-PROCESS                  *GPD00450
+      *                                                                *GPD00460
+      *                   3. ADD NEW CONDITIONAL VALUE TO              *GPD00470
+      *                          CGI-MPF-TRF-BEN-SIG                   *GPD00480
+      *                    - 88  CGI-UNCLAIM-BEN        VALUE 'U'.     *GPD00490
+      *                                                                *GPD00500
+      *   B. VARIABLE PORTION AMENDMENT :-                             *GPD00510
+      *                   NIL                                          *GPD00520
+      ***  START NEW MPF197 (ICA) 8 JUL 2008                           *GPD00530
+      *  PGRM CHANGE NO.  :  MPF197                                    *GPD00540
+      *  PROGRAMMER       :  IRIS CHOI (ICA)                           *GPD00550
+      *  CHANGE DATE      :  08 JUL 2008                               *GPD00560
+      *  DESCRIPTION      :  ADD NEW FIELDS CGI-DEATH-EVIDENCE-SIGNAL  *GPD00570
+      *                      AND CGI-DEATH-EVIDENCE-UPDATE-DATE        *GPD00580
+      ***  END   NEW MPF197 (ICA) 8 JUL 2008                           *GPD00590
+      ***  START NEW MPF200 (JWE) 15 AUG 2008                          *GPD00600
+      *  PGRM CHANGE NO.  :  MPF200                                    *GPD00610
+      *  PROGRAMMER       :  JEFF WONG (JWE)                           *GPD00620
+      *  CHANGE DATE      :  15 AUG 2008                               *GPD00630
+      *  DESCRIPTION      :  ADD NEW FIELDS CGI-REPORTED-LSP-SP        *GPD00640
+      ***  END   NEW MPF200 (JWE) 15 AUG 2008                          *GPD00650
+      ***  START NEW MPF204-O (ATD) 22 JAN 2010                        *GPD00660
+      *  PGRM CHANGE NO.  :  MPF204-O MEMBER CHOICE TRANSFER OUT       *GPD00670
+      *  PROGRAMMER       :  ANTHONY TSE (ATD)                         *GPD00680
+      *  CHANGE DATE      :  22 JAN 2010                               *GPD00690
+      *  DESCRIPTION      :  ADD NEW FIELDS PREVIOUS AND CURRENT YEAR  *GPD00700
+      *                      MEMBER CHOICE TRANSFER COUNT & DATE.      *GPD00710
+      ***  END   NEW MPF204-O (ATD) 22 JAN 2010                        *GPD00720
+      ***  START NEW MPF209-A (ICA) 12 JUL 2012                        *GPD00730
+      *  PGRM CHANGE NO.  :  MPF209-A NEW BU STRUCTURE PROJECT         *GPD00740
+      *  PROGRAMMER       :  IRIS CHOI (ICA)                           *GPD00750
+      *  CHANGE DATE      :  12 JUL 2012                               *GPD00760
+      *  DESCRIPTION      :  ADD NEW FIELDS FOR BONUS RELEASE          *GPD00770
+      *                      NEW BU FLAG, GRANDFATHER RATE AND         *GPD00780
+      *                      OVERRIDE RATE                             *GPD00790
+      ***  END   NEW MPF209-A (ICA) 12 JUL 2012                        *GPD00800
+      ******************************************************************GPD00810
+       01  CGI-RECORD.                                                  GPD00820
+         03  CGI-FIXED-PORTION.                                         GPD00830
+           05  CGI-KEY.                                                 GPD00840
+               10  CGI-GROUP-NO.                                        GPD00850
+                   15  CGI-BASE-GROUP-NO     PIC 9(7).                  GPD00860
+                   15  CGI-CHK-DGT           PIC 9.                     GPD00870
+               10  CGI-CERT-NO               PIC X(10).                 GPD00880
+           05  CGI-ALT-KEY.                                             GPD00890
+               10  CGI-ALT-GROUP-NO          PIC 9(8).                  GPD00900
+               10  CGI-BILL-CL               PIC 9(2).                  GPD00910
+               10  CGI-ALT-CERT-NO           PIC X(10).                 GPD00920
+      *                                                                 GPD00930
+      *    CGI-CERT-STATUS : -                                          GPD00940
+      *     01 - ACTIVE                                                 GPD00950
+      *     02 - NO PAY LEAVE                                           GPD00960
+      *     03 - VOLUNTARY WITHDRAWAL                                   GPD00970
+      *     04 - TERMINATED - CASHED OUT                                GPD00980
+      *     05 - TERMINATED FOD                                         GPD00990
+      *     06 - DEAD                                                   GPD01000
+      *     07 - REDUCED TO PAID-UP AT NRD                              GPD01010
+      *     08 - RETIRED - FOD                                          GPD01020
+      *     09 - DEFERRED RETIREMENT WITH CONTINUING CONTRIBUTIONS      GPD01030
+      *     10 - NO PAY LEAVE, DEFERRED RETIREMENT WITH CONTINUING      GPD01040
+      *          CONTRIBUTIONS                                          GPD01050
+      *     11 - RETIRED                                                GPD01060
+      *     12 - DISABLED - FOD                                         GPD01070
+      *     13 - ACTIVE PRIOR TO GROUP DISCONTINUANCE                   GPD01080
+      *     14 - DEFERRED RETIREMENT WITH CONTINUING CONTRIBUTIONS      GPD01090
+      *          PRIOR TO GROUP DISCONTINUANCE                          GPD01100
+      *     15 - PRE-ISSUE                                              GPD01110
+      *    CERTIFICATE STATUS                                           GPD01120
+      *    ------------------                                           GPD01130
+      *                                                                 GPD01140
+           05  CGI-CERT-STATUS               PIC 9(2).                  GPD01150
+               88  CGI-CERT-ACTIVE            VALUE 1.                  GPD01160
+               88  CGI-NOPAY-LEAVE            VALUE 2.                  GPD01170
+               88  CGI-VOL-WDR                VALUE 3.                  GPD01180
+               88  CGI-TERM-CASHOUT           VALUE 4.                  GPD01190
+               88  CGI-TERM-FOD               VALUE 5.                  GPD01200
+               88  CGI-DEAD                   VALUE 6.                  GPD01210
+               88  CGI-PAIDUP-AT-NRD          VALUE 7.                  GPD01220
+               88  CGI-RETIRE-FOD             VALUE 8.                  GPD01230
+               88  CGI-DEFER-RET              VALUE 9.                  GPD01240
+               88  CGI-NOPAY-DEFER-RET        VALUE 10.                 GPD01250
+               88  CGI-RETIRE                 VALUE 11.                 GPD01260
+               88  CGI-DISAB-FOD              VALUE 12.                 GPD01270
+               88  CGI-ACTIVE-PRIOR-DISCON    VALUE 13.                 GPD01280
+               88  CGI-DEFER-RET-PRIOR-DISCON VALUE 14.                 GPD01290
+               88  CGI-PREISSUE               VALUE 15.                 GPD01300
+                                                                        GPD01310
+      ***  START NEW GP024 (SHA) 28 JUN 93                              GPD01320
+               88  CGI-REAL-TERMINATE         VALUE 4 6 11.             GPD01330
+      ***  END   NEW GP024 (SHA) 28 JUN 93                              GPD01340
+                                                                        GPD01350
+           05  CGI-CERT-STATUS-EFF-DATE.                                GPD01360
+               10  CGI-CERT-STATUS-EFF-YYY   PIC 9(3).                  GPD01370
+               10  CGI-CERT-STATUS-EFF-MM    PIC 9(2).                  GPD01380
+               10  CGI-CERT-STATUS-EFF-DD    PIC 9(2).                  GPD01390
+           05  CGI-CERT-STATUS-CHG-DATE.                                GPD01400
+               10  CGI-CERT-STATUS-CHG-YYY   PIC 9(3).                  GPD01410
+               10  CGI-CERT-STATUS-CHG-MM    PIC 9(2).                  GPD01420
+               10  CGI-CERT-STATUS-CHG-DD    PIC 9(2).                  GPD01430
+      *                                                                 GPD01440
+           05  CGI-WDR-PEND-SIG              PIC X.                     GPD01450
+               88  CGI-NO-WDR-PEND            VALUE 'N'.                GPD01460
+      ***  START OLD MPF710 (CWM) 19 OCT 2000                           GPD01470
+      *        88  CGI-WDR-PEND               VALUE 'Y'.                GPD01480
+      ***  END   OLD MPF710 (CWM) 19 OCT 2000                           GPD01490
+      ***  START NEW MPF710 (CWM) 19 OCT 2000                           GPD01500
+               88  CGI-WDR-PEND-PROCESS       VALUE 'Y'.                GPD01510
+               88  CGI-WDR-PEND-TRF           VALUE 'T'.                GPD01520
+               88  CGI-WDR-PEND-DEAD          VALUE 'D'.                GPD01530
+               88  CGI-WDR-PEND-TTL-INCAP     VALUE 'I'.                GPD01540
+               88  CGI-WDR-OTH-WDRL           VALUE 'W'.                GPD01550
+      ***  END   NEW MPF710 (CWM) 19 OCT 2000                           GPD01560
+      ***  START NEW MPF711 (WWE) 18 AUG 2000                           GPD01570
+               88  CGI-DEATH-CLAIM            VALUE 'D'.                GPD01580
+      ***  END   NEW MPF711 (WWE) 18 AUG 2000                           GPD01590
+      ***  START OLD GP024 (SHA) 31 JUN 93                              GPD01600
+      *    05  CGI-PEND-ALLOC-SIG            PIC X.                     GPD01610
+      *        88  CGI-NO-PEND-ALLOC          VALUE 'N'.                GPD01620
+      *        88  CGI-PEND-ALLOC             VALUE 'Y'.                GPD01630
+      *    05  FILLER                        PIC X(8).                  GPD01640
+      ***  END   OLD GP024 (SHA) 31 JUN 93                              GPD01650
+                                                                        GPD01660
+      ***  START NEW GP024 (SHA) 31 JUN 93                              GPD01670
+      ***  START OLD MPF135 (FLA) 08 JUN 2009                           GPD01680
+      *    05  CGI-PEND-ALLOC-COUNT          PIC 9(2).                  GPD01690
+      ***  END   OLD MPF135 (FLA) 08 JUN 2009                           GPD01700
+      ***  START NEW MPF135 (FLA) 08 JUN 2009                           GPD01710
+      ***  START OLD MPF209-A (ICA) 12 JUL 2012                         GPD01720
+      *    05  FILLER                        PIC X(2).                  GPD01730
+      ***  END   OLD MPF209-A (ICA) 12 JUL 2012                         GPD01740
+      ***  END   NEW MPF135 (FLA) 08 JUN 2009                           GPD01750
+      ***  START OLD MPF150 (MYC) 05 AUG 98                             GPD01760
+      *    05  FILLER                        PIC X(7).                  GPD01770
+      ***  END   OLD MPF150 (MYC) 05 AUG 98                             GPD01780
+      ***  START NEW MPF150 (MYC) 05 AUG 98                             GPD01790
+      ***  START NEW MPF209-A (ICA) 12 JUL 2012                         GPD01800
+           05  CGI-EE-NEW-BU-FLAG            PIC X(1).                  GPD01810
+           05  FILLER                        PIC X(1).                  GPD01820
+      ***  END   NEW MPF209-A (ICA) 12 JUL 2012                         GPD01830
+           05  CGI-AGENT-CODE                PIC X(6).                  GPD01840
+      ***  START OLD MPF120 (ICA) 08 FEB 2002                           GPD01850
+      *    05  FILLER                        PIC X.                     GPD01860
+      ***  END   OLD MPF120 (ICA) 08 FEB 2002                           GPD01870
+      ***  START NEW MPF120 (ICA) 08 FEB 2002                           GPD01880
+           05  CGI-RETIRE-OPT                PIC X.                     GPD01890
+               88  CGI-RETIRE-OPT-NA          VALUE ' '.                GPD01900
+      ***  START OLD MPF120 (ICA) 03 MAY 2002                           GPD01910
+      *        88  CGI-1ST-TIME-RET           VALUE '1'.                GPD01920
+      *        88  CGI-SUBSEQ-YR-RET          VALUE 'S'.                GPD01930
+      *        88  CGI-FOLLOW-UP-RET          VALUE '2'.                GPD01940
+      *        88  CGI-NO-FUND-RET            VALUE 'N'.                GPD01950
+      ***  END   OLD MPF120 (ICA) 03 MAY 2002                           GPD01960
+               88  CGI-REPLY-RET              VALUE 'E'.                GPD01970
+               88  CGI-RETAINED-RET           VALUE 'R'.                GPD01980
+      ***  START OLD MPF120 (ICA) 03 MAY 2002                           GPD01990
+      *        88  CGI-NO-REPLY-RET           VALUE 'C'.                GPD02000
+      ***  END   OLD MPF120 (ICA) 03 MAY 2002                           GPD02010
+               88  CGI-WDR-ACTIVE-RET         VALUE 'W'.                GPD02020
+               88  CGI-UNCLAIM-RET            VALUE 'U'.                GPD02030
+      ***  START OLD MPF120 (DHA) 11 JUN 2002                           GPD02040
+      ***  START NEW MPF120 (ICA) 03 MAY 2002                           GPD02050
+      *        88  CGI-OVER-65-WHEN-JOIN      VALUE 'O'.                GPD02060
+      ***  END   NEW MPF120 (ICA) 03 MAY 2002                           GPD02070
+      ***  END   OLD MPF120 (DHA) 11 JUN 2002                           GPD02080
+      ***  END   NEW MPF120 (ICA) 08 FEB 2002                           GPD02090
+      ***  END   NEW MPF150 (MYC) 05 AUG 98                             GPD02100
+      ***  END   NEW GP024 (SHA) 31 JUN 93                              GPD02110
+      *                                                                 GPD02120
+      *    CERTIFICATE PERSONAL INFORMATION                             GPD02130
+      *    --------------------------------                             GPD02140
+      *                                                                 GPD02150
+           05  CGI-SURNAME                   PIC X(20).                 GPD02160
+           05  CGI-OTHER-NAME                PIC X(20).                 GPD02170
+           05  CGI-SEX                       PIC X.                     GPD02180
+               88  CGI-MALE                   VALUE 'M'.                GPD02190
+               88  CGI-FEMALE                 VALUE 'F'.                GPD02200
+      ***  START NEW FIRE-FIGHT (DSA) 12 FEB 97                         GPD02210
+               88  CGI-NA                     VALUE 'N'.                GPD02220
+      ***  END   NEW FIRE-FIGHT (DSA) 12 FEB 97                         GPD02230
+           05  CGI-BIRTH-DATE.                                          GPD02240
+               10  CGI-BIRTH-YYY             PIC 9(3).                  GPD02250
+               10  CGI-BIRTH-MM              PIC 9(2).                  GPD02260
+               10  CGI-BIRTH-DD              PIC 9(2).                  GPD02270
+           05  CGI-JOB-CAT                   PIC 9(3).                  GPD02280
+      ***  START OLD MPF101     (CWB)  05 NOV 2001                      GPD02290
+      *    05  FILLER                        PIC X(8).                  GPD02300
+      ***  END   OLD MPF101    (CWB)  05 NOV 2001                       GPD02310
+      ***  START NEW MPF101     (CWB) 05 NOV 2001                       GPD02320
+           05  CGI-RELATED-GROUP-NO          PIC X(8).                  GPD02330
+      ***  END   NEW MPF101     (CWB) 05 NOV 2001                       GPD02340
+      *                                                                 GPD02350
+      *    ASSIGNED CLASSES                                             GPD02360
+      *    ----------------                                             GPD02370
+      *                                                                 GPD02380
+           05  CGI-PREV-BILL-CL              PIC 9(2).                  GPD02390
+           05  CGI-FORM-CL                   PIC 9(2).                  GPD02400
+           05  CGI-SCH-CL                    PIC 9(2).                  GPD02410
+           05  CGI-VEST-CL                   PIC 9(2).                  GPD02420
+           05  CGI-PS-VEST-CL                PIC 9(2).                  GPD02430
+      ***  START OLD MPF330 (KNA) 10 MAR 2004                           GPD02440
+      *    05  FILLER                        PIC X(8).                  GPD02450
+      ***  END   OLD MPF330 (KNA) 10 MAR 2004                           GPD02460
+      ***  START NEW MPF330 (KNA) 10 MAR 2004                           GPD02470
+      *    TOTAL CONT & TOTAL WDR FROM INCEPTION UPTO LAST SCHEME YEAR  GPD02480
+      *    -----------------------                                      GPD02490
+      ***  START NEW MPF910-2 (KNA) 21 JAN 2005                         GPD02500
+      ***  START OLD MPF220 (CWB) 31 MAY 2012                           GPD02510
+      *    05  CGI-LAST-YR-TOT-CONT          PIC S9(11)V99 COMP-3.      GPD02520
+      *    05  CGI-LAST-YR-TOT-WDR           PIC S9(11)V99 COMP-3.      GPD02530
+      ***  END   OLD MPF220 (CWB) 31 MAY 2012                           GPD02540
+      ***  START NEW MPF220 (CWB) 31 MAY 2012                           GPD02550
+           05  CGI-DC-STS-UPDATE-DATE        PIC 9(7) COMP-3.           GPD02560
+           05  CGI-ORIG-CERT-NO              PIC X(10).                 GPD02570
+      ***  END   NEW MPF220 (CWB) 31 MAY 2012                           GPD02580
+      ***  END   NEW MPF910-2 (KNA) 21 JAN 2005                         GPD02590
+      ***  START OLD MPF910-2 (KNA) 21 JAN 2005                         GPD02600
+      *    05  CGI-LAST-YR-TOT-NET-CONT      PIC S9(11)V99 COMP-3.      GPD02610
+      ***  END   OLD MPF910-2 (KNA) 21 JAN 2005                         GPD02620
+      ***  START NEW MPF910 (KNA) 07 MAY 2004                           GPD02630
+           05  CGI-MBS-PRINT-SIG             PIC X(1).                  GPD02640
+               88  CGI-MBS-PRINT              VALUE 'Y'.                GPD02650
+               88  CGI-NOT-MBS-PRINT          VALUE 'N'.                GPD02660
+      ***  END   NEW MPF910 (KNA) 07 MAY 2004                           GPD02670
+      ***  START OLD MPF910 (KNA) 07 MAY 2004                           GPD02680
+      *    05  FILLER                        PIC X(1).                  GPD02690
+      ***  END   OLD MPF910 (KNA) 07 MAY 2004                           GPD02700
+      ***  END   NEW MPF330 (KNA) 10 MAR 2004                           GPD02710
+      *                                                                 GPD02720
+      *    FREEZE INFORMATION                                           GPD02730
+      *    ------------------                                           GPD02740
+      *                                                                 GPD02750
+           05  CGI-CERT-FREEZE-SIG           PIC 9.                     GPD02760
+               88  CGI-CERT-FREEZE-NA         VALUE 0.                  GPD02770
+               88  CGI-CERT-FREEZE-IN         VALUE 1.                  GPD02780
+               88  CGI-CERT-FREEZE-EX         VALUE 2.                  GPD02790
+           05  CGI-CERT-FREEZE-DATE.                                    GPD02800
+               10  CGI-CERT-FREEZE-YYY       PIC 9(3).                  GPD02810
+               10  CGI-CERT-FREEZE-MM        PIC 9(2).                  GPD02820
+               10  CGI-CERT-FREEZE-DD        PIC 9(2).                  GPD02830
+      *                                                                 GPD02840
+      *    GENERAL INFORMATION                                          GPD02850
+      *    -------------------                                          GPD02860
+      *                                                                 GPD02870
+           05  CGI-NRA                       PIC 9(2).                  GPD02880
+           05  CGI-NRD.                                                 GPD02890
+               10  CGI-NRD-YYY               PIC 9(3).                  GPD02900
+               10  CGI-NRD-MM                PIC 9(2).                  GPD02910
+               10  CGI-NRD-DD                PIC 9(2).                  GPD02920
+           05  CGI-EMP-DATE.                                            GPD02930
+               10  CGI-EMP-YYY               PIC 9(3).                  GPD02940
+               10  CGI-EMP-MM                PIC 9(2).                  GPD02950
+               10  CGI-EMP-DD                PIC 9(2).                  GPD02960
+           05  CGI-COV-DATE.                                            GPD02970
+               10  CGI-COV-YYY               PIC 9(3).                  GPD02980
+               10  CGI-COV-MM                PIC 9(2).                  GPD02990
+               10  CGI-COV-DD                PIC 9(2).                  GPD03000
+           05  CGI-EMP-VEST-DATE.                                       GPD03010
+               10  CGI-EMP-VEST-YYY          PIC 9(3).                  GPD03020
+               10  CGI-EMP-VEST-MM           PIC 9(2).                  GPD03030
+               10  CGI-EMP-VEST-DD           PIC 9(2).                  GPD03040
+           05  CGI-COV-VEST-DATE.                                       GPD03050
+               10  CGI-COV-VEST-YYY          PIC 9(3).                  GPD03060
+               10  CGI-COV-VEST-MM           PIC 9(2).                  GPD03070
+               10  CGI-COV-VEST-DD           PIC 9(2).                  GPD03080
+      *                                                                 GPD03090
+           05  CGI-NO-PAY-LEAVE-MTHS         PIC 9(3).                  GPD03100
+      *                                                                 GPD03110
+           05  CGI-FS-VEST-PCT               PIC S9V9(5) COMP-3.        GPD03120
+           05  CGI-PS-VEST-PCT               PIC S9V9(5) COMP-3.        GPD03130
+      *                                                                 GPD03140
+           05  CGI-LAST-TX-TYPE              PIC 9(3).                  GPD03150
+           05  CGI-LAST-TX-EFF-DATE.                                    GPD03160
+               10  CGI-LAST-TX-EFF-YYY       PIC 9(3).                  GPD03170
+               10  CGI-LAST-TX-EFF-MM        PIC 9(2).                  GPD03180
+               10  CGI-LAST-TX-EFF-DD        PIC 9(2).                  GPD03190
+      *                                                                 GPD03200
+           05  CGI-TXJ-LAST-RUN-DATE.                                   GPD03210
+               10  CGI-TXJ-LAST-RUN-YYY      PIC 9(3).                  GPD03220
+               10  CGI-TXJ-LAST-RUN-DDD      PIC 9(3).                  GPD03230
+      *                                                                 GPD03240
+           05  CGI-CERT-TX-REJECT-DATE.                                 GPD03250
+               10  CGI-CERT-TX-REJ-YYY       PIC 9(3).                  GPD03260
+               10  CGI-CERT-TX-REJ-MM        PIC 9(2).                  GPD03270
+               10  CGI-CERT-TX-REJ-DD        PIC 9(2).                  GPD03280
+      *                                                                 GPD03290
+           05  CGI-AMORT-PS-CONT-END-DATE.                              GPD03300
+               10  CGI-AMORT-PS-CONT-END-YYY PIC 9(3).                  GPD03310
+               10  CGI-AMORT-PS-CONT-END-MM  PIC 9(2).                  GPD03320
+      ***  START OLD GP010 (MNA) 23 DEC 91                              GPD03330
+      *    05  FILLER                        PIC X(9).                  GPD03340
+      ***  END   OLD GP010 (MNA) 23 DEC 91                              GPD03350
+      ***  START NEW GP010 (MNA) 23 DEC 91                              GPD03360
+           05  CGI-LAST-INTERFD-TRF-DATE.                               GPD03370
+               10  CGI-LAST-INTERFD-TRF-YYY  PIC 9(3).                  GPD03380
+               10  CGI-LAST-INTERFD-TRF-MM   PIC 9(2).                  GPD03390
+               10  CGI-LAST-INTERFD-TRF-DD   PIC 9(2).                  GPD03400
+      *                                                                 GPD03410
+      ***  START NEW MPF130-2 (DHA) 18 NOV 2002                         GPD03420
+           05  CGI-RS-TERM-SIG               PIC X(1).                  GPD03430
+      ***  START NEW GP201  (CWB) 18 NOV 2004                           GPD03440
+           05  CGI-UNCLAIM-REASON            PIC X(1).                  GPD03450
+               88  CGI-STALE-CHEQUE          VALUE 'S'.                 GPD03460
+      ***  END   NEW GP201  (CWB) 18 NOV 2004                           GPD03470
+      ***  START OLD GP201   (CWB)  16 NOV 2004                         GPD03480
+      *    05  CGI-SPECIAL-SIG               PIC X(1).                  GPD03490
+      ***  END   OLD GP201   (CWB)  16 NOV 2004                         GPD03500
+      ***  END   NEW MPF130-2 (DHA) 18 NOV 2002                         GPD03510
+      ***  START OLD MPF130-2 (DHA) 18 NOV 2002                         GPD03520
+      *    05  FILLER                        PIC X(2).                  GPD03530
+      ***  END   OLD MPF130-2 (DHA) 18 NOV 2002                         GPD03540
+      *                                                                 GPD03550
+      *    HIT DATES                                                    GPD03560
+      *    ---------                                                    GPD03570
+      *                                                                 GPD03580
+           05  CGI-PRERET-HIT-DATE.                                     GPD03590
+               10  CGI-PRERET-HIT-YYY        PIC 9(3).                  GPD03600
+               10  CGI-PRERET-HIT-DDD        PIC 9(3).                  GPD03610
+           05  CGI-RET-HIT-DATE.                                        GPD03620
+               10  CGI-RET-HIT-YYY           PIC 9(3).                  GPD03630
+               10  CGI-RET-HIT-DDD           PIC 9(3).                  GPD03640
+           05  CGI-NEXT-FS-AUTO-CHG-HIT-DATE.                           GPD03650
+               10  CGI-NEXT-FS-CHG-HIT-YYY   PIC 9(3).                  GPD03660
+               10  CGI-NEXT-FS-CHG-HIT-DDD   PIC 9(3).                  GPD03670
+      * START OLD MPF710 (KCE) MAY 29, 2000                             GPD03680
+      *    05  FILLER                        PIC X(12).                 GPD03690
+      * END   OLD MPF710 (KCE) MAY 29, 2000                             GPD03700
+      * START NEW MPF710 (KCE) MAY 29, 2000                             GPD03710
+           05  CGI-TERM-EMPLOY-DATE.                                    GPD03720
+               10  CGI-TERM-EMPLOY-YYY       PIC 9(3).                  GPD03730
+               10  CGI-TERM-EMPLOY-MM        PIC 9(2).                  GPD03740
+               10  CGI-TERM-EMPLOY-DD        PIC 9(2).                  GPD03750
+      *** START OLD MPF149 (CYD) 11 MAR 2004                            GPD03760
+      *    05  FILLER                        PIC X(5).                  GPD03770
+      *** END   OLD MPF149 (CYD) 11 MAR 2004                            GPD03780
+      *** START NEW MPF149 (CYD) 11 MAR 2004                            GPD03790
+           05  CGI-CPY-VC-WDL-COUNT          PIC 9(3) COMP-3.           GPD03800
+           05  CGI-TOTAL-VC-WDL-COUNT        PIC 9(5) COMP-3.           GPD03810
+      *** END   NEW MPF149 (CYD) 11 MAR 2004                            GPD03820
+      * END   NEW MPF710 (KCE) MAY 29, 2000                             GPD03830
+      *                                                                 GPD03840
+      *    CURRENT SALARY / CONTRIBUTION INFORMATION                    GPD03850
+      *    -----------------------------------------                    GPD03860
+      *                                                                 GPD03870
+           05  CGI-CURR-MTHLY-SAL            PIC S9(9)V99 COMP-3.       GPD03880
+           05  CGI-CURR-OPT-PCT              PIC SV9(5)   COMP-3.       GPD03890
+           05  CGI-CURR-FSEE-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03900
+           05  CGI-CURR-FSER-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03910
+           05  CGI-CURR-OPT-MTHLY-CONT       PIC S9(9)V99 COMP-3.       GPD03920
+           05  CGI-CURR-PSEE-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03930
+           05  CGI-CURR-PSER-MTHLY-CONT      PIC S9(9)V99 COMP-3.       GPD03940
+      * START OLD MPF710 (KCE) MAY 29, 2000                             GPD03950
+      *    05  FILLER                        PIC X(12).                 GPD03960
+      * END   OLD MPF710 (KCE) MAY 29, 2000                             GPD03970
+      * START NEW MPF710 (KCE) MAY 29, 2000                             GPD03980
+           05  CGI-TERM-NOTIFN-DATE.                                    GPD03990
+               10  CGI-TERM-NOTIFN-YYY       PIC 9(3).                  GPD04000
+               10  CGI-TERM-NOTIFN-MM        PIC 9(2).                  GPD04010
+               10  CGI-TERM-NOTIFN-DD        PIC 9(2).                  GPD04020
+           05  FILLER                        PIC X(5).                  GPD04030
+      * END   NEW MPF710 (KCE) MAY 29, 2000                             GPD04040
+      *                                                                 GPD04050
+      *    NEXT CONTRIBUTION ADJUSTMENT INFORMATION                     GPD04060
+      *    ----------------------------------------                     GPD04070
+      *                                                                 GPD04080
+           05  CGI-FSEE-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04090
+           05  CGI-FSER-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04100
+           05  CGI-OPT-NEXT-CONT-ADJ         PIC S9(9)V99 COMP-3.       GPD04110
+           05  CGI-PSEE-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04120
+           05  CGI-PSER-NEXT-CONT-ADJ        PIC S9(9)V99 COMP-3.       GPD04130
+      *                                                                 GPD04140
+           05  CGI-FSEE-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04150
+           05  CGI-FSER-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04160
+           05  CGI-OPT-NEXT-NET-CONT-ADJ     PIC S9(9)V99 COMP-3.       GPD04170
+           05  CGI-PSEE-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04180
+           05  CGI-PSER-NEXT-NET-CONT-ADJ    PIC S9(9)V99 COMP-3.       GPD04190
+      *                                                                 GPD04200
+      ***  START OLD GP043 (FWB) 03 JAN 95                              GPD04210
+      *    05  FILLER                        PIC X(38).                 GPD04220
+      ***  END   OLD GP043 (FWB) 03 JAN 95                              GPD04230
+      ***  START NEW GP043 (FWB) 03 JAN 95                              GPD04240
+      *                                                                 GPD04250
+      *    TRANSFER TAXABLE AMOUNT INFORMATION                          GPD04260
+      *    -----------------------------------                          GPD04270
+      *                                                                 GPD04280
+           05  CGI-TRF-TAXABLE-AMT           PIC S9(9)V99 COMP-3.       GPD04290
+      ***  START OLD GP073 (RCH) 15 MAY 97                              GPD04300
+      *    05  FILLER                        PIC X(32).                 GPD04310
+      ***  END   NEW GP043 (FWB) 03 JAN 95                              GPD04320
+      ***  END   OLD GP073 (RCH) 15 MAY 97                              GPD04330
+      ***  START NEW GP073 (RCH) 15 MAY 97                              GPD04340
+           05  CGI-ID-NUMBER                 PIC X(15).                 GPD04350
+           05  CGI-MPF-TRF-BEN-SIG           PIC X.                     GPD04360
+               88  CGI-NOT-MPF-TRF-BEN        VALUE 'N'.                GPD04370
+               88  CGI-MPF-TRF-BEN            VALUE 'Y'.                GPD04380
+      * START NEW MPF710 (KCE) MAY 29, 2000                             GPD04390
+               88  CGI-CONT-AC                VALUE 'C'.                GPD04400
+               88  CGI-PRESERVE-AC            VALUE 'P'.                GPD04410
+      * END   NEW MPF710 (KCE) MAY 29, 2000                             GPD04420
+      ***  START NEW MPF710 (CWM) 19 OCT 2000                           GPD04430
+               88  CGI-UNCLAIM-BEN            VALUE 'U'.                GPD04440
+      ***  END   NEW MPF710 (CWM) 19 OCT 2000                           GPD04450
+      ***  START NEW MPF130-2 2412P (ICA) 2 DEC 2002                    GPD04460
+               88  CGI-INTRA-GRP-TRF          VALUE 'I'.                GPD04470
+               88  CGI-MMB                    VALUE 'M'.                GPD04480
+      ***  END   NEW MPF130-2 2412P (ICA) 2 DEC 2002                    GPD04490
+           05  CGI-SELFEMPLOY-TYPE           PIC X.                     GPD04500
+               88  CGI-SELFEMPLOY-NA          VALUE ' '.                GPD04510
+               88  CGI-PARTNER                VALUE 'P'.                GPD04520
+               88  CGI-SOLE-PROPRIETOR        VALUE 'S'.                GPD04530
+           05  CGI-SELFEMPLOY-EARN-TYPE      PIC X(2).                  GPD04540
+               88  CGI-SELFEMPLOY-EARN-NA     VALUE '  '.               GPD04550
+               88  CGI-AVERAGE-INCOME         VALUE 'AI'.               GPD04560
+               88  CGI-ASSESSABLE-PROFITS     VALUE 'AP'.               GPD04570
+               88  CGI-MAXIMUM-INCOME         VALUE 'MI'.               GPD04580
+               88  CGI-NOTICE-OF-ASSESSMENT   VALUE 'NA'.               GPD04590
+      * START OLD MPF710 (KCE) MAY 29, 2000                             GPD04600
+      *    05  FILLER                        PIC X(13).                 GPD04610
+      * END   OLD MPF710 (KCE) MAY 29, 2000                             GPD04620
+      * START NEW MPF710 (KCE) MAY 29, 2000                             GPD04630
+           05  CGI-CASUAL-EE-SIG             PIC X.                     GPD04640
+               88  CGI-CASUAL-EE             VALUE 'Y'.                 GPD04650
+               88  CGI-NOT-CASUAL-EE         VALUE 'N'.                 GPD04660
+      *** START NEW MPF711 (KLF) 31 OCT 2000                            GPD04670
+               88  CGI-CASUAL-EXEMPT         VALUE 'E'.                 GPD04680
+      *** END   NEW MPF711 (KLF) 31 OCT 2000                            GPD04690
+      *** START OLD MPF218 (ADA) 30 SEP 2011                            GPD04700
+      *    05  CGI-SE-NEXT-YR-MTHLY-EARNING  PIC S9(9)V99 COMP-3.       GPD04710
+      *** END   OLD MPF218 (ADA) 30 SEP 2011                            GPD04720
+      *** START NEW MPF218 (ADA) 30 SEP 2011                            GPD04730
+           05  CGI-SE-NEXT-YR-ANNUAL-EARNING PIC S9(9)V99 COMP-3.       GPD04740
+      *** END   NEW MPF218 (ADA) 30 SEP 2011                            GPD04750
+           05  CGI-SE-NEXT-YR-VOLUNTARY-CONT PIC S9(9)V99 COMP-3.       GPD04760
+      * END   NEW MPF710 (KCE) MAY 29, 2000                             GPD04770
+      ***  END   NEW GP073 (RCH) 15 MAY 97                              GPD04780
+      *** START NEW MPF830 (DCD) 04 OCT 2000                            GPD04790
+           05  CGI-OS-CONT-HIT-DATE.                                    GPD04800
+               10  CGI-OS-CONT-HIT-YYY       PIC 9(3).                  GPD04810
+               10  CGI-OS-CONT-HIT-DDD       PIC 9(3).                  GPD04820
+           05  CGI-OS-TRF-WDRL-FORM-HIT-DATE.                           GPD04830
+               10  CGI-OS-TRF-WDRL-FORM-HIT-YYY  PIC 9(3).              GPD04840
+               10  CGI-OS-TRF-WDRL-FORM-HIT-DDD  PIC 9(3).              GPD04850
+      ***  START OLD MPF710 (CWM) 19 OCT 2000                           GPD04860
+      *    05  CGI-UNVESTED-ER-VOL           PIC S9(9)V99 COMP-3.       GPD04870
+      ***  END   OLD MPF710 (CWM) 19 OCT 2000                           GPD04880
+      ***  START NEW MPF710 (CWM) 19 OCT 2000                           GPD04890
+           05  CGI-UNVESTED-ER-VOL           PIC S9(11)V99 COMP-3.      GPD04900
+      ***  END   NEW MPF710 (CWM) 19 OCT 2000                           GPD04910
+           05  CGI-LSP-SP-AMT-DEDUCTED-MAND  PIC S9(9)V99 COMP-3.       GPD04920
+           05  CGI-LSP-SP-AMT-DEDUCTED-VOL   PIC S9(9)V99 COMP-3.       GPD04930
+      ***  START OLD MPF910 (KNA) 01 FEB 2001                           GPD04940
+      ***  START NEW MPF710 (CWM) 19 OCT 2000                           GPD04950
+      *    05  CGI-YR-BEGIN-VESTED-BEN       PIC S9(11)V99 COMP-3.      GPD04960
+      ***  END   NEW MPF710 (CWM) 19 OCT 2000                           GPD04970
+      *    05  FILLER                        PIC X(30).                 GPD04980
+      ***  END   OLD MPF910 (KNA) 01 FEB 2001                           GPD04990
+      ***  START NEW MPF910 (KNA) 01 FEB 2001                           GPD05000
+           05  CGI-OPEN-VEST-BEN-MAND        PIC S9(11)V99 COMP-3.      GPD05010
+           05  CGI-OPEN-VEST-BEN-VOL         PIC S9(11)V99 COMP-3.      GPD05020
+      ***  START OLD MPF120 (ICA) 3 MAY 2002                            GPD05030
+      *    05  FILLER                        PIC X(23).                 GPD05040
+      ***  END   OLD MPF120 (ICA) 3 MAY 2002                            GPD05050
+      ***  END   NEW MPF910 (KNA) 01 FEB 2001                           GPD05060
+      *** END   NEW MPF830 (DCD) 04 OCT 2000                            GPD05070
+      ***  START NEW MPF120 (ICA) 3 MAY 2002                            GPD05080
+           05  CGI-UNCLAIMED-BEN-DATE.                                  GPD05090
+               10  CGI-UNCLAIMED-BEN-YYY     PIC 9(3).                  GPD05100
+               10  CGI-UNCLAIMED-BEN-MM      PIC 9(2).                  GPD05110
+               10  CGI-UNCLAIMED-BEN-DD      PIC 9(2).                  GPD05120
+           05  CGI-ANNUAL-NEWSPAPER-CNT      PIC 9(2).                  GPD05130
+      *** START NEW GP174 (JWE) 13 MAY 2003                             GPD05140
+      *** VALID VALUE IS 'Y' OR SPACE ONLY                              GPD05150
+      *** PLEASE CHECK THE SIG = Y OR NOT = Y IN THE PROGRAM,           GPD05160
+      *** DON'T CHECK = SPACES                                          GPD05170
+           05  CGI-GRP-TRF-BYPASS-SIG        PIC X(01).                 GPD05180
+      *** START OLD GP142 (DSD) 19 AUG 2003                             GPD05190
+      *    05  FILLER                        PIC X(13).                 GPD05200
+      *** END   OLD GP142 (DSD) 19 AUG 2003                             GPD05210
+      *** END   NEW GP174 (JWE) 13 MAY 2003                             GPD05220
+      *** START NEW GP142 (DSD) 19 AUG 2003                             GPD05230
+      ***  START OLD MPF135 (FLA) 16 JUN 2009                           GPD05240
+      *    05  CGI-PEND-ALLOC-COUNT-SUSPEND  PIC 9(2).                  GPD05250
+      ***  END   OLD MPF135 (FLA) 16 JUN 2009                           GPD05260
+      ***  START NEW MPF135 (FLA) 16 JUN 2009                           GPD05270
+           05  FILLER                        PIC X(2).                  GPD05280
+      ***  END   NEW MPF135 (FLA) 16 JUN 2009                           GPD05290
+      *** START NEW MPF940 (JWE) 08 JUL 2004                            GPD05300
+           05  CGI-REC-CREATE-DATE.                                     GPD05310
+               10  CGI-REC-CREATE-YYY        PIC 9(03).                 GPD05320
+               10  CGI-REC-CREATE-MM         PIC 9(02).                 GPD05330
+               10  CGI-REC-CREATE-DD         PIC 9(02).                 GPD05340
+      *** START OLD MPF149 (DCD) 24 JUN 2004                            GPD05350
+      *    05  FILLER                        PIC X(04).                 GPD05360
+      *** END   OLD MPF149 (DCD) 24 JUN 2004                            GPD05370
+      *** END   NEW MPF940 (JWE) 08 JUL 2004                            GPD05380
+      *** START NEW MPF149 (DCD) 24 JUN 2004                            GPD05390
+           05  CGI-LAST-PARTIAL-WDRL-DATE    PIC 9(7) COMP-3.           GPD05400
+      *** END   NEW MPF149 (DCD) 24 JUN 2004                            GPD05410
+      ***  START NEW MPF910-2 (KNA) 21 JAN 2005                         GPD05420
+      ***  START NEW MPF197 (ICA) 8 JUL 2008                            GPD05430
+           05  CGI-DEATH-EVID-SIG            PIC X(1).                  GPD05440
+           05  CGI-DEATH-EVID-UPD-DATE.                                 GPD05450
+               10  CGI-DEATH-EVID-UPD-YYY    PIC 9(03).                 GPD05460
+               10  CGI-DEATH-EVID-UPD-MM     PIC 9(02).                 GPD05470
+               10  CGI-DEATH-EVID-UPD-DD     PIC 9(02).                 GPD05480
+      ***  START OLD MPF200   (JWE) 15 AUG 2008                         GPD05490
+      *    05  FILLER                        PIC X(37).                 GPD05500
+      ***  END   OLD MPF200   (JWE) 15 AUG 2008                         GPD05510
+      ***  END   NEW MPF197 (ICA) 8 JUL 2008                            GPD05520
+      ***  START NEW MPF200   (JWE) 15 AUG 2008                         GPD05530
+           05  CGI-REPORTED-LSP-SP-AMT       PIC S9(11)V99 COMP-3.      GPD05540
+      ***  START NEW MPF135 (FLA) 16 JUN 2009                           GPD05550
+           05  CGI-PEND-ALLOC-COUNT          PIC 9(5) COMP-3.           GPD05560
+           05  CGI-PEND-ALLOC-COUNT-SUSPEND  PIC 9(5) COMP-3.           GPD05570
+      ***  START OLD MPF204-O (ATD) 11 JAN 2010                         GPD05580
+      *    05  FILLER                        PIC X(24).                 GPD05590
+      ***  END   OLD MPF204-O (ATD) 11 JAN 2010                         GPD05600
+      ***  START NEW MPF204-O (ATD) 11 JAN 2010                         GPD05610
+           05  CGI-CURR-TRF-COUNT-ENTRY.                                GPD05620
+               10  CGI-CURR-TRF-COUNT-TYPE  PIC 9(2) OCCURS 6 TIMES.    GPD05630
+           05  FILLER REDEFINES CGI-CURR-TRF-COUNT-ENTRY.               GPD05640
+               10  CGI-CURR-TRF-COUNT-EEMC     PIC 9(2).                GPD05650
+               10  CGI-CURR-TRF-COUNT-ERMC     PIC 9(2).                GPD05660
+               10  CGI-CURR-TRF-COUNT-EEVC     PIC 9(2).                GPD05670
+               10  CGI-CURR-TRF-COUNT-ERVC     PIC 9(2).                GPD05680
+               10  CGI-CURR-TRF-COUNT-PAC-EEMC PIC 9(2).                GPD05690
+               10  CGI-CURR-TRF-COUNT-PAC-EEVC PIC 9(2).                GPD05700
+                                                                        GPD05710
+           05  CGI-PREV-TRF-COUNT-ENTRY.                                GPD05720
+               10  CGI-PREV-TRF-COUNT-TYPE  PIC 9(2) OCCURS 6 TIMES.    GPD05730
+           05  FILLER REDEFINES CGI-PREV-TRF-COUNT-ENTRY.               GPD05740
+               10  CGI-PREV-TRF-COUNT-EEMC     PIC 9(2).                GPD05750
+               10  CGI-PREV-TRF-COUNT-ERMC     PIC 9(2).                GPD05760
+               10  CGI-PREV-TRF-COUNT-EEVC     PIC 9(2).                GPD05770
+               10  CGI-PREV-TRF-COUNT-ERVC     PIC 9(2).                GPD05780
+               10  CGI-PREV-TRF-COUNT-PAC-EEMC PIC 9(2).                GPD05790
+               10  CGI-PREV-TRF-COUNT-PAC-EEVC PIC 9(2).                GPD05800
+                                                                        GPD05810
+           05  CGI-LAST-NEW-TR-RCV-DATE.                                GPD05820
+               10  CGI-LAST-NEW-TR-RCV-YYY     PIC 9(3).                GPD05830
+               10  CGI-LAST-NEW-TR-RCV-MM      PIC 9(2).                GPD05840
+               10  CGI-LAST-NEW-TR-RCV-DD      PIC 9(2).                GPD05850
+      ***  START NEW GP325 (HCA) 17 DEC 2010                            GPD05860
+           05  CGI-PA-BY-DEFAULT               PIC X(1).                GPD05870
+      ***  START NEW MPF217 (ADA) 14 JUL 2011                           GPD05880
+           05  CGI-ID-TYPE                     PIC X(1).                GPD05890
+               88  CGI-HKID                     VALUE 'H'.              GPD05900
+               88  CGI-PASSPORT-ID              VALUE 'P'.              GPD05910
+               88  CGI-EXCEPT-HKID              VALUE 'E'.              GPD05920
+               88  CGI-ORSO-ID                  VALUE ' '.              GPD05930
+      *** START NEW MPF218 (ADA) 30 SEP 2011                            GPD05940
+           05  CGI-CURR-ANNUAL-SAL             PIC S9(9)V99 COMP-3.     GPD05950
+      *** START NEW GP351  (IDA) 05 MAR 2012                            GPD05960
+           05  CGI-SPCL-BU-FLAG                PIC X(01).               GPD05970
+           05  FILLER                          PIC X(04).               GPD05980
+      *** END   NEW GP351  (IDA) 05 MAR 2012                            GPD05990
+      *** START OLD GP351  (IDA) 05 MAR 2012                            GPD06000
+      *    05  FILLER                          PIC X(05).               GPD06010
+      *** END   OLD GP351  (IDA) 05 MAR 2012                            GPD06020
+      *** END   NEW MPF218 (ADA) 30 SEP 2011                            GPD06030
+      *** START OLD MPF218 (ADA) 30 SEP 2011                            GPD06040
+      *    05  FILLER                          PIC X(11).               GPD06050
+      *** END   OLD MPF218 (ADA) 30 SEP 2011                            GPD06060
+      ***  END   NEW MPF217 (ADA) 14 JUL 2011                           GPD06070
+      ***  START OLD MPF217 (ADA) 14 JUL 2011                           GPD06080
+      *    05  FILLER                          PIC X(12).               GPD06090
+      ***  END   OLD MPF217 (ADA) 14 JUL 2011                           GPD06100
+      ***  END   NEW GP325 (HCA) 17 DEC 2010                            GPD06110
+      ***  START OLD GP325 (HCA) 17 DEC 2010                            GPD06120
+      *    05  FILLER                          PIC X(13).               GPD06130
+      ***  END   OLD GP325 (HCA) 17 DEC 2010                            GPD06140
+      ***  END   NEW MPF204-O (ATD) 11 JAN 2010                         GPD06150
+      ***  END   NEW MPF135 (FLA) 16 JUN 2009                           GPD06160
+      ***  START OLD MPF135 (FLA) 16 JUN 2009                           GPD06170
+      *    05  FILLER                        PIC X(30).                 GPD06180
+      ***  END   OLD MPF135 (FLA) 16 JUN 2009                           GPD06190
+      ***  END   NEW MPF200   (JWE) 15 AUG 2008                         GPD06200
+      ***  START OLD MPF197 (ICA) 8 JUL 2008                            GPD06210
+      *    05  FILLER                        PIC X(45).                 GPD06220
+      ***  END   OLD MPF197 (ICA) 8 JUL 2008                            GPD06230
+      ***  END   NEW MPF910-2 (KNA) 21 JAN 2005                         GPD06240
+      *** START OLD MPF940 (JWE) 08 JUL 2004                            GPD06250
+      *    05  FILLER                        PIC X(11).                 GPD06260
+      *** END   OLD MPF940 (JWE) 08 JUL 2004                            GPD06270
+      *** END   NEW GP142 (DSD) 19 AUG 2003                             GPD06280
+      *** START OLD GP174 (JWE) 13 MAY 2003                             GPD06290
+      *    05  FILLER                        PIC X(14).                 GPD06300
+      *** END   OLD GP174 (JWE) 13 MAY 2003                             GPD06310
+      ***  END   NEW MPF120 (ICA) 3 MAY 2002                            GPD06320
+      *                                                                 GPD06330
+      *    FUND ALLOCATION INFORMATION                                  GPD06340
+      *    ---------------------------                                  GPD06350
+      *    FUND CODE : DHK001 - HK  1 YR DA FUND                        GPD06360
+      *                DHK005 - HK  5 YR DA FUND                        GPD06370
+      *                DHK015 - HK 15 YR DA FUND                        GPD06380
+      *                DPH001 - PHILIPPINES 1 YR DA FUND                GPD06390
+      *                SHK065 - I.E.F.                                  GPD06400
+      *                                                                 GPD06410
+           05  CGI-FUND-ENTRY-NO             PIC 9(2).                  GPD06420
+      *                                                                 GPD06430
+         03  CGI-VAR-PORTION.                                           GPD06440
+      *** START OLD MPF131 (DCD) 27 NOV 2002                            GPD06450
+      *    05  CGI-FUND-ENTRY             OCCURS 15 TIMES.              GPD06460
+      *** END   OLD MPF131 (DCD) 27 NOV 2002                            GPD06470
+      *** START NEW MPF131 (DCD) 27 NOV 2002                            GPD06480
+           05  CGI-FUND-ENTRY             OCCURS 99 TIMES DEPENDING ON CGI-FUND-ENTRY-NO.              GPD06490
+      *** END   NEW MPF131 (DCD) 27 NOV 2002                            GPD06510
+               10  CGI-FUND-CODE             PIC X(6).                  GPD06520
+               10  CGI-CURR-FUND-BAL-SIG     PIC X.                     GPD06530
+                   88  CGI-ACTIVE-FUND        VALUE 'Y'.                GPD06540
+                   88  CGI-INACTIVE-FUND      VALUE 'N'.                GPD06550
+               10  CGI-FSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06560
+               10  CGI-FSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06570
+               10  CGI-OPT-ALLOC-PCT         PIC S9V9(5) COMP-3.        GPD06580
+               10  CGI-PSEE-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06590
+               10  CGI-PSER-ALLOC-PCT        PIC S9V9(5) COMP-3.        GPD06600
+      ***  START OLD MPF650 (KNA) 03 DEC 1999                           GPD06610
+      *        10  FILLER                    PIC X(8).                  GPD06620
+      ***  END   OLD MPF650 (KNA) 03 DEC 1999                           GPD06630
+      ***  START NEW MPF650 (KNA) 03 DEC 1999                           GPD06640
+               10  CGI-FUND-DATE.                                       GPD06650
+                   15  CGI-FUND-YYY          PIC 9(3).                  GPD06660
+                   15  CGI-FUND-MM           PIC 9(2).                  GPD06670
+                   15  CGI-FUND-DD           PIC 9(2).                  GPD06680
+      ***  START NEW MPF330 (DHA) 24 MAR 2004                           GPD06690
+               10  CGI-FUND-FROM-INCEPT      PIC X.                     GPD06700
+      ***  END   NEW MPF330 (DHA) 24 MAR 2004                           GPD06710
+      ***  START NEW MPF209-A (ICA) 12 JUL 2012                         GPD06720
+               10  CGI-GRANDFATHER-FACTOR    PIC SV9(5) COMP-3.         GPD06730
+               10  CGI-OVERRIDE-FACTOR       PIC SV9(5) COMP-3.         GPD06740
+               10  FILLER                    PIC X(4).                  GPD06750
+      ***  END   NEW MPF209-A (ICA) 12 JUL 2012                         GPD06760
+      ***  START NEW MPF910-2 (KNA) 21 JAN 2005                         GPD06770
+      ***  START OLD MPF209-A (ICA) 12 JUL 2012                         GPD06780
+      *        10  FILLER                    PIC X(10).                 GPD06790
+      ***  END   OLD MPF209-A (ICA) 12 JUL 2012                         GPD06800
+      ***  END   NEW MPF910-2 (KNA) 21 JAN 2005                         GPD06810
+      ***  START OLD MPF330 (DHA) 24 MAR 2004                           GPD06820
+      *        10  FILLER                    PIC X.                     GPD06830
+      ***  END   OLD MPF330 (DHA) 24 MAR 2004                           GPD06840
+      ***  END   NEW MPF650 (KNA) 03 DEC 1999                           GPD06850
+

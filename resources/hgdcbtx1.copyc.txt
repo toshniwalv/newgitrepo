@@ -1,0 +1,61 @@
+      ***************************************************************
+      *                                                             *
+      *  DESCRIPTIONS  : CONTRACT AND BENEFITS TRANSCTION HEADER REC*
+      *                                                             *
+      *  RECORD LENGTH : 9000                                       *
+      *                                                             *
+      ***************************************************************
+      *****************************************************************
+      *                                                               *
+      * CHANGE CONTROL NO : HAG-2002-04-SA-01   REL DATE : 2002/11/23 *
+      * MODIFIED BY       : DENNIS WAI (DWA)    MOD DATE : 2002/09/26 *
+      * DESCRIPTION       : EXPAND USER ID TO 8 CHARACTERS            *
+      *                                                               *
+      *****************************************************************
+      * CHANGE CONTROL NO : HAG-2003-02-CB-01   REL DATE : 2003/07/21 *
+      * MODIFIED BY       : JANET CHEUNG (JCN)  MOD DATE : 2003/05/26 *
+      * DESCRIPTION       : EXPAND CB TXNS FROM 550 TO 700 BYTES      *
+      *****************************************************************
+      * MOD NO.     : HAG-2013-JAN-CB-01    RELEASE DATE : 2013/01/27 * HGC00800
+      * MODIFY BY   : AVISHEK SAHA (ASA)    MODIFY  DATE : 2012/11/14 * HGC00810
+      * MODIFY DESC :                                                 * HGC00820
+      * - EXPAND C&B TXN FROM 700 TO 9000 BYTES                       * HGC00830
+      ***************************************************************** HGC00840
+       01  HG-CON-TXN-REC.
+
+      **   KEY
+           05  HG-CON-TXN-KEY-LOC               PIC X(15).
+
+      **   AIX
+      *** START OLD HAG-2002-04-SA-01 (DWA)
+      *    05  HG-CON-TXN-AIX-KEY-LOC           PIC X(20).
+      *** END   OLD HAG-2002-04-SA-01 (DWA)
+      *** START NEW HAG-2002-04-SA-01 (DWA)
+           05  HG-CON-TXN-AIX-KEY-LOC           PIC X(24).
+      *** END   NEW HAG-2002-04-SA-01 (DWA)
+           05  HG-CON-REF-NO-LOC                PIC X(10).
+           05  HG-CON-TXN-RUN-DATE.
+               10  HG-CON-TXN-RUN-YYYY          PIC 9(4).
+               10  HG-CON-TXN-RUN-MM            PIC 9(2).
+               10  HG-CON-TXN-RUN-DD            PIC 9(2).
+           05  HG-CON-TXN-COUNT-TABLE.
+               10  HG-CON-TXN-COUNT-CELL        OCCURS 20 TIMES.
+                   15  HG-CON-TXN-TBL-TYPE      PIC X(3).
+                   15  HG-CON-TXN-TBL-COUNTER   PIC 9(4).
+      *** START NEW HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+           05  FILLER                           PIC X(8803).
+      *** END   NEW HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+      *** START OLD HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+      **** START NEW HAG-2003-02-CB-01 (JCN)
+      *    05  FILLER                           PIC X(503).
+      **** END   NEW HAG-2003-02-CB-01 (JCN)
+      *** END   OLD HAG-2013-JAN-CB-01 (ASA)                            HGC01460
+      *** START NEW HAG-2002-04-SA-01 (DWA)
+      **** START OLD HAG-2003-02-CB-01 (JCN)
+      *    05  FILLER                           PIC X(353).
+      **** END   OLD HAG-2003-02-CB-01 (JCN)
+      *** END   NEW HAG-2002-04-SA-01 (DWA)
+      *** START OLD HAG-2002-04-SA-01 (DWA)
+      *    05  FILLER                           PIC X(357).
+      *** END   OLD HAG-2002-04-SA-01 (DWA)
+

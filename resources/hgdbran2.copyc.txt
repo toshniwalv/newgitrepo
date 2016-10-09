@@ -1,0 +1,26 @@
+      ***********************************************************
+      *  DESCRIPTIONS  : BRANCH MASTER DETAIL REC
+      *
+      *  RECORD LENGTH : 80
+      *
+      ***********************************************************
+
+       01  BR-MASTER-RECORD.
+
+      ***  KEY
+           05  BR-BRANCH-CODE               PIC X(5).
+
+      ***   BRANCH DETAILS.
+           05  BR-BRANCH-DESC               PIC X(30).
+           05  BR-BRANCH-HEAD-AGT-CODE      PIC X(6).
+           05  BR-BRANCH-EFF-DATE.
+               10  BR-BRANCH-EFF-YR         PIC 9(4).
+               10  BR-BRANCH-EFF-MM         PIC 9(2).
+               10  BR-BRANCH-EFF-DD         PIC 9(2).
+           05  BR-BRANCH-TERM-DATE.
+               10  BR-BRANCH-TERM-YR        PIC 9(4).
+               10  BR-BRANCH-TERM-MM        PIC 9(2).
+               10  BR-BRANCH-TERM-DD        PIC 9(2).
+           05  BR-BRANCH-DUMMY-STATUS       PIC X(1).
+           05  FILLER                       PIC X(22).
+

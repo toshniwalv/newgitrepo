@@ -1,0 +1,54 @@
+      ***********************************************************
+      *  DESCRIPTIONS  : CURR RUN SCHEDULE REC
+      *
+      *  RECORD LENGTH : 80
+      *
+      ***********************************************************
+      ***************************************************************** HGP00820
+      * MOD NO.     : HAG-2013-MAY-PA-01    RELEASE DATE : 2013/05/25 * HGP00770
+      * MODIFY BY   : AVISHEK SAHA  (ASA)   MODIFY  DATE : 2012/05/29 * HGP00780
+      * MODIFY DESC : ADD TWO NEW FIELDS AND ADJUST FILLER            * HGP00790
+      *               CURR-RUN-MACAU-PAY-DATE AND                     * HGP00790
+      *               CURR-RUN-MACAU-REPORT-NO                        * HGP00790
+      ***************************************************************** HGP00820
+
+       01  CURR-RUN-SCHEDULE-REC.
+           05  CURR-RUN-DATE.
+               10  CURR-RUN-YYYY                   PIC 9(4).
+               10  CURR-RUN-MM                     PIC 9(2).
+               10  CURR-RUN-DD                     PIC 9(2).
+           05  CURR-RUN-LOW-PROC-DATE.
+               10  CURR-RUN-LOW-PROC-YYYY          PIC 9(4).
+               10  CURR-RUN-LOW-PROC-MM            PIC 9(2).
+               10  CURR-RUN-LOW-PROC-DD            PIC 9(2).
+           05  CURR-RUN-HIGH-PROC-DATE.
+               10  CURR-RUN-HIGH-PROC-YYYY         PIC 9(4).
+               10  CURR-RUN-HIGH-PROC-MM           PIC 9(2).
+               10  CURR-RUN-HIGH-PROC-DD           PIC 9(2).
+           05  CURR-RUN-SCH-PAY-DATE.
+               10  CURR-RUN-SCH-PAY-YYYY           PIC 9(4).
+               10  CURR-RUN-SCH-PAY-MM             PIC 9(2).
+               10  CURR-RUN-SCH-PAY-DD             PIC 9(2).
+           05  CURR-RUN-SCH-REPORT-NO              PIC 9(3).
+           05  CURR-RUN-COMM-RUN-NUMBER            PIC 9(2).
+           05  CURR-RUN-CHQ-ISSUE-NO               PIC 9(3).
+           05  CURR-RUN-CHQ-ISSUE-DATE.
+               10  CURR-RUN-CHQ-ISSUE-YYYY         PIC 9(4).
+               10  CURR-RUN-CHQ-ISSUE-MM           PIC 9(2).
+               10  CURR-RUN-CHQ-ISSUE-DD           PIC 9(2).
+           05  CURR-RUN-AUTOPAY-DUE-DATE.
+               10  CURR-RUN-AUTOPAY-DUE-YYYY       PIC 9(4).
+               10  CURR-RUN-AUTOPAY-DUE-MM         PIC 9(2).
+               10  CURR-RUN-AUTOPAY-DUE-DD         PIC 9(2).
+      *** START NEW HAG-2013-MAY-PA-01 (ASA)                            HGP01630
+           05  CURR-RUN-MACAU-PAY-DATE.
+               10  CURR-RUN-MACAU-PAY-YYYY         PIC 9(4).
+               10  CURR-RUN-MACAU-PAY-MM           PIC 9(2).
+               10  CURR-RUN-MACAU-PAY-DD           PIC 9(2).
+           05  CURR-RUN-MACAU-REPORT-NO            PIC 9(3).
+           05  FILLER                              PIC X(13).
+      *** END   NEW HAG-2013-MAY-PA-01 (ASA)                            HGP01630
+      *** START OLD HAG-2013-MAY-PA-01 (ASA)                            HGP01630
+      *    05  FILLER                              PIC X(24).
+      *** END   OLD HAG-2013-MAY-PA-01 (ASA)                            HGP01630
+

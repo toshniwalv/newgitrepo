@@ -1,0 +1,160 @@
+      ***********************************************************       
+      *  DESCRIPTIONS  : BRANCH ACCUM MASTER DETAIL REC                 
+      *                                                                 
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *  RECORD LENGTH : 2000                                           
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *  RECORD LENGTH : 1500                                           
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *                                                                 
+      ***********************************************************       
+      ***************************************************************** 
+      * MOD NO.  : HAG-993-CC-01            RELEASE DATE : 1999/05/04 * 
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 1999/03/23 * 
+      * MOD DESC :                                                    * 
+      *   - ENLARGE RECORD LENGTH FROM 1500 TO 2000                   * 
+      *   - ENLARGE CM CLUB CREDIT ACCUMS OCCURRENCE FROM 20 TO 40    * 
+      *   - ENLARGE YTD CLUB CREDIT ACCUMS OCCURRENCE FROM 20 TO 40   * 
+      *   - ENLARGE CM CASE COUNT ACCUMS OCCURRENCE FROM 20 TO 40     * 
+      *   - ENLARGE YTD CASE COUNT ACCUMS OCCURRENCE FROM 20 TO 40    * 
+      ***************************************************************** 
+      ***************************************************************** 
+      * MOD NO.  : HAG-2000-05-CC-01        RELEASE DATE : 2000/06/26 * 
+      * MOD BY   : AMELIA CHAN (ACE)        MOD DATE     : 2000/03/30 * 
+      * MOD DESC :                                                    * 
+      *   - ADD MPF YEAR END APPEAL ADJUSTMENT                        * 
+      ***************************************************************** 
+                                                                        
+       01  BA-BR-ACCUM-MASTER-REC.                                      
+                                                                        
+      ***  KEY                                                          
+           05  BA-BRANCH-CODE                PIC X(5).                  
+                                                                        
+                                                                        
+      ***  CONSERVATION RATE ACCUMULATORS                               
+                                                                        
+           05  BA-CONS-RATE-DETAILS.                                    
+               10  BA-01-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-01-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-02-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-02-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-03-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-03-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-04-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-04-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-05-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-05-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-06-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-06-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-07-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-07-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-08-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-08-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-09-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-09-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-10-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-10-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-11-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-11-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  BA-12-GROSS-COMPLETE      PIC S9(13)    COMP-3.      
+               10  BA-12-GROSS-LAPSES        PIC S9(13)    COMP-3.      
+               10  FILLER                    PIC X(168).                
+                                                                        
+           05  BA-CONS-RATE-ACCUM-TABLE                                 
+                             REDEFINES BA-CONS-RATE-DETAILS             
+                             OCCURS 48 TIMES                            
+                             INDEXED BY BA-1-IDX.                       
+               10  BA-CC-CONS-RATE-ACCUMS    PIC S9(13)    COMP-3.      
+                                                                        
+      ***  CLUB CREDIT ACCUMULATORS                                     
+                                                                        
+      *    - CURRENT MONTH BY PRODUCT LINE                              
+           05  BA-CM-CLUB-CREDIT-DETAILS.                               
+                                                                        
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *        10  BA-CM-CLUB-CREDIT         OCCURS 20                  
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+               10  BA-CM-CLUB-CREDIT         OCCURS 40                  
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+                                             INDEXED BY BA-2-IDX        
+                                             PIC S9(13)    COMP-3.      
+                                                                        
+      *    - YTD BY PRODUCT LINE                                        
+           05  BA-YTD-CLUB-CREDIT-DETAILS.                              
+                                                                        
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *        10  BA-YTD-CLUB-CREDIT        OCCURS 20                  
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+               10  BA-YTD-CLUB-CREDIT        OCCURS 40                  
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+                                             INDEXED BY BA-3-IDX        
+                                             PIC S9(13)    COMP-3.      
+                                                                        
+      *     - MISCELLANEOUS                                             
+           05  BA-MISC-CREDIT.                                          
+               10  BA-EDU-CONFERENCE         PIC S9(13)    COMP-3.      
+               10  BA-WORLD-CONFERENCE       PIC S9(13)    COMP-3.      
+               10  BA-PREV-YTD-CLUB-CREDIT   PIC S9(13)    COMP-3.      
+               10  BA-CM-YR-END-APPEAL-ADJ   PIC S9(13)    COMP-3.      
+               10  BA-YTD-YR-END-APPEAL-ADJ  PIC S9(13)    COMP-3.      
+               10  BA-CM-EXPAT-PROD-TXFR     PIC S9(13)    COMP-3.      
+               10  BA-YTD-EXPAT-PROD-TXFR    PIC S9(13)    COMP-3.      
+      *** START AG011 (OLD)                                             
+      *        10  FILLER                    PIC X(161).                
+      *** END   AG011 (OLD)                                             
+      *** START AG011 (NEW)                                             
+               10  BA-PREV-YTD-YR-END-APPEAL-ADJ  PIC S9(13)   COMP-3.  
+      *** START OLD -- HAG-2000-05-CC-01 -- (ACE) 30 MAR 2000 ------- **
+      *        10  FILLER                         PIC X(154).           
+      *** END   OLD -- HAG-2000-05-CC-01 -- (ACE) 30 MAR 2000 ------- **
+      *** START NEW -- HAG-2000-05-CC-01 -- (ACE) 30 MAR 2000 ------- **
+               10  BA-CM-MPF-YR-END-APPEAL-ADJ   PIC S9(13) COMP-3.     
+               10  BA-YTD-MPF-YR-END-APPEAL-ADJ  PIC S9(13) COMP-3.     
+               10  BA-PY-MPF-YR-END-APPEAL-ADJ   PIC S9(13) COMP-3.     
+               10  FILLER                         PIC X(133).           
+      *** END   NEW -- HAG-2000-05-CC-01 -- (ACE) 30 MAR 2000 ------- **
+      **** END AG011 (OLD)                                              
+                                                                        
+           05  BA-MISC-TABLE                                            
+                            REDEFINES BA-MISC-CREDIT                    
+                            OCCURS 30 TIMES                             
+                            INDEXED BY BA-4-IDX.                        
+               10  BA-CC-MISC-ACCUMS         PIC S9(13)    COMP-3.      
+                                                                        
+                                                                        
+      ***  CASE COUNT ACCUMULATORS                                      
+                                                                        
+      *    - CURRENT MONTH BY PRODUCT LINE                              
+           05  BA-CM-CASE-COUNT-DETAILS.                                
+                                                                        
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *        10  BA-CM-CASE-COUNT          OCCURS 20                  
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+               10  BA-CM-CASE-COUNT          OCCURS 40                  
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+                                             INDEXED BY BA-5-IDX        
+                                             PIC S9(7)V99  COMP-3.      
+                                                                        
+      *    - YTD BY PRODUCT LINE                                        
+           05  BA-YTD-CASE-COUNT-DETAILS.                               
+                                                                        
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *        10  BA-YTD-CASE-COUNT         OCCURS 20                  
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+               10  BA-YTD-CASE-COUNT         OCCURS 40                  
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+                                             INDEXED BY BA-6-IDX        
+                                             PIC S9(7)V99  COMP-3.      
+                                                                        
+      *** START OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *    05  FILLER                        PIC X(469).                
+      *** END   OLD --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+      *** START NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+           05  FILLER                        PIC X(489).                
+      *** END   NEW --- HAG-993-CC-01 --- (YLA) 23 MAR 1999 ------- *** 
+

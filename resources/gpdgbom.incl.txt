@@ -1,0 +1,91 @@
+      ******************************************************************GPD00010
+      *                                                                *GPD00020
+      *    GROUP OUTSTANDING RECORD  (ONE PER BILLING CLASS PER YEAR)  *GPD00030
+      *                                                                *GPD00040
+      *    COPYBOOK NAME  :  GPDGBOM                                   *GPD00050
+      *                                                                *GPD00060
+      *    RECORD FORMAT  :  VARIABLE LENGTH                           *GPD00070
+      *                      FIXED PORTION    = 17 BYTES               *GPD00080
+      *                      VARIABLE PORTION = 6042 BYTES (114 * 53)  *GPD00090
+      *                      MAXIMUM          = 6059 BYTES             *GPD00100
+      *                                                                *GPD00110
+      ******************************************************************GPD00120
+       01  GBO-RECORD.                                                  GPD00130
+         03  GBO-FIXED-PORTION.                                         GPD00140
+           05  GBO-KEY.                                                 GPD00150
+               10  GBO-GROUP-NO.                                        GPD00160
+                   15  GBO-BASE-GROUP-NO     PIC 9(7).                  GPD00170
+                   15  GBO-CHK-DGT           PIC 9.                     GPD00180
+               10  GBO-BILL-CL               PIC 9(2).                  GPD00190
+               10  GBO-SCHEME-YR             PIC 9(3).                  GPD00200
+           05  GBO-53TH-INDEX                PIC 9(2).                  GPD00210
+           05  GBO-NO-OF-OS-ENTRY            PIC 9(2).                  GPD00220
+         03  GBO-VAR-PORTION.                                           GPD00230
+           10  GBO-OS-CONT-TABLE          OCCURS 53 TIMES.              GPD00240
+      *                                                                 GPD00250
+      *    THE FOLLOWING 53 O/S ENTRIES ARE IN DESCENDING DATE SEQUENCE GPD00260
+      *                                        ----------               GPD00270
+             15  GBO-DUE-DATE-YMD.                                      GPD00280
+                 20  GBO-DUE-DATE.                                      GPD00290
+                   25  GBO-DUE-YYY      PIC 9(3).                       GPD00300
+                   25  GBO-DUE-MM       PIC 9(2).                       GPD00310
+                 20  GBO-DUE-DD         PIC 9(2).                       GPD00320
+             15  GBO-FSEE-GROSS-CONT-OS   PIC S9(11)V99 COMP-3.         GPD00330
+             15  GBO-FSER-GROSS-CONT-OS   PIC S9(11)V99 COMP-3.         GPD00340
+             15  GBO-OPT-GROSS-CONT-OS    PIC S9(11)V99 COMP-3.         GPD00350
+             15  GBO-PSEE-GROSS-CONT-OS   PIC S9(11)V99 COMP-3.         GPD00360
+             15  GBO-PSER-GROSS-CONT-OS   PIC S9(11)V99 COMP-3.         GPD00370
+             15  GBO-FS-EXP-CHR-OS        PIC S9(9)V99  COMP-3.         GPD00380
+             15  GBO-PS-EXP-CHR-OS        PIC S9(9)V99  COMP-3.         GPD00390
+             15  GBO-ANNIV-CHR-OS         PIC S9(9)V99  COMP-3.         GPD00400
+             15  GBO-OTHER-CHR-OS         PIC S9(9)V99  COMP-3.         GPD00410
+             15  GBO-TOTAL-AMT-OS         PIC S9(11)V99 COMP-3.         GPD00420
+      *                     = 00 - N/A                                  GPD00430
+      *                       01 - REMITTANCE NOTICE/DEPOSIT SLIP ISSUEDGPD00440
+      *                       02 - MIL OVERDUE LETTER                   GPD00450
+      *                       03 - FIRST NOTICE TO MPFA                 GPD00460
+      *                       04 - MPFA FIRST PAYMENT PERIOD            GPD00470
+      *                       05 - SECOND NOTICE TO MPFA                GPD00480
+      *                       06 - MPFA SECOND PAYMENT PERIOD           GPD00490
+      *                       07 - FINAL NOTICE TO MPFA                 GPD00500
+      *                       11 - MANDATORY PAID                       GPD00510
+      *                       12 - ALL CONTRIBUTIONS PAID               GPD00520
+      *                                                                 GPD00530
+             15  GBO-MPF-OVERDUE-STATUS   PIC 9(2).                     GPD00540
+                 88  GBO-MPF-OVERDUE-NA         VALUE 00.               GPD00550
+                 88  GBO-MPF-OVERDUE-DEP-SLIP   VALUE 01.               GPD00560
+                 88  GBO-MPF-OVERDUE-LETTER     VALUE 02.               GPD00570
+                 88  GBO-MPF-OVERDUE-NOTICE-1   VALUE 03.               GPD00580
+                 88  GBO-MPF-OVERDUE-PYMT-1     VALUE 04.               GPD00590
+                 88  GBO-MPF-OVERDUE-NOTICE-2   VALUE 05.               GPD00600
+                 88  GBO-MPF-OVERDUE-PYMT-2     VALUE 06.               GPD00610
+                 88  GBO-MPF-OVERDUE-NOTICE-F   VALUE 07.               GPD00620
+                 88  GBO-MPF-OVERDUE-MAND-PAID  VALUE 11.               GPD00630
+                 88  GBO-MPF-OVERDUE-CONT-PAID  VALUE 12.               GPD00640
+             15  GBO-PAY-END-DATE.                                      GPD00650
+                 20  GBO-PAY-END-YYY      PIC 9(3).                     GPD00660
+                 20  GBO-PAY-END-MM       PIC 9(2).                     GPD00670
+                 20  GBO-PAY-END-DD       PIC 9(2).                     GPD00680
+             15  GBO-MPF-NEXT-OVERDUE-DATE.                             GPD00690
+                 20  GBO-MPF-NEXT-OVERDUE-YYY  PIC 9(3).                GPD00700
+                 20  GBO-MPF-NEXT-OVERDUE-MM   PIC 9(2).                GPD00710
+                 20  GBO-MPF-NEXT-OVERDUE-DD   PIC 9(2).                GPD00720
+             15  GBO-SURCHARGE-OS         PIC S9(9)V99  COMP-3.         GPD00730
+             15  GBO-MPF-SURCHARGE-PCT    PIC SV9(5)    COMP-3.         GPD00740
+      *                                                                 GPD00750
+      *  MPF MANDATORY PAID SIGNAL = 0 - N/A                            GPD00760
+      *                              1 - PAID BY THE CONTRIBUTION DAY   GPD00770
+      *                              2 - PAID IN THE SETTLEMENT PERIOD  GPD00780
+      *                              3 - PAID IN THE FIRST MPFA PERIOD  GPD00790
+      *                              4 - PAID IN THE SECOND MPFA PERIOD GPD00800
+      *                              9 - OTHER                          GPD00810
+      *                                                                 GPD00820
+             15  GBO-MPF-MANDATORY-PAID-SIG    PIC 9.                   GPD00830
+                 88  GBO-MPF-MANDATORY-NA          VALUE 0.             GPD00840
+                 88  GBO-MPF-MANDATORY-CONT        VALUE 1.             GPD00850
+                 88  GBO-MPF-MANDATORY-SETTLE      VALUE 2.             GPD00860
+                 88  GBO-MPF-MANDATORY-FIRST       VALUE 3.             GPD00870
+                 88  GBO-MPF-MANDATORY-SECOND      VALUE 4.             GPD00880
+                 88  GBO-MPF-MANDATORY-OTHER       VALUE 9.             GPD00890
+ENB          15  FILLER                   PIC X(15).
+

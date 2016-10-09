@@ -1,0 +1,664 @@
+      ***********************************************************       HGD00100
+      *  DESCRIPTIONS  : CONTRACT MASTER DETAIL REC                     HGD00200
+      *                                                                 HGD00300
+      *  RECORD LENGTH : 1500                                           HGD00400
+      *                                                                 HGD00500
+      *                  CONTRACT TRAILER - 250                         HGD00600
+      *                  REPORTING TRAILER - 70                         HGD00700
+      *                  CONTRACT HISTORY TRAILER - 500                 HGD00800
+      *                  COMPENSATION TRAILER - 500                     HGD00900
+      *                  BENEFIT PENSION TRAILER - 30                   HGD01000
+      *                                                                 HGD01100
+      ***********************************************************       HGD01200
+      * MOD NO.     : HAG-2007-OCT-CC-01     RELEASE DATE : 2007/10/20 *HGD01300
+      * MODIFY BY   : ANTHONY SIU (ASE)      MOD DATE     : 2007/10/22 *HGD01400
+      * MODIFY DESC : ADD NEW FIELD HG-CON-NAPI-SIGNAL                 *HGD01500
+      ******************************************************************HGD01600
+      * MOD NO.  : HAG-2007-NOV-CB-01       RELEASE DATE : 2007/11/26 * HGD01700
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 2007/09/05 * HGD01800
+      * MOD DESC :                                                    * HGD01900
+      *   - ADD NEW FIELDS "RECRUITMENT PROFILE" & "MA AMOUNT"        * HGD02000
+      ***************************************************************** HGD02100
+      * MOD NO.  : HAG-2008-JUN-CC-03       RELEASE DATE : 2008/06/23 * HGD02200
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 2008/04/23 * HGD02300
+      * MOD DESCRIPTION    :                                          * HGD02400
+      *   - ADD NEW BONUS SIGNALS FOR JOIN-IN INCENTIVE BONUS, AGENT  * HGD02500
+      *     PERFORMANCE BONUS & MANAGER PERFORMANCE BONUS             * HGD02600
+      ***************************************************************** HGD02700
+      * MOD NO.  : HAG-2008-OCT-CC-03       RELEASE DATE : 2008/11/24 * HGD02800
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 2008/09/10 * HGD02900
+      * MOD DESC :                                                    * HGD03000
+      *   - ADD NEW BONUS SIGNAL FOR PROMOTION BONUS                  * HGD03100
+      ***************************************************************** HGD03200
+      * MOD NO.  : HAG-2009-AUG-CB-02       RELEASE DATE : 2009/08/24 * HGD03300
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 2009/06/10 * HGD03400
+      * MOD DESC :                                                    * HGD03500
+      *   - ADD NEW BONUS SIGNALS FOR QUARTERLY PERFORMANCE BONUS &   * HGD03600
+      *     MANAGER PROMOTION INCENTIVE                               * HGD03700
+      *   - ADD PERIOD & AGREED MAX. AMOUNT FOR MA, JIB, AGT PB,      * HGD03800
+      *     MGR PB, QTR PB, MGR PRI & SPEC IB                         * HGD03900
+      ***************************************************************** HGD04000
+      * MOD NO.  : HAG-2009-AUG-CC-04       RELEASE DATE : 2009/08/24 * HGD04100
+      * MOD BY   : KEN CHAU (KCA)           MOD DATE     : 2009/07/09 * HGD04200
+      * MOD DESC :                                                    * HGD04300
+      *   - ADD NEW FIELDS - PENDING INDICATOR, LAST ENTITLEMENT DATE * HGD04400
+      ***************************************************************** HGD04500
+      * MOD NO.  : HAG-2010-JAN-CB-01       RELEASE DATE : 2010/01/25 * HGD04600
+      * MOD BY   : KEN CHAU (KCA)           MOD DATE     : 2009/12/01 * HGD04700
+      * MOD DESC :                                                    * HGD04800
+      *   - EXPAND AGREED MAX. AMOUNT FOR MA, JIB, AGT PB, MGR PB,    * HGD04900
+      *     QTR PB, MGR PRI & SPEC IB TO 9(8)V99 COMP-3               * HGD05000
+      ***************************************************************** HGD05100
+      * MOD NO.  : HAG-2010-AUG-CC-01           REL DATE : 2010/08/23 * HGD05200
+      * MOD BY   : YULE LIU (YLA)               MOD DATE : 2010/06/01 * HGD05300
+      * MOD DESC :                                                    * HGD05400
+      *   - ADD SETUP A/C MTH AND BYPASS PRINT INDICATOR              * HGD05500
+      ***************************************************************** HGD05600
+      * MOD NO.  : HAG-2010-AUG-CC-01           REL DATE : 2010/08/23 * HGD05700
+      * MOD BY   : ANTHONY SIU (ASE)            MOD DATE : 2010/06/09 * HGD05800
+      * MOD DESC :                                                    * HGD05900
+      *   - ADD BONUS SIGNALS FOR NEW BROKER RELATED BONUSES          * HGD06000
+      ***************************************************************** HGD06100
+      * MOD NO.  : HAG-2011-JUL-CC-01           REL DATE : 2011/08/01 * HGD06200
+      * MOD BY   : S BHATTACHARJEE (SBA)        MOD DATE : 2011/05/12 * HGD06300
+      * MOD DESC :                                                    * HGD06400
+      *   - ADD THREE NEW FIELDS :HG-CON-MAM-AC-NO,                   * HGD06500
+      *      HG-CON-TO-BE-REV-RANK AND HG-CON-TO-BE-REV-EFF-YR        * HGD06600
+      *      ADJUSTING FILLER.                                        * HGD06700
+      ***************************************************************** HGD06800
+      * MOD NO.  : HAG-2011-SEP-CB-04           REL DATE : 2011/09/18 * HGD06900
+      * MOD BY   : DIPSHIKHA SHAW (DSA)         MOD DATE : 2011/08/26 * HGD07000
+      * MOD DESC :                                                    * HGD07100
+      *   - ADD FIELD HG-CON-YS-FAIL-COUNT AND ADJUST FILLER          * HGD07200
+      ***************************************************************** HGD07300
+      * MOD NO.  : HAG-2012-MAY-CB-01           REL DATE : 2012/05/26 * HGD07400
+      * MOD BY   : AVISHEK SAHA (ASA)           MOD DATE : 2012/05/11 * HGD07500
+      * MOD DESC :                                                    * HGD07600
+      *   - ADD FIELD HG-CON-SPECIAL-IND AND ADJUST FILLER            * HGD07700
+      ***************************************************************** HGD07800
+      * MOD NO.  : HAG-2012-JUL-CB-03           REL DATE : 2012/07/29 * HGD07900
+      * MOD BY   : SUBHANKAR DEY (SDA)          MOD DATE : 2012/06/26 * HGD08000
+      * MOD DESC :                                                    * HGD08100
+      *   - ADD FIELDS :                                              * HGD08200
+      *     SGI BONUS SIGNAL                                          * HGD08300
+      *     UL AGENT VOL BONUS                                        * HGD08400
+      *     UL MANAGER BONUS                                          * HGD08500
+      *   - INCREASE OCCURRENCE OF BONUS SIGNAL TABLE FROM 30 TO 60   * HGD08600
+      ***************************************************************** HGD08700
+      * MOD NO.  : HAG-2012-OCT-CB-05           REL DATE : 2012/10/20 * HGD08800
+      * MOD BY   : S BHATTACHARJEE (SBA)        MOD DATE : 2012/09/05 * HGD08900
+      * MOD DESC :                                                    * HGD09000
+      *   - ADD FIELDS :                                              * HGD09100
+      *     AGENT SPECIAL PERFORMANCE BONUS                           * HGD09200
+      *     MANAGER SPECIAL PERFORMANCE BONUS                         * HGD09300
+      ***************************************************************** HGD09400
+      * MOD NO.  : HAG-2012-OCT-CB-07       RELEASE DATE : 2012/10/21 * HGD09500
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 2012/09/01 * HGD09600
+      * MOD DESC :                                                    * HGD09700
+      *   - ADD PERIOD & AGREED MAX. AMOUNT FOR AGT & MGR SPECIAL PB  * HGD09800
+      ***************************************************************** HGD09900
+      * MOD NO.  : HAG-2013-APR-PA-01       RELEASE DATE : 2013/04/21 * HGD10000
+      * MOD BY   : D CHAKRABARTY (DCC)      MOD DATE     : 2013/03/11 * HGD10100
+      * MOD DESC :                                                    * HGD10200
+      *   - ADD THE FOLLOWING FIELDS -                                * HGD10300
+      *    MGR JIB BONUS SIGNAL                                       * HGD10400
+      *    MGR JIB MAX AMOUNT                                         * HGD10500
+      *    MGR JIB PERIOD                                             * HGD10600
+      *    NEW ADVANCE PERIOD FIELD FOR ALL THE BONUS TYPES           * HGD10700
+      ***************************************************************** HGD10800
+      * MOD NO.  : HAG-2013-MAY-CB-01       RELEASE DATE : 2013/05/25 * HGD10900
+      * MOD BY   : YULE LIU (YLA)           MOD DATE     : 2013/05/02 * HGD11000
+      * MOD DESC :                                                    * HGD11100
+      *   - ADD "CONSECUTIVE MONTHS FAIL TO MEET VALIDATION"          * HGD11200
+      ***************************************************************** HGD11300
+      * MOD NO.  : HAG-2013-JUL-PA-01       RELEASE DATE : 2013/07/XX * HGD10900
+      * MOD BY   : S BANERJEE (SBB)         MOD DATE     : 2013/05/29 * HGD11000
+      * MOD DESC :                                                    * HGD11100
+      *   - ADD FOLLOWING FIELDS FOR ALL BONUS TYPES:                 * HGD11200
+      *     - TARGET PC                                               * HGD11200
+      *     - BINDING PERIOD                                          * HGD11200
+      *     - MOVE YS FAIL COUNT FIELD UNDER COMPENSATION SECTION     * HGD11200
+      *     - MOVE REMAINING FILLERS UNDER COMPENSATION SECTION       * HGD11200
+      ***************************************************************** HGD11300
+      * MOD NO.  : HAG-2013-NOV-CB-04       RELEASE DATE : 2013/11/16 * HGD10900
+      * MOD BY   : D CHAKRABARTY (DCC)      MOD DATE     : 2013/09/02 * HGD11000
+      * MOD DESC :                                                    * HGD11100
+      *   - ADD HG-CON-CESSATION-DATE FIELD                             HGD11200
+      ***************************************************************** HGD11300
+      * MOD NO.  : HAG-2013-NOV-CB-05       RELEASE DATE : 2013/11/16 * HGD10900
+      * MOD BY   : A CHAKRABORTY (ACB)      MOD DATE     : 2013/09/16 * HGD11000
+      * MOD DESC :                                                    * HGD11100
+      *   - ADD CATCH-UP USED UNDER COMPENSATION SECTION              * HGD11200
+      ***************************************************************** HGD11300
+                                                                        HGD11400
+       01  HG-CON-MASTER-REC.                                           HGD11500
+                                                                        HGD11600
+      ***  KEY                                                          HGD11700
+           05  HG-CON-AGT-CODE                   PIC X(6).              HGD11800
+                                                                        HGD11900
+      ***  FILE MAINT DATE                                              HGD12000
+           05  HG-CON-LAST-FM-DATE.                                     HGD12100
+               10  HG-CON-LAST-FM-YR             PIC 9(4).              HGD12200
+               10  HG-CON-LAST-FM-MM             PIC 9(2).              HGD12300
+               10  HG-CON-LAST-FM-DD             PIC 9(2).              HGD12400
+                                                                        HGD12500
+      *** CONTRACT INFORMATION                                          HGD12600
+           05  HG-CON-CONTRACT.                                         HGD12700
+               10  HG-CON-CONTRACT-CLASS         PIC X(2).              HGD12800
+               10  HG-CON-CONT-CLASS-EFF-DATE.                          HGD12900
+                   15  HG-CON-CONT-CLASS-EFF-YR  PIC 9(4).              HGD13000
+                   15  HG-CON-CONT-CLASS-EFF-MM  PIC 9(2).              HGD13100
+                   15  HG-CON-CONT-CLASS-EFF-DD  PIC 9(2).              HGD13200
+               10  HG-CON-CURR-CONTRACT-STATUS   PIC X(2).              HGD13300
+               10  HG-CON-CURR-STATUS-EFF-DATE.                         HGD13400
+                   15  HG-CON-CURR-STATUS-EFF-YR PIC 9(4).              HGD13500
+                   15  HG-CON-CURR-STATUS-EFF-MM PIC 9(2).              HGD13600
+                   15  HG-CON-CURR-STATUS-EFF-DD PIC 9(2).              HGD13700
+               10  HG-CON-FUT-CONTRACT-STATUS    PIC X(2).              HGD13800
+               10  HG-CON-FUT-STATUS-EFF-DATE.                          HGD13900
+                   15  HG-CON-FUT-STATUS-EFF-YR  PIC 9(4).              HGD14000
+                   15  HG-CON-FUT-STATUS-EFF-MM  PIC 9(2).              HGD14100
+                   15  HG-CON-FUT-STATUS-EFF-DD  PIC 9(2).              HGD14200
+               10  HG-CON-CONTRACT-EFF-DATE.                            HGD14300
+                   15  HG-CON-CONTRACT-EFF-YR    PIC 9(4).              HGD14400
+                   15  HG-CON-CONTRACT-EFF-MM    PIC 9(2).              HGD14500
+                   15  HG-CON-CONTRACT-EFF-DD    PIC 9(2).              HGD14600
+               10  HG-CON-ADJ-SELLING-DATE.                             HGD14700
+                   15  HG-CON-ADJ-SELLING-YR     PIC 9(4).              HGD14800
+                   15  HG-CON-ADJ-SELLING-MM     PIC 9(2).              HGD14900
+                   15  HG-CON-ADJ-SELLING-DD     PIC 9(2).              HGD15000
+               10  HG-CON-PER-CODE               PIC X(6).              HGD15100
+               10  HG-CON-LINK-SIG.                                     HGD15200
+                   15  HG-CON-LINK-BONUS-SIG     PIC X.                 HGD15300
+                   15  HG-CON-LINK-PUBLICITY-SIG PIC X.                 HGD15400
+                   15  HG-CON-LINK-PENSION-SIG   PIC X.                 HGD15500
+                   15  FILLER                    PIC X(7).              HGD15600
+               10  HG-CON-GLI-EARN-TYPE          PIC X.                 HGD15700
+               10  HG-CON-PRIME-AGT-CODE         PIC X(6).              HGD15800
+               10  HG-CON-PAYMENT-METHOD         PIC X.                 HGD15900
+               10  HG-CON-NET-PAY-HELD-REASON    PIC X(30) OCCURS 2     HGD16000
+                                       INDEXED BY HG-CON-REASON-IDX.    HGD16100
+               10  HG-CON-LIFE-CERT-NUMBER       PIC 9(5).              HGD16200
+               10  HG-CON-NOT-IN-PC              PIC X(1).              HGD16300
+      *** START NEW  HAG-2007-NOV-CB-01 (YLA)                           HGD16400
+               10  HG-CON-RECRUIT-PROFILE        PIC X(10).             HGD16500
+      *** START NEW  HAG-2009-AUG-CC-04 (KCA)                           HGD16600
+               10  HG-CON-PENDING-IND            PIC X(2).              HGD16700
+               10  HG-CON-LAST-ENTITLEMENT-DATE.                        HGD16800
+                   15  HG-CON-LAST-ENTITLEMENT-YR    PIC 9(4).          HGD16900
+                   15  HG-CON-LAST-ENTITLEMENT-MM    PIC 9(2).          HGD17000
+                   15  HG-CON-LAST-ENTITLEMENT-DD    PIC 9(2).          HGD17100
+      *** START NEW HAG-2010-AUG-CC-01 (YLA)                            HGD17200
+               10  HG-CON-SETUP-AC-MONTH.                               HGD17300
+                   15  HG-CON-SETUP-AC-MTH-YR    PIC 9(4).              HGD17400
+                   15  HG-CON-SETUP-AC-MTH-MM    PIC 9(2).              HGD17500
+      *** START NEW HAG-2012-MAY-CB-01 (ASA)                            HGD17600
+               10  HG-CON-SPECIAL-IND            PIC X(10).             HGD17700
+               10  FILLER                        PIC X(78).             HGD17800
+      *** END   NEW HAG-2012-MAY-CB-01 (ASA)                            HGD17900
+      *** START OLD HAG-2012-MAY-CB-01 (ASA)                            HGD18000
+      *        10  FILLER                        PIC X(88).             HGD18100
+      *** END   OLD HAG-2012-MAY-CB-01 (ASA)                            HGD18200
+      *** END   NEW HAG-2010-AUG-CC-01 (YLA)                            HGD18300
+      *** START OLD HAG-2010-AUG-CC-01 (YLA)                            HGD18400
+      *        10  FILLER                        PIC X(94).             HGD18500
+      *** END   OLD HAG-2010-AUG-CC-01 (YLA)                            HGD18600
+      *** END   NEW  HAG-2009-AUG-CC-04 (KCA)                           HGD18700
+      *** START OLD  HAG-2009-AUG-CC-04 (KCA)                           HGD18800
+      *        10  FILLER                        PIC X(104).            HGD18900
+      *** END   OLD  HAG-2009-AUG-CC-04 (KCA)                           HGD19000
+      *** END   NEW  HAG-2007-NOV-CB-01 (YLA)                           HGD19100
+      *** START OLD  HAG-2007-NOV-CB-01 (YLA)                           HGD19200
+      *        10  FILLER                        PIC X(114).            HGD19300
+      *** END   OLD  HAG-2007-NOV-CB-01 (YLA)                           HGD19400
+                                                                        HGD19500
+      ***  REPORTING INFORMATION                                        HGD19600
+           05  HG-CON-REPORTING.                                        HGD19700
+               10  HG-CON-CURR-BRANCH-CODE        PIC X(5).             HGD19800
+               10  HG-CON-CURR-UNIT-CODE          PIC X(5).             HGD19900
+               10  HG-CON-RANK                    PIC X(2).             HGD20000
+               10  HG-CON-RANK-EFF-DATE.                                HGD20100
+                   15  HG-CON-RANK-EFF-YR         PIC 9(4).             HGD20200
+                   15  HG-CON-RANK-EFF-MM         PIC 9(2).             HGD20300
+                   15  HG-CON-RANK-EFF-DD         PIC 9(2).             HGD20400
+               10  HG-CON-UNIT-EFF-DATE.                                HGD20500
+                   15  HG-CON-UNIT-EFF-YR         PIC 9(4).             HGD20600
+                   15  HG-CON-UNIT-EFF-MM         PIC 9(2).             HGD20700
+                   15  HG-CON-UNIT-EFF-DD         PIC 9(2).             HGD20800
+               10  HG-CON-BRANCH-EFF-DATE.                              HGD20900
+                   15  HG-CON-BRANCH-EFF-YR       PIC 9(4).             HGD21000
+                   15  HG-CON-BRANCH-EFF-MM       PIC 9(2).             HGD21100
+                   15  HG-CON-BRANCH-EFF-DD       PIC 9(2).             HGD21200
+               10  FILLER                         PIC X(34).            HGD21300
+                                                                        HGD21400
+      ***  CONTRACT HISTORY INFORMATION                                 HGD21500
+           05  HG-CON-HISTORY.                                          HGD21600
+               10  HG-CON-PREV-CLASS-TABLE        OCCURS 2 TIMES        HGD21700
+                                       INDEXED BY HG-CON-CLASS-IDX.     HGD21800
+                   15  HG-CON-PREV-CONTRACT-CLASS   PIC X(2).           HGD21900
+                   15  HG-CON-PREV-CLASS-EFF-DATE.                      HGD22000
+                       20  HG-CON-PREV-CLASS-EFF-YR PIC 9(4).           HGD22100
+                       20  HG-CON-PREV-CLASS-EFF-MM PIC 9(2).           HGD22200
+                       20  HG-CON-PREV-CLASS-EFF-DD PIC 9(2).           HGD22300
+                                                                        HGD22400
+               10  HG-CON-PREV-STATUS-TABLE         OCCURS 4 TIMES      HGD22500
+                                       INDEXED BY HG-CON-STATUS-IDX.    HGD22600
+                   15  HG-CON-PREV-CONTRACT-STATUS   PIC X(2).          HGD22700
+                   15  HG-CON-PREV-STATUS-EFF-DATE.                     HGD22800
+                       20  HG-CON-PREV-STATUS-EFF-YR PIC 9(4).          HGD22900
+                       20  HG-CON-PREV-STATUS-EFF-MM PIC 9(2).          HGD23000
+                       20  HG-CON-PREV-STATUS-EFF-DD PIC 9(2).          HGD23100
+                                                                        HGD23200
+               10  HG-CON-PREV-BRANCH-TABLE          OCCURS 3 TIMES     HGD23300
+                                       INDEXED BY HG-CON-BRANCH-IDX.    HGD23400
+                   15  HG-CON-PREV-BRANCH-CODE       PIC X(5).          HGD23500
+                   15  HG-CON-PREV-BRANCH-EFF-DATE.                     HGD23600
+                       20  HG-CON-PREV-BRANCH-EFF-YR PIC 9(4).          HGD23700
+                       20  HG-CON-PREV-BRANCH-EFF-MM PIC 9(2).          HGD23800
+                       20  HG-CON-PREV-BRANCH-EFF-DD PIC 9(2).          HGD23900
+                                                                        HGD24000
+               10  HG-CON-PREV-UNIT-TABLE            OCCURS 5 TIMES     HGD24100
+                                       INDEXED BY HG-CON-UNIT-IDX.      HGD24200
+                   15  HG-CON-PREV-UNIT-CODE         PIC X(5).          HGD24300
+                   15  HG-CON-PREV-UNIT-EFF-DATE.                       HGD24400
+                       20  HG-CON-PREV-UNIT-EFF-YR   PIC 9(4).          HGD24500
+                       20  HG-CON-PREV-UNIT-EFF-MM   PIC 9(2).          HGD24600
+                       20  HG-CON-PREV-UNIT-EFF-DD   PIC 9(2).          HGD24700
+                                                                        HGD24800
+               10  HG-CON-PREV-RANK-TABLE            OCCURS 7 TIMES     HGD24900
+                                       INDEXED BY HG-CON-RANK-IDX.      HGD25000
+                   15  HG-CON-PREV-RANK-CODE         PIC X(2).          HGD25100
+                   15  HG-CON-PREV-RANK-EFF-DATE.                       HGD25200
+                       20  HG-CON-PREV-RANK-EFF-YR   PIC 9(4).          HGD25300
+                       20  HG-CON-PREV-RANK-EFF-MM   PIC 9(2).          HGD25400
+                       20  HG-CON-PREV-RANK-EFF-DD   PIC 9(2).          HGD25500
+      *** START AG011 (OLD)                                             HGD25600
+      *        10  FILLER                            PIC X(266).        HGD25700
+      *** END   AG011 (OLD)                                             HGD25800
+      *** START AG011 (NEW)                                             HGD25900
+               10  HG-CON-NON-SER-PERIOD   OCCURS 8 TIMES               HGD26000
+                                        INDEXED BY HG-CON-NON-SER-IDX.  HGD26100
+                   15  HG-CON-NON-SER-START-PER  PIC 9(6).              HGD26200
+                   15  HG-CON-NON-SER-END-PER    PIC 9(6).              HGD26300
+      *** START AG031 (NEW)                                             HGD26400
+               10  HG-CON-NON-SER-REASON   OCCURS 8 TIMES               HGD26500
+                                   INDEXED BY HG-CON-NON-SER-RSN-IDX.   HGD26600
+                   15  HG-CON-NON-SERVICE-REASON     PIC X(1).          HGD26700
+               10  FILLER                            PIC X(162).        HGD26800
+      *** END   AG031 (NEW)                                             HGD26900
+      *** START AG031 (OLD)                                             HGD27000
+      *        10  FILLER                            PIC X(170).        HGD27100
+      *** END   AG031 (OLD)                                             HGD27200
+      *** END   AG011 (NEW)                                             HGD27300
+                                                                        HGD27400
+      ***  COMPENSATION INFORMATION                                     HGD27500
+           05  HG-CON-COMPENSATION.                                     HGD27600
+               10  HG-CON-FINANCING-PLAN          PIC X.                HGD27700
+               10  HG-CON-FINANCING-ADVANCE       PIC 9(7)V99 COMP-3.   HGD27800
+               10  HG-CON-TRAINING-FEE            PIC 9(7)V99 COMP-3.   HGD27900
+               10  HG-CON-FINANCING-COUNT         PIC 9(3)    COMP-3.   HGD28000
+               10  HG-CON-SCH-FINANCING-COUNT     PIC 9(3)    COMP-3.   HGD28100
+               10  HG-CON-FINANCING-END-DATE.                           HGD28200
+                   15  HG-CON-FINANCING-END-YR    PIC 9(4).             HGD28300
+                   15  HG-CON-FINANCING-END-MM    PIC 9(2).             HGD28400
+                   15  HG-CON-FINANCING-END-DD    PIC 9(2).             HGD28500
+               10  HG-CON-INCOME-PLAN-END-DATE.                         HGD28600
+                   15  HG-CON-INCOME-PLAN-END-YR  PIC 9(4).             HGD28700
+                   15  HG-CON-INCOME-PLAN-END-MM  PIC 9(2).             HGD28800
+                   15  HG-CON-INCOME-PLAN-END-DD  PIC 9(2).             HGD28900
+               10  HG-CON-REPAY-INFO.                                   HGD29000
+                   15  HG-CON-REPAY-CODE          PIC X.                HGD29100
+                   15  HG-CON-FY-COMM-REPAY-PCNT  PIC 9(3)    COMP-3.   HGD29200
+                   15  HG-CON-RN-COMM-REPAY-PCNT  PIC 9(3)    COMP-3.   HGD29300
+      *** START NEW HAG-2002-03-CB-01 (DWA)                             HGD29400
+                   15  HG-CON-MGRB-REPAY-PCNT     PIC 9(3)    COMP-3.   HGD29500
+      *** END   NEW HAG-2002-03-CB-01 (DWA)                             HGD29600
+                   15  HG-CON-OTHERS-REPAY-PCNT   PIC 9(3)    COMP-3.   HGD29700
+                   15  HG-CON-FLAT-REPAY-AMT      PIC 9(9)V99 COMP-3.   HGD29800
+               10  HG-CON-BONUS-SIGNAL-DETAILS.                         HGD29900
+                   15  HG-CON-INCENT-BONUS-SIG    PIC X.                HGD30000
+                   15  HG-CON-QPB-BONUS-SIG       PIC X.                HGD30100
+                   15  HG-CON-CAA-BONUS-SIG       PIC X.                HGD30200
+                   15  HG-CON-PI-BONUS-SIG        PIC X.                HGD30300
+                   15  HG-CON-AGB-BONUS-SIG       PIC X.                HGD30400
+                   15  HG-CON-C-CLUB-BONUS-SIG    PIC X.                HGD30500
+      *** START NEW HAG-2002-03-CB-02 (JCN)                             HGD30600
+                   15  HG-CON-SPECIAL-BONUS-SIG   PIC X.                HGD30700
+      *** END   NEW HAG-2002-03-CB-02 (JCN)                             HGD30800
+      *** START OLD HAG-2002-03-CB-02 (JCN)                             HGD30900
+      *            15  HG-CON-VIP-PLUS-BONUS-SIG  PIC X.                HGD31000
+      *** END   OLD HAG-2002-03-CB-02 (JCN)                             HGD31100
+                   15  HG-CON-GLH-BRK-SIG         PIC X.                HGD31200
+                   15  HG-CON-GLH-AGT-SIG         PIC X.                HGD31300
+                   15  HG-CON-IBB-BONUS-SIG       PIC X.                HGD31400
+                   15  HG-CON-HKBG-BONUS-SIG      PIC X.                HGD31500
+                   15  HG-CON-BRK-PI-BONUS-SIG    PIC X.                HGD31600
+                   15  HG-CON-PTM-BONUS-SIG       PIC X.                HGD31700
+      *** START OLD MANUFLEX                                            HGD31800
+      *            15  FILLER                     PIC X(17).            HGD31900
+      *** END OLD MANUFLEX                                              HGD32000
+      *** START NEW MANUFLEX                                            HGD32100
+                   15  HG-CON-MANUFLEX-BRK-SIG    PIC X.                HGD32200
+                   15  HG-CON-MANUFLEX-AGT-SIG    PIC X.                HGD32300
+      *** START AG011 (OLD)                                             HGD32400
+      *            15  FILLER                     PIC X(15).            HGD32500
+      *** END NEW MANUFLEX                                              HGD32600
+      *** END   AG011 (OLD)                                             HGD32700
+      *** START AG011 (NEW)                                             HGD32800
+                   15  HG-CON-MPB-BONUS-SIG       PIC X.                HGD32900
+                   15  HG-CON-PCB-BONUS-SIG       PIC X.                HGD33000
+                   15  HG-CON-AGT-EXP-BONUS-SIG   PIC X.                HGD33100
+      *** START OLD MPF (RLH)                                           HGD33200
+      *            15  FILLER                     PIC X(12).            HGD33300
+      *** END   OLD MPF (RLH)                                           HGD33400
+      *** END   AG011 (NEW)                                             HGD33500
+      *** START NEW MPF (RLH)                                           HGD33600
+                   15  HG-CON-BRK-MPF-BONUS-SIG   PIC X.                HGD33700
+      *** START NEW HAG-2008-JUN-CC-03 (YLA)                            HGD33800
+                   15  HG-CON-JIB-BONUS-SIG       PIC X.                HGD33900
+                   15  HG-CON-AGT-PB-BONUS-SIG    PIC X.                HGD34000
+                   15  HG-CON-MGR-PB-BONUS-SIG    PIC X.                HGD34100
+      *** START NEW HAG-2008-OCT-CC-03 (YLA)                            HGD34200
+                   15  HG-CON-PROMOTION-BONUS-SIG PIC X.                HGD34300
+      *** START NEW HAG-2009-AUG-CB-02 (YLA)                            HGD34400
+                   15  HG-CON-QTR-PB-BONUS-SIG    PIC X(1).             HGD34500
+                   15  HG-CON-MGR-PRI-SIG         PIC X(1).             HGD34600
+      ***   START NEW   HAG-2010-AUG-CC-01    (ASE)                     HGD34700
+                   15  HG-CON-BRK-MPF-MTH-BNS-SIG    PIC X.             HGD34800
+                   15  HG-CON-BRK-MISO-BONUS-SIG     PIC X.             HGD34900
+                   15  HG-CON-BRK-IFP-CUSTOM-BNS-SIG PIC X.             HGD35000
+      *** START NEW HAG-2012-JUL-CB-03 (SDA)                            HGD35100
+                   15  HG-CON-SPL-GWTH-INC-BNS-SIG    PIC X.            HGD35200
+                   15  HG-CON-UL-AGT-VOL-BONUS-SIG    PIC X.            HGD35300
+                   15  HG-CON-UL-MANAGER-BONUS-SIG    PIC X.            HGD35400
+      *** START NEW HAG-2012-OCT-CB-05 (SBA)                            HGD35500
+                   15  HG-CON-AGT-SPL-PERF-BONUS-SIG  PIC X.            HGD35600
+                   15  HG-CON-MGR-SPL-PERF-BONUS-SIG  PIC X.            HGD35700
+      *** START NEW HAG-2013-APR-PA-01 (DCC)                            HGD35800
+                   15  HG-CON-MGR-JIB-BONUS-SIG       PIC X.            HGD35900
+                   15  FILLER                         PIC X(26).        HGD36000
+      *** END   NEW HAG-2013-APR-PA-01 (DCC)                            HGD36100
+      *** START OLD HAG-2013-APR-PA-01 (DCC)                            HGD36200
+      *            15  FILLER                         PIC X(27).        HGD36300
+      *** END   OLD HAG-2013-APR-PA-01 (DCC)                            HGD36400
+      *** END   NEW HAG-2012-OCT-CB-05 (SBA)                            HGD36500
+      *** START OLD HAG-2012-OCT-CB-05 (SBA)                            HGD36600
+      *            15  FILLER                       PIC X(29).          HGD36700
+      *** END   OLD HAG-2012-OCT-CB-05 (SBA)                            HGD36800
+      *** END   NEW HAG-2012-JUL-CB-03 (SDA)                            HGD36900
+      *** START OLD HAG-2012-JUL-CB-03 (SDA)                            HGD37000
+      *            15  FILLER                        PIC X(2).          HGD37100
+      *** END   OLD HAG-2012-JUL-CB-03 (SDA)                            HGD37200
+      ***   END   NEW   HAG-2010-AUG-CC-01    (ASE)                     HGD37300
+      ***   START OLD   HAG-2010-AUG-CC-01    (ASE)                     HGD37400
+      *            15  FILLER                     PIC X(5).             HGD37500
+      ***   END   OLD   HAG-2010-AUG-CC-01    (ASE)                     HGD37600
+      *** END   NEW HAG-2009-AUG-CB-02 (YLA)                            HGD37700
+      *** START OLD HAG-2009-AUG-CB-02 (YLA)                            HGD37800
+      *            15  FILLER                     PIC X(07).            HGD37900
+      *** END   OLD HAG-2009-AUG-CB-02 (YLA)                            HGD38000
+      *** END   NEW HAG-2008-OCT-CC-03 (YLA)                            HGD38100
+      *** START OLD HAG-2008-OCT-CC-03 (YLA)                            HGD38200
+      *            15  FILLER                     PIC X(08).            HGD38300
+      *** END   OLD HAG-2008-OCT-CC-03 (YLA)                            HGD38400
+      *** END   NEW HAG-2008-JUN-CC-03 (YLA)                            HGD38500
+      *** START OLD HAG-2008-JUN-CC-03 (YLA)                            HGD38600
+      *            15  FILLER                     PIC X(11).            HGD38700
+      *** END   OLD HAG-2008-JUN-CC-03 (YLA)                            HGD38800
+      *** END   NEW MPF (RLH)                                           HGD38900
+                                                                        HGD39000
+               10  HG-CON-BONUS-SIGNAL-TABLE                            HGD39100
+                   REDEFINES HG-CON-BONUS-SIGNAL-DETAILS.               HGD39200
+      *** START OLD HAG-2012-JUL-CB-03 (SDA)                            HGD39300
+      *            15  HG-CON-BONUS-SIGNAL        PIC X OCCURS 30       HGD39400
+      *** END   OLD HAG-2012-JUL-CB-03 (SDA)                            HGD39500
+      *** START NEW HAG-2012-JUL-CB-03 (SDA)                            HGD39600
+                   15  HG-CON-BONUS-SIGNAL        PIC X OCCURS 60       HGD39700
+      *** END   NEW HAG-2012-JUL-CB-03 (SDA)                            HGD39800
+                                     INDEXED BY HG-CON-BONUS-IDX.       HGD39900
+               10  HG-CON-INCENT-BONUS-SCHEME     PIC X.                HGD40000
+               10  HG-CON-VESTING-CODE            PIC X.                HGD40100
+               10  HG-CON-FIN-LOSS-POSTING-SIG    PIC X.                HGD40200
+               10  HG-CON-PAYSLIP-SUP-IND         PIC X.                HGD40300
+               10  HG-CON-REIN-TRAIN-FEE-IND      PIC X.                HGD40400
+               10  HG-CON-REIN-FIN-SUBSIDY-IND    PIC X.                HGD40500
+               10  HG-CON-PTM-SCHEME              PIC X.                HGD40600
+               10  HG-CON-ID-ELEMENT-TABLE-AREA   PIC X(224).           HGD40700
+               10  HG-CON-ID-ELEMENT-TABLE                              HGD40800
+                     REDEFINES HG-CON-ID-ELEMENT-TABLE-AREA             HGD40900
+                     OCCURS 7 TIMES                                     HGD41000
+                     INDEXED BY HG-CON-ID-IDX.                          HGD41100
+                   15  HG-CON-ID-ELEMENT-KEY.                           HGD41200
+                       20  HG-CON-ID-ELEMENT-TYPE PIC X(1).             HGD41300
+                       20  HG-CON-ID-ELEMENT-CODE PIC X(2).             HGD41400
+                   15  HG-CON-ID-ELEMENT-AMT      PIC S9(7)V99 COMP-3.  HGD41500
+                   15  HG-CON-ID-ELEMENT-PCNT     PIC 9(3)     COMP-3.  HGD41600
+                   15  HG-CON-ID-ELEMENT-FREQ     PIC X.                HGD41700
+                   15  HG-CON-ID-ELEMENT-START-DATE.                    HGD41800
+                       20  HG-CON-ID-ELEMENT-START-YR   PIC 9(4).       HGD41900
+                       20  HG-CON-ID-ELEMENT-START-MM   PIC 9(2).       HGD42000
+                       20  HG-CON-ID-ELEMENT-START-DD   PIC 9(2).       HGD42100
+                   15  HG-CON-ID-ELEMENT-END-DATE.                      HGD42200
+                       20  HG-CON-ID-ELEMENT-END-YR PIC 9(4).           HGD42300
+                       20  HG-CON-ID-ELEMENT-END-MM PIC 9(2).           HGD42400
+                       20  HG-CON-ID-ELEMENT-END-DD PIC 9(2).           HGD42500
+                   15  HG-CON-ID-ELEMENT-ONE-SHOT   PIC S9(7)V99 COMP-3.HGD42600
+      *** START AG011 (OLD)                                             HGD42700
+      *        10  FILLER                           PIC X(195).         HGD42800
+      *** END   AG011 (OLD)                                             HGD42900
+      *** START AG011 (NEW)                                             HGD43000
+               10  HG-CON-NO-CORE-PC-COUNT          PIC 9.              HGD43100
+               10  HG-CON-FIN-VAL-FAIL-COUNT        PIC 9.              HGD43200
+               10  HG-CON-FIN-VAL-FAIL-COUNT-ALP REDEFINES              HGD43300
+                   HG-CON-FIN-VAL-FAIL-COUNT        PIC X.              HGD43400
+      *** START AG031 (NEW)                                             HGD43500
+               10  HG-CON-FINANCING-QUOTA-ADJ       PIC S9(7)V99 COMP-3.HGD43600
+               10  HG-CON-CURR-MTH-VAL-QUOTA        PIC S9(9)V99 COMP-3.HGD43700
+      *** START OLD HAG-2002-03-CB-01 (DWA)                             HGD43800
+      *        10  FILLER                           PIC X(182).         HGD43900
+      *** END   OLD HAG-2002-03-CB-01 (DWA)                             HGD44000
+      *** START NEW HAG-2002-03-CB-01 (DWA)                             HGD44100
+      **** START NEW HAG-2007-OCT-CC-01 (ASE)                           HGD44200
+               10  HG-CON-NAPI-SIGNAL               PIC X.              HGD44300
+      *** START NEW  HAG-2007-NOV-CB-01 (YLA)                           HGD44400
+               10  HG-CON-MONTHLY-ALLOWANCE-AMT     PIC 9(7)V99 COMP-3. HGD44500
+      *** START OLD HAG-2010-JAN-CB-01 (KCA)                            HGD44600
+      *** START NEW HAG-2009-AUG-CB-02 (YLA)                            HGD44700
+      *        10  HG-CON-MA-PERIOD                 PIC X(2).           HGD44800
+      *        10  HG-CON-MA-AGREED-MAX-AMT         PIC 9(7)V99 COMP-3. HGD44900
+      *        10  HG-CON-JIB-PERIOD                PIC X(2).           HGD45000
+      *        10  HG-CON-JIB-AGREED-MAX-AMT        PIC 9(7)V99 COMP-3. HGD45100
+      *        10  HG-CON-AGT-PB-PERIOD             PIC X(2).           HGD45200
+      *        10  HG-CON-AGT-PB-AGREED-MAX-AMT     PIC 9(7)V99 COMP-3. HGD45300
+      *        10  HG-CON-MGR-PB-PERIOD             PIC X(2).           HGD45400
+      *        10  HG-CON-MGR-PB-AGREED-MAX-AMT     PIC 9(7)V99 COMP-3. HGD45500
+      *        10  HG-CON-QTR-PB-PERIOD             PIC X(2).           HGD45600
+      *        10  HG-CON-QTR-PB-AGREED-MAX-AMT     PIC 9(7)V99 COMP-3. HGD45700
+      *        10  HG-CON-MGR-PRI-PERIOD            PIC X(2).           HGD45800
+      *        10  HG-CON-MGR-PRI-AGREED-MAX-AMT    PIC 9(7)V99 COMP-3. HGD45900
+      *        10  HG-CON-SPEC-IB-PERIOD            PIC X(2).           HGD46000
+      *        10  HG-CON-SPEC-IB-AGREED-MAX-AMT    PIC 9(7)V99 COMP-3. HGD46100
+      *        10  FILLER                           PIC X(125).         HGD46200
+      *** END   NEW HAG-2009-AUG-CB-02 (YLA)                            HGD46300
+      *** END   OLD HAG-2010-JAN-CB-01 (KCA)                            HGD46400
+      *** START NEW HAG-2010-JAN-CB-01 (KCA)                            HGD46500
+               10  HG-CON-MA-PERIOD                 PIC X(2).           HGD46600
+               10  HG-CON-MA-AGREED-MAX-AMT         PIC 9(8)V99 COMP-3. HGD46700
+               10  HG-CON-JIB-PERIOD                PIC X(2).           HGD46800
+               10  HG-CON-JIB-AGREED-MAX-AMT        PIC 9(8)V99 COMP-3. HGD46900
+               10  HG-CON-AGT-PB-PERIOD             PIC X(2).           HGD47000
+               10  HG-CON-AGT-PB-AGREED-MAX-AMT     PIC 9(8)V99 COMP-3. HGD47100
+               10  HG-CON-MGR-PB-PERIOD             PIC X(2).           HGD47200
+               10  HG-CON-MGR-PB-AGREED-MAX-AMT     PIC 9(8)V99 COMP-3. HGD47300
+               10  HG-CON-QTR-PB-PERIOD             PIC X(2).           HGD47400
+               10  HG-CON-QTR-PB-AGREED-MAX-AMT     PIC 9(8)V99 COMP-3. HGD47500
+               10  HG-CON-MGR-PRI-PERIOD            PIC X(2).           HGD47600
+               10  HG-CON-MGR-PRI-AGREED-MAX-AMT    PIC 9(8)V99 COMP-3. HGD47700
+               10  HG-CON-SPEC-IB-PERIOD            PIC X(2).           HGD47800
+               10  HG-CON-SPEC-IB-AGREED-MAX-AMT    PIC 9(8)V99 COMP-3. HGD47900
+      *** START NEW HAG-2010-AUG-CC-01 (YLA)                            HGD48000
+               10  HG-CON-BYPASS-PRINT-IND          PIC X(1).           HGD48100
+      *** START NEW HAG-2012-OCT-CB-07 (YLA)                            HGD48200
+               10  HG-CON-AGT-SPB-PERIOD            PIC X(2).           HGD48300
+               10  HG-CON-AGT-SPB-AGREED-MAX-AMT    PIC 9(8)V99 COMP-3. HGD48400
+               10  HG-CON-MGR-SPB-PERIOD            PIC X(2).           HGD48500
+               10  HG-CON-MGR-SPB-AGREED-MAX-AMT    PIC 9(8)V99 COMP-3. HGD48600
+      *** START NEW HAG-2013-APR-PA-01 (DCC)                            HGD48700
+               10  HG-CON-MGR-JIB-PERIOD            PIC X(2).           HGD48800
+               10  HG-CON-MGR-JIB-AGREED-MAX-AMT    PIC 9(8)V99 COMP-3. HGD48900
+               10  HG-CON-MA-ADV-PERIOD             PIC X(2).           HGD49000
+               10  HG-CON-JIB-ADV-PERIOD            PIC X(2).           HGD49100
+               10  HG-CON-AGT-PB-ADV-PERIOD         PIC X(2).           HGD49200
+               10  HG-CON-MGR-PB-ADV-PERIOD         PIC X(2).           HGD49300
+               10  HG-CON-QTR-PB-ADV-PERIOD         PIC X(2).           HGD49400
+               10  HG-CON-MGR-PRI-ADV-PERIOD        PIC X(2).           HGD49500
+               10  HG-CON-SPEC-IB-ADV-PERIOD        PIC X(2).           HGD49600
+               10  HG-CON-AGT-SPB-ADV-PERIOD        PIC X(2).           HGD49700
+               10  HG-CON-MGR-SPB-ADV-PERIOD        PIC X(2).           HGD49800
+               10  HG-CON-MGR-JIB-ADV-PERIOD        PIC X(2).           HGD49900
+      *** START NEW HAG-2013-MAY-CB-01 (YLA)                            HGD50000
+               10  HG-CON-CONSEC-MTH-FAILED-VAL     PIC 9(3) COMP-3.    HGD50100
+      *** START NEW HAG-2013-JUL-PA-01 (SBB)                            HGD50000
+               10  HG-CON-MA-TARGET-PC              PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-JIB-TARGET-PC             PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-AGT-PB-TARGET-PC          PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-MGR-PB-TARGET-PC          PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-QTR-PB-TARGET-PC          PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-MGR-PRI-TARGET-PC         PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-SPEC-IB-TARGET-PC         PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-AGT-SPB-TARGET-PC         PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-MGR-SPB-TARGET-PC         PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-MGR-JIB-TARGET-PC         PIC S9(11) COMP-3.  HGD49900
+               10  HG-CON-MA-BIND-PRD               PIC X(02).          HGD49900
+               10  HG-CON-JIB-BIND-PRD              PIC X(02).          HGD49900
+               10  HG-CON-AGT-PB-BIND-PRD           PIC X(02).          HGD49900
+               10  HG-CON-MGR-PB-BIND-PRD           PIC X(02).          HGD49900
+               10  HG-CON-QTR-PB-BIND-PRD           PIC X(02).          HGD49900
+               10  HG-CON-MGR-PRI-BIND-PRD          PIC X(02).          HGD49900
+               10  HG-CON-SPEC-IB-BIND-PRD          PIC X(02).          HGD49900
+               10  HG-CON-AGT-SPB-BIND-PRD          PIC X(02).          HGD49900
+               10  HG-CON-MGR-SPB-BIND-PRD          PIC X(02).          HGD49900
+               10  HG-CON-MGR-JIB-BIND-PRD          PIC X(02).          HGD49900
+               10  HG-CON-YS-FAIL-COUNT             PIC S9(3) COMP-3.   HGD58400
+      *** START NEW HAG-2013-NOV-CB-04 (DCC)                            HGD50000
+               10  HG-CON-CESSATION-DATE.
+                   15  HG-CON-CESSATION-YYYY        PIC 9(4).
+                   15  HG-CON-CESSATION-MM          PIC 9(2).
+                   15  HG-CON-CESSATION-DD          PIC 9(2).
+      *** START NEW HAG-2013-NOV-CB-05 (ACB)                            HGD50000
+               10  HG-CON-CATCH-UP-USED             PIC X(01).
+               10  FILLER                           PIC X(68).          HGD58800
+      *** END   NEW HAG-2013-NOV-CB-05 (ACB)                            HGD50000
+      *** START OLD HAG-2013-NOV-CB-05 (ACB)                            HGD50000
+      *        10  FILLER                           PIC X(76).          HGD58800
+      *** END   OLD HAG-2013-NOV-CB-05 (ACB)                            HGD50000
+      *** END   NEW HAG-2013-NOV-CB-04 (DCC)                            HGD50000
+      *** START OLD HAG-2013-NOV-CB-04 (DCC)                            HGD50000
+      *        10  FILLER                           PIC X(77).          HGD58800
+      *** END   OLD HAG-2013-NOV-CB-04 (DCC)                            HGD50000
+      *** END   NEW HAG-2013-JUL-PA-01 (SBB)                            HGD50300
+      *** START OLD HAG-2013-JUL-PA-01 (SBB)                            HGD50000
+      *        10  FILLER                           PIC X(41).          HGD50200
+      *** END   OLD HAG-2013-JUL-PA-01 (SBB)                            HGD50300
+      *** END   NEW HAG-2013-MAY-CB-01 (YLA)                            HGD50300
+      *** START OLD HAG-2013-MAY-CB-01 (YLA)                            HGD50400
+      *        10  FILLER                           PIC X(43).          HGD50500
+      *** END   OLD HAG-2013-MAY-CB-01 (YLA)                            HGD50600
+      *** END   NEW HAG-2013-APR-PA-01 (DCC)                            HGD50700
+      *** START OLD HAG-2013-APR-PA-01 (DCC)                            HGD50800
+      *        10  FILLER                           PIC X(71).          HGD50900
+      *** END   OLD HAG-2013-APR-PA-01 (DCC)                            HGD51000
+      *** END   NEW HAG-2012-OCT-CB-07 (YLA)                            HGD51100
+      *** START NEW HAG-2012-JUL-CB-03 (SDA)                            HGD51200
+      *** START OLD HAG-2012-OCT-CB-07 (YLA)                            HGD51300
+      *        10  FILLER                           PIC X(87).          HGD51400
+      *** END   OLD HAG-2012-OCT-CB-07 (YLA)                            HGD51500
+      *** END   NEW HAG-2012-JUL-CB-03 (SDA)                            HGD51600
+      *** START OLD HAG-2012-JUL-CB-03 (SDA)                            HGD51700
+      *        10  FILLER                           PIC X(117).         HGD51800
+      *** END   OLD HAG-2012-JUL-CB-03 (SDA)                            HGD51900
+      *** END   NEW HAG-2010-AUG-CC-01 (YLA)                            HGD52000
+      *** START OLD HAG-2010-AUG-CC-01 (YLA)                            HGD52100
+      *        10  FILLER                           PIC X(118).         HGD52200
+      *** END   OLD HAG-2010-AUG-CC-01 (YLA)                            HGD52300
+      *** END   NEW HAG-2010-JAN-CB-01 (KCA)                            HGD52400
+      *** START OLD HAG-2009-AUG-CB-02 (YLA)                            HGD52500
+      *        10  FILLER                           PIC X(174).         HGD52600
+      *** END   OLD HAG-2009-AUG-CB-02 (YLA)                            HGD52700
+      *** END   NEW  HAG-2007-NOV-CB-01 (YLA)                           HGD52800
+      *** START OLD  HAG-2007-NOV-CB-01 (YLA)                           HGD52900
+      *        10  FILLER                           PIC X(179).         HGD53000
+      *** END   OLD  HAG-2007-NOV-CB-01 (YLA)                           HGD53100
+      **** END   NEW HAG-2007-OCT-CC-01 (ASE)                           HGD53200
+      **** START OLD HAG-2007-OCT-CC-01 (ASE)                           HGD53300
+      *        10  FILLER                           PIC X(180).         HGD53400
+      **** END   OLD HAG-2007-OCT-CC-01 (ASE)                           HGD53500
+      *** END   NEW HAG-2002-03-CB-01 (DWA)                             HGD53600
+      *** END   AG031 (NEW)                                             HGD53700
+      *** START AG031 (OLD)                                             HGD53800
+      *        10  FILLER                           PIC X(193).         HGD53900
+      *** END   AG031 (OLD)                                             HGD54000
+      *** END   AG011 (NEW)                                             HGD54100
+                                                                        HGD54200
+                                                                        HGD54300
+      *** BENEFIT PENSION INFORMATION                                   HGD54400
+           05  HG-CON-PENSION.                                          HGD54500
+               10  HG-CON-VOL-PERCENT        PIC 9(3)    COMP-3.        HGD54600
+               10  HG-CON-REQ-PERCENT        PIC 9(3)    COMP-3.        HGD54700
+      *** START OLD HAG-982-CB-01 (ALE)                                 HGD54800
+      *        10  HG-CON-INVESTMENT-TYPE    PIC X(1).                  HGD54900
+      *** END   OLD HAG-982-CB-01 (ALE)                                 HGD55000
+      *** START NEW HAG-982-CB-01 (ALE)                                 HGD55100
+               10  HG-CON-EE-INVEST-TYPE     PIC X(1).                  HGD55200
+      *** END   NEW HAG-982-CB-01 (ALE)                                 HGD55300
+               10  HG-CON-PENSION-PLAN       PIC X(1).                  HGD55400
+      *** START OLD HAG-982-CB-01 (ALE)                                 HGD55500
+      *        10  FILLER                    PIC X(24).                 HGD55600
+      *** END   OLD HAG-982-CB-01 (ALE)                                 HGD55700
+      *** START NEW HAG-982-CB-01 (ALE)                                 HGD55800
+               10  HG-CON-ER-INVEST-TYPE     PIC X(1).                  HGD55900
+      *** START NEW HAG-2000-08-CB-01 (RLH)                             HGD56000
+               10  HG-CON-ABP-AGT-ADJ-AMT    PIC S9(7)V99 COMP-3.       HGD56100
+               10  HG-CON-ABP-CO-ADJ-AMT     PIC S9(7)V99 COMP-3.       HGD56200
+      *** START OLD HAG-2005-APR-CC-02 (BCA)                            HGD56300
+      *        10  FILLER                    PIC X(13).                 HGD56400
+      *** END   OLD HAG-2005-APR-CC-02 (BCA)                            HGD56500
+      *** END   NEW HAG-2000-08-CB-01 (RLH)                             HGD56600
+      *** START NEW HAG-2005-APR-CC-02 (BCA)                            HGD56700
+               10  HG-CON-ER-CTD-CONTRIB     PIC S9(7)V99 COMP-3.       HGD56800
+      *** START OLD HAG-2011-JUL-CC-01 (SBA)                            HGD56900
+      *        10  FILLER                    PIC X(8).                  HGD57000
+      *** END   OLD HAG-2011-JUL-CC-01 (SBA)                            HGD57100
+      *** END   NEW HAG-2005-APR-CC-02 (BCA)                            HGD57200
+      *** START OLD HAG-2000-08-CB-01 (RLH)                             HGD57300
+      *        10  FILLER                    PIC X(23).                 HGD57400
+      *** END   OLD HAG-2000-08-CB-01 (RLH)                             HGD57500
+      *** END   NEW HAG-982-CB-01 (ALE)                                 HGD57600
+      *** START NEW HAG-2011-JUL-CC-01 (SBA)                            HGD57700
+               10  HG-CON-MAM-AC-NO          PIC X(20).                 HGD57800
+               10  HG-CON-TO-BE-REV-RANK     PIC X(2).                  HGD57900
+               10  HG-CON-TO-BE-REV-EFF-YR   PIC 9(4).                  HGD58000
+      *** END   NEW HAG-2011-JUL-CC-01 (SBA)                            HGD58100
+                                                                        HGD58200
+      *** START OLD HAG-2013-JUL-PA-01 (SBB)                            HGD50000
+      *** START NEW HAG-2011-SEP-CB-04 (DSA)                            HGD58300
+      *        10  HG-CON-YS-FAIL-COUNT      PIC S9(3) COMP-3.          HGD58400
+      *** END   NEW HAG-2011-SEP-CB-04 (DSA)                            HGD58500
+      *** END   OLD HAG-2013-JUL-PA-01 (SBB)                            HGD50300
+                                                                        HGD58600
+      *** START OLD HAG-2013-JUL-PA-01 (SBB)                            HGD50000
+      *** START NEW HAG-2011-SEP-CB-04 (DSA)                            HGD58700
+      *    05  FILLER                        PIC X(116).                HGD58800
+      *** END   NEW HAG-2011-SEP-CB-04 (DSA)                            HGD58900
+      *** END   OLD HAG-2013-JUL-PA-01 (SBB)                            HGD50300
+                                                                        HGD59000
+      *** START OLD HAG-2011-SEP-CB-04 (DSA)                            HGD59100
+      *** START NEW HAG-2011-JUL-CC-01 (SBA)                            HGD59200
+      *    05  FILLER                        PIC X(118).                HGD59300
+      *** END   NEW HAG-2011-JUL-CC-01 (SBA)                            HGD59400
+      *** END   OLD HAG-2011-SEP-CB-04 (DSA)                            HGD59500
+                                                                        HGD59600
+      *** START OLD HAG-2011-JUL-CC-01 (SBA)                            HGD59700
+      *    05  FILLER                        PIC X(136).                HGD59800
+      *** END   OLD HAG-2011-JUL-CC-01 (SBA)                            HGD59900
+

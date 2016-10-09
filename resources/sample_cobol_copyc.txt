@@ -1,0 +1,5 @@
+01 ASSOC-RECORD.
+     05 ASSOC-ID          PIC X(8).
+     05 ASSOC-MEM-COUNT   PIC S9(9)     COMP.
+     05 ASSOC-VAL         PIC 9(13)V99  COMP-3.
+     05 ASSOC-SPECIAL     PIC 9(13)V99.
